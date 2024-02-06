@@ -1,20 +1,18 @@
-//
-//  SceneDelegate.swift
-//  UIKitTasks
-//
-//  Created by Dmitry Pavlov on 6.02.24.
-//
+// SceneDelegate.swift
+// Copyright © RoadMap. All rights reserved.
 
 import UIKit
+
 /// Class Scene Delegate
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
     var window: UIWindow?
 
-    func scene(_ scene: UIScene, 
-               willConnectTo session: UISceneSession,
-               options connectionOptions: UIScene.ConnectionOptions) {
-      
+    func scene(
+        _ scene: UIScene,
+
+        willConnectTo session: UISceneSession,
+        options connectionOptions: UIScene.ConnectionOptions
+    ) {
         // guard let _ = (scene as? UIWindowScene) else { return }
     }
 
