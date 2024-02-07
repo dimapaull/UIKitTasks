@@ -5,30 +5,27 @@ import UIKit
 
 /// Class Input View Controller
 class InputViewController: UIViewController {
-    let startButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 400, width: 335, height: 44))
-        button.setTitle("Начать", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        button.titleLabel?.textColor = .white
-        button.titleLabel?.textAlignment = .center
-        button.layer.cornerRadius = 12
-        button.backgroundColor = .green
-        return button
-    }()
+    private lazy var mainView = InputView(frame: view.frame, isStartView: true)
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
-        setup()
+    override func loadView() {
+        super.loadView()
+        mainView.delegate = self
+        view.addSubview(mainView)
     }
 
-    func setup() {
-        startButton.center.x = view.center.x
-        startButton.addTarget(nil, action: #selector(addCheckWordAlert), for: .touchUpInside)
-        view.addSubview(startButton)
+    func updateTextInLabelsWith(_ word: String) {
+        view.subviews.first?.removeFromSuperview()
+        view.addSubview(InputView(frame: view.frame, isStartView: false))
+        (view.subviews.first as? InputView)?.delegate = self
+        (view.subviews.last as? InputView)?.getViewWithLabel(
+            inputWord: word,
+            reversedWord: Checker().reverce(word)
+        )
     }
+}
 
-    @objc func addCheckWordAlert() {
+extension InputViewController: AlertDelegate {
+    func addCheckWordAlert() {
         let checkWordAlert = UIAlertController(title: "Введите ваше слово", message: nil, preferredStyle: .alert)
 
         checkWordAlert.addTextField { textField in
@@ -36,7 +33,9 @@ class InputViewController: UIViewController {
         }
 
         let okAction = UIAlertAction(title: "Ок", style: .default) { _ in
-            
+            let word = checkWordAlert.textFields?.first?.text
+
+            self.updateTextInLabelsWith(word ?? "")
         }
         checkWordAlert.addAction(okAction)
 

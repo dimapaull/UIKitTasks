@@ -12,6 +12,8 @@
 		0EB28A272B7250A600C28C48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EB28A262B7250A600C28C48 /* Assets.xcassets */; };
 		0EB28A2A2B7250A600C28C48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EB28A282B7250A600C28C48 /* LaunchScreen.storyboard */; };
 		0EE7F5682B741C4200E8C18F /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE7F5672B741C4200E8C18F /* InputViewController.swift */; };
+		0EE7F56C2B741E8200E8C18F /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE7F56B2B741E8200E8C18F /* Checker.swift */; };
+		0EE7F5702B742CAC00E8C18F /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE7F56F2B742CAC00E8C18F /* ResultView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		0EB28A292B7250A600C28C48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0EB28A2B2B7250A600C28C48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0EE7F5672B741C4200E8C18F /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
+		0EE7F56B2B741E8200E8C18F /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
+		0EE7F56F2B742CAC00E8C18F /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,7 @@
 		0EE7F5642B741BB200E8C18F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0EE7F56B2B741E8200E8C18F /* Checker.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -76,6 +81,7 @@
 		0EE7F5652B741BB700E8C18F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0EE7F56F2B742CAC00E8C18F /* ResultView.swift */,
 			);
 			name = View;
 			path = Model/View;
@@ -205,8 +211,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EE7F5682B741C4200E8C18F /* InputViewController.swift in Sources */,
+				0EE7F56C2B741E8200E8C18F /* Checker.swift in Sources */,
 				0EB28A1E2B7250A300C28C48 /* AppDelegate.swift in Sources */,
 				0EB28A202B7250A300C28C48 /* SceneDelegate.swift in Sources */,
+				0EE7F5702B742CAC00E8C18F /* ResultView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
