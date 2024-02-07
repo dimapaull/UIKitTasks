@@ -89,10 +89,14 @@ final class InputViewController: UIViewController {
         present(alert, animated: true)
     }
 
-    private func addGetResultAlertFrom(_ firstNumber: Int, _ secondNumber: Int) {
+    private func addGetResultAlertFrom(
+        _ firstNumber: Int,
+        _ secondNumber: Int,
+        operation: (Int, Int) -> Int
+    ) {
         let resultAlert = UIAlertController(
             title: "Ваш результат",
-            message: "Результат вычислений - \(firstNumber + secondNumber)",
+            message: "Результат вычислений - \(operation(firstNumber, secondNumber))",
             preferredStyle: .alert
         )
 
@@ -126,6 +130,39 @@ final class InputViewController: UIViewController {
         present(checkNumberAlert, animated: true)
     }
 
+    func addChoosedOperationAlert(_ firstNumber: Int, _ secondNumber: Int) {
+        let choosedOperationAlert = UIAlertController(
+            title: "Выберите метематическую\n операцию",
+            message: nil,
+            preferredStyle: .alert
+        )
+
+        let addAction = UIAlertAction(title: "Сложить", style: .default) { _ in
+            self.addGetResultAlertFrom(firstNumber, secondNumber) { $0 + $1 }
+        }
+        choosedOperationAlert.addAction(addAction)
+
+        let subtractAction = UIAlertAction(title: "Вычесть", style: .default) { _ in
+            self.addGetResultAlertFrom(firstNumber, secondNumber) { $0 - $1 }
+        }
+        choosedOperationAlert.addAction(subtractAction)
+
+        let multiplyAction = UIAlertAction(title: "Умножить", style: .default) { _ in
+            self.addGetResultAlertFrom(firstNumber, secondNumber) { $0 * $1 }
+        }
+        choosedOperationAlert.addAction(multiplyAction)
+
+        let divideAction = UIAlertAction(title: "Разделить", style: .default) { _ in
+            self.addGetResultAlertFrom(firstNumber, secondNumber) { $0 / $1 }
+        }
+        choosedOperationAlert.addAction(divideAction)
+
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
+        choosedOperationAlert.addAction(cancelAction)
+
+        present(choosedOperationAlert, animated: true)
+    }
+
     private func addTargetsForButtons() {
         guessButton.addTarget(nil, action: #selector(addGuessNumbersAlert), for: .touchUpInside)
         calculateButton.addTarget(nil, action: #selector(addCalculateNumbersAlert), for: .touchUpInside)
@@ -155,11 +192,11 @@ final class InputViewController: UIViewController {
             textField.placeholder = "Число 2"
         }
 
-        let appendAction = UIAlertAction(title: "Сложить", style: .default) { _ in
+        let appendAction = UIAlertAction(title: "Выбрать операцию", style: .default) { _ in
             let firstNumber = Int(calculateAlert.textFields?[0].text ?? "0") ?? 0
             let secondNumber = Int(calculateAlert.textFields?[1].text ?? "0") ?? 0
 
-            self.addGetResultAlertFrom(firstNumber, secondNumber)
+            self.addChoosedOperationAlert(firstNumber, secondNumber)
         }
         calculateAlert.addAction(appendAction)
 
