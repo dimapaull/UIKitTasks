@@ -7,6 +7,7 @@ import UIKit
 class ThanksViewController: UIViewController {
     // MARK: - IBOutlets
 
+    @IBOutlet var userMailLalel: UILabel!
     @IBOutlet var closeButton: UIButton!
 
     // MARK: - Life Cycle
@@ -15,6 +16,7 @@ class ThanksViewController: UIViewController {
         super.viewDidLoad()
         closeButton.layer.cornerRadius = 12
         view.backgroundColor = .white
+        userMailLalel.text? += UserMail.shared.getMail()
     }
 
     // MARK: - IBAction

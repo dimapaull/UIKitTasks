@@ -30,6 +30,7 @@ final class InputViewController: UIViewController {
         passwordTextField.delegate = self
 
         loginButton.layer.cornerRadius = 13
+        loginButton.addTarget(nil, action: #selector(addMail), for: .touchUpInside)
     }
 
     private func underlined(textFiled: UITextField) {
@@ -45,6 +46,10 @@ final class InputViewController: UIViewController {
         border.borderWidth = width
         textFiled.layer.addSublayer(border)
         textFiled.layer.masksToBounds = true
+    }
+
+    @objc func addMail() {
+        UserMail.shared.setMail(mailTextField.text ?? "")
     }
 
     // MARK: - IBAction

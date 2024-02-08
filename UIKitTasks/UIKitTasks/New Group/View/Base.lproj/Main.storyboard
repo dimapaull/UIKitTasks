@@ -201,7 +201,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BWQ-uW-srq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1691" y="-35"/>
+            <point key="canvasLocation" x="1671" y="-35"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="c8I-eT-pUB">
@@ -219,7 +219,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q37-6H-Kwy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="259" y="-35"/>
+            <point key="canvasLocation" x="288" y="-35"/>
         </scene>
         <!--Check View Controller-->
         <scene sceneID="Tbi-Fa-GtC">
@@ -349,7 +349,7 @@
                                     <action selector="pressClose:" destination="i64-hg-TWP" eventType="touchUpInside" id="CbG-qg-8ZK"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Электронный чек отправили Вам на почту example@mail.ru " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Rht-82-nIf">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Электронный чек отправили Вам на почту " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Rht-82-nIf">
                                 <rect key="frame" x="48" y="75" width="305" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
@@ -372,6 +372,7 @@
                     </view>
                     <connections>
                         <outlet property="closeButton" destination="ysR-3g-vUW" id="fht-QU-SbK"/>
+                        <outlet property="userMailLalel" destination="Rht-82-nIf" id="GOd-gK-3zw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nKb-sy-32f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
