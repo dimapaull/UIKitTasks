@@ -3,19 +3,24 @@
 
 import UIKit
 
-/// Class Detail View Controller
+/// Контроллер для указания деталей заказа
 class DetailViewController: UIViewController {
+    // MARK: - IBOutlets
+
     @IBOutlet var tableNumberTextField: UITextField!
     @IBOutlet var personCountTextFild: UITextField!
     @IBOutlet var nameTextField: UITextField!
-
     @IBOutlet var billButton: UIButton!
+
+    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setup()
     }
+
+    // MARK: - Private Methods
 
     private func setup() {
         tableNumberTextField.delegate = self
@@ -45,6 +50,13 @@ class DetailViewController: UIViewController {
         textFiled.layer.masksToBounds = true
     }
 
+    private func pushCheckViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let checkViewController = storyboard.instantiateViewController(withIdentifier: "CheckViewController")
+
+        navigationController?.pushViewController(checkViewController, animated: true)
+    }
+
     @objc private func addBillAlert() {
         let billAlert = UIAlertController(title: "Выставить счет", message: nil, preferredStyle: .alert)
 
@@ -58,14 +70,9 @@ class DetailViewController: UIViewController {
 
         present(billAlert, animated: true)
     }
-
-    func pushCheckViewController() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let checkViewController = storyboard.instantiateViewController(withIdentifier: "CheckViewController")
-
-        navigationController?.pushViewController(checkViewController, animated: true)
-    }
 }
+
+// MARK: - Extension UITextFieldDelegate
 
 extension DetailViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

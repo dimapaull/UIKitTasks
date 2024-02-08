@@ -3,14 +3,30 @@
 
 import UIKit
 
-/// Class Check View Controller
+/// Контроллер для подтвержения заказа
 class CheckViewController: UIViewController {
+    // MARK: - IBOutlets
+
     @IBOutlet var payButton: UIButton!
+
+    // MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         payButton.layer.cornerRadius = 12
         view.backgroundColor = .white
     }
+
+    // MARK: - Private Methods
+
+    private func presentThanksViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let thanksViewController = storyboard.instantiateViewController(withIdentifier: "ThanksViewController")
+
+        present(thanksViewController, animated: true)
+    }
+
+    // MARK: - IBAction
 
     @IBAction func pressPay(_ sender: Any) {
         let payAlert = UIAlertController(title: "Вы хотите оплатить чек?", message: nil, preferredStyle: .alert)
@@ -24,12 +40,5 @@ class CheckViewController: UIViewController {
         payAlert.addAction(acceptAction)
 
         present(payAlert, animated: true)
-    }
-
-    func presentThanksViewController() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let thanksViewController = storyboard.instantiateViewController(withIdentifier: "ThanksViewController")
-
-        present(thanksViewController, animated: true)
     }
 }

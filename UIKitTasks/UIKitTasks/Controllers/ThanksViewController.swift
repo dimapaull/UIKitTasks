@@ -3,14 +3,21 @@
 
 import UIKit
 
-/// Thanks View Controller
+/// Контроллер с благодарностью о покупке
 class ThanksViewController: UIViewController {
+    // MARK: - IBOutlets
+
     @IBOutlet var closeButton: UIButton!
+
+    // MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         closeButton.layer.cornerRadius = 12
         view.backgroundColor = .white
     }
+
+    // MARK: - IBAction
 
     @IBAction func pressClose(_ sender: Any) {
         dismiss(animated: true)

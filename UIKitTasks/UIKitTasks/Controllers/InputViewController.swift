@@ -3,18 +3,24 @@
 
 import UIKit
 
-/// Class Input View Controller
-class InputViewController: UIViewController {
+/// Контроллер для входа в аккаунт
+final class InputViewController: UIViewController {
+    // MARK: - IBOutlets
+
     @IBOutlet var logoImage: UIImageView!
     @IBOutlet var mailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var loginButton: UIButton!
+
+    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setup()
     }
+
+    // MARK: - Private Methods
 
     private func setup() {
         underlined(textFiled: mailTextField)
@@ -41,6 +47,8 @@ class InputViewController: UIViewController {
         textFiled.layer.masksToBounds = true
     }
 
+    // MARK: - IBAction
+
     @IBAction func secretButton(_ sender: UIButton) {
         if passwordTextField.isSecureTextEntry {
             sender.setImage(UIImage(named: "Vector-2"), for: .normal)
@@ -51,6 +59,8 @@ class InputViewController: UIViewController {
         }
     }
 }
+
+// MARK: - Extension UITextFieldDelegate
 
 extension InputViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
