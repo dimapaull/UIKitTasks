@@ -60,9 +60,10 @@ class DetailViewController: UIViewController {
     }
 
     func pushCheckViewController() {
-        let checkVC = CheckViewController()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let checkViewController = storyboard.instantiateViewController(withIdentifier: "CheckViewController")
 
-        navigationController?.pushViewController(checkVC, animated: true)
+        navigationController?.pushViewController(checkViewController, animated: true)
     }
 }
 
