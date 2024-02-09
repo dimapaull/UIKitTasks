@@ -64,11 +64,11 @@
 		0EB28A1C2B7250A300C28C48 /* UIKitTasks */ = {
 			isa = PBXGroup;
 			children = (
+				0EB28A1D2B7250A300C28C48 /* AppDelegate.swift */,
+				0EB28A1F2B7250A300C28C48 /* SceneDelegate.swift */,
 				0EF482A52B75929400D70284 /* Controllers */,
 				0EF482A42B75928B00D70284 /* View */,
 				0EF482A12B75926900D70284 /* Model */,
-				0EB28A1D2B7250A300C28C48 /* AppDelegate.swift */,
-				0EB28A1F2B7250A300C28C48 /* SceneDelegate.swift */,
 				0EB28A262B7250A600C28C48 /* Assets.xcassets */,
 				0EB28A282B7250A600C28C48 /* LaunchScreen.storyboard */,
 				0EB28A2B2B7250A600C28C48 /* Info.plist */,

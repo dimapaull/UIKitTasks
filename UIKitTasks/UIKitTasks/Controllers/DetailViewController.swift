@@ -7,22 +7,23 @@ import UIKit
 class DetailViewController: UIViewController {
     // MARK: - IBOutlets
 
-    @IBOutlet var tableNumberTextField: UITextField!
-    @IBOutlet var personCountTextFild: UITextField!
-    @IBOutlet var nameTextField: UITextField!
-    @IBOutlet var billButton: UIButton!
+    @IBOutlet private var tableNumberTextField: UITextField!
+    @IBOutlet private var personCountTextFild: UITextField!
+    @IBOutlet private var nameTextField: UITextField!
+    @IBOutlet private var billButton: UIButton!
 
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
         setup()
     }
 
     // MARK: - Private Methods
 
     private func setup() {
+        view.backgroundColor = .white
+
         tableNumberTextField.delegate = self
         personCountTextFild.delegate = self
         nameTextField.delegate = self

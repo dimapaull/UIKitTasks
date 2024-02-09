@@ -7,8 +7,8 @@ import UIKit
 class ThanksViewController: UIViewController {
     // MARK: - IBOutlets
 
-    @IBOutlet var userMailLalel: UILabel!
-    @IBOutlet var closeButton: UIButton!
+    @IBOutlet private var userMailLalel: UILabel!
+    @IBOutlet private var closeButton: UIButton!
 
     // MARK: - Life Cycle
 
@@ -21,7 +21,7 @@ class ThanksViewController: UIViewController {
 
     // MARK: - IBAction
 
-    @IBAction func pressClose(_ sender: Any) {
+    @IBAction private func pressClose(_ sender: Any) {
         dismiss(animated: true)
     }
 }

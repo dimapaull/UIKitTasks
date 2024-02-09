@@ -7,7 +7,7 @@ import UIKit
 class CheckViewController: UIViewController {
     // MARK: - IBOutlets
 
-    @IBOutlet var payButton: UIButton!
+    @IBOutlet private var payButton: UIButton!
 
     // MARK: - Life Cycle
 
@@ -28,7 +28,7 @@ class CheckViewController: UIViewController {
 
     // MARK: - IBAction
 
-    @IBAction func pressPay(_ sender: Any) {
+    @IBAction private func pressPay(_ sender: Any) {
         let payAlert = UIAlertController(title: "Вы хотите оплатить чек?", message: nil, preferredStyle: .alert)
 
         let cancelAction = UIAlertAction(title: "Нет", style: .cancel)

@@ -7,22 +7,23 @@ import UIKit
 final class InputViewController: UIViewController {
     // MARK: - IBOutlets
 
-    @IBOutlet var logoImage: UIImageView!
-    @IBOutlet var mailTextField: UITextField!
-    @IBOutlet var passwordTextField: UITextField!
-    @IBOutlet var loginButton: UIButton!
+    @IBOutlet private var logoImage: UIImageView!
+    @IBOutlet private var mailTextField: UITextField!
+    @IBOutlet private var passwordTextField: UITextField!
+    @IBOutlet private var loginButton: UIButton!
 
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
         setup()
     }
 
     // MARK: - Private Methods
 
     private func setup() {
+        view.backgroundColor = .white
+
         underlined(textFiled: mailTextField)
         underlined(textFiled: passwordTextField)
 
@@ -54,7 +55,7 @@ final class InputViewController: UIViewController {
 
     // MARK: - IBAction
 
-    @IBAction func secretButton(_ sender: UIButton) {
+    @IBAction private func secretButton(_ sender: UIButton) {
         if passwordTextField.isSecureTextEntry {
             sender.setImage(UIImage(named: "Vector-2"), for: .normal)
             passwordTextField.isSecureTextEntry = false
