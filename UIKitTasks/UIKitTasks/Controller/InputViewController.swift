@@ -3,7 +3,7 @@
 
 import UIKit
 
-/// Class Input View Controller
+/// Стартовый контроллер, который позволяет выполнить математичесике действия или начать игру "Угадай число"
 final class InputViewController: UIViewController {
     // MARK: - Private Properties
 
