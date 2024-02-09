@@ -3,9 +3,13 @@
 
 import UIKit
 
-/// Class Input View Controller
-class InputViewController: UIViewController {
+/// Контроллер для старта приложения
+final class InputViewController: UIViewController {
+    // MARK: - Constants
+
     private lazy var mainView = InputView(frame: view.frame, isStartView: true)
+
+    // MARK: - Life Cycle
 
     override func loadView() {
         super.loadView()
@@ -13,7 +17,9 @@ class InputViewController: UIViewController {
         view.addSubview(mainView)
     }
 
-    func updateTextInLabelsWith(_ word: String) {
+    // MARK: - Private Methods
+
+    private func updateTextInLabelsWith(_ word: String) {
         view.subviews.first?.removeFromSuperview()
         view.addSubview(InputView(frame: view.frame, isStartView: false))
         (view.subviews.first as? InputView)?.delegate = self
@@ -24,6 +30,7 @@ class InputViewController: UIViewController {
     }
 }
 
+// Реализция метода делегата
 extension InputViewController: AlertDelegate {
     func addCheckWordAlert() {
         let checkWordAlert = UIAlertController(title: "Введите ваше слово", message: nil, preferredStyle: .alert)

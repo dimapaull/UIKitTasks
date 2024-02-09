@@ -3,12 +3,15 @@
 
 import UIKit
 
+// Протокол для вызова алерта
 protocol AlertDelegate: AnyObject {
     func addCheckWordAlert()
 }
 
-/// Input View
+/// Вью для начального экрана
 class InputView: UIView {
+    // MARK: - Constants
+
     weak var delegate: AlertDelegate?
 
     let startButton = {
@@ -34,6 +37,8 @@ class InputView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    // MARK: - Public Methods
 
     func createStartView() {
         backgroundColor = .white

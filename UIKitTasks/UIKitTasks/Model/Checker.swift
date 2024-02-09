@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// Struct Checker
+/// Модель с методом, который разворачивает строку
 struct Checker {
     func reverce(_ word: String) -> String {
         String(word.reversed())
