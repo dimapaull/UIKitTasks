@@ -16,7 +16,7 @@ class ThanksViewController: UIViewController {
         super.viewDidLoad()
         closeButton.layer.cornerRadius = 12
         view.backgroundColor = .white
-        userMailLalel.text? += UserMail.shared.getMail()
+        userMailLalel.text? += UserMail.shared.mail
     }
 
     // MARK: - IBAction

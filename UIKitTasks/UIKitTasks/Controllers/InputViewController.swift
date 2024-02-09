@@ -49,7 +49,7 @@ final class InputViewController: UIViewController {
     }
 
     @objc func addMail() {
-        UserMail.shared.setMail(mailTextField.text ?? "")
+        UserMail.shared.mail = mailTextField.text ?? ""
     }
 
     // MARK: - IBAction

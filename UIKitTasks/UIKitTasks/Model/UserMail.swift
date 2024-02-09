@@ -9,14 +9,6 @@ class UserMail {
 
     var mail = ""
 
-    func setMail(_ mail: String) {
-        self.mail = mail
-    }
-
-    func getMail() -> String {
-        mail
-    }
-
     init(mail: String = "") {
         self.mail = mail
     }
