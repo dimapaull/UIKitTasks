@@ -92,6 +92,23 @@ final class LoginViewController: UIViewController {
         return button
     }()
 
+    /// Надпись face id
+    private let faceIdLabel = {
+        let label = UILabel(frame: CGRect(x: 86, y: 544, width: 150, height: 35))
+        label.text = "Use FaceID"
+        label.textAlignment = .center
+        label.textColor = .black
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        return label
+    }()
+
+    /// Свитч face id
+    private let faceIdSwitch = {
+        let faceSwitch = UISwitch(frame: .init(x: 248, y: 544, width: 54, height: 35))
+        faceSwitch.isOn = true
+        return faceSwitch
+    }()
+
     /// Кнопка вход
     private let loginButton = {
         let button = UIButton(frame: .init(x: 0, y: 670, width: 335, height: 44))
@@ -172,7 +189,8 @@ final class LoginViewController: UIViewController {
     /// Переключает доступность нажатия кнопки входа
     private func switchLogInButtonStateTo(_ isEnabled: Bool) {
         loginButton.isEnabled = isEnabled
-        print(isEnabled)
+        view.addSubview(faceIdSwitch)
+        view.addSubview(faceIdLabel)
         loginButton.alpha = loginButton.isEnabled ? 1 : 0.5
     }
 }

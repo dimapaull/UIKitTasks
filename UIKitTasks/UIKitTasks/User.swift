@@ -14,7 +14,7 @@ final class User {
     /// Логин пользователя. Проверка на корректность при изменении
     var mail: String? {
         didSet {
-            if mail?.count ?? 0 > 8 {
+            if let safeMail = mail, safeMail.contains("@") {
                 isMailValid = true
             } else {
                 isMailValid = false
