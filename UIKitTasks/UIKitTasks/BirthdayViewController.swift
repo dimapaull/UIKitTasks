@@ -23,12 +23,14 @@ class BirthdayViewController: UIViewController {
         }
     }
 
-    // MARK: - Private properties
+    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
+
+    // MARK: - Private Methods
 
     private func setupUI() {
         setupImages()
@@ -89,8 +91,8 @@ class BirthdayViewController: UIViewController {
         let plusBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "plus"),
             style: .plain,
-            target: nil,
-            action: nil
+            target: self,
+            action: #selector(addNewBirthday)
         )
         navigationItem.rightBarButtonItem = plusBarButtonItem
     }
@@ -131,5 +133,10 @@ class BirthdayViewController: UIViewController {
             button.setImage(.cake, for: .normal)
         }
         return button
+    }
+
+    @objc private func addNewBirthday() {
+        let newBirthdayViewController = NewBirthdayViewController()
+        present(newBirthdayViewController, animated: true)
     }
 }
