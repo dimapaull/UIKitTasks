@@ -14,6 +14,8 @@
 		0EF482A92B76B42F00D70284 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF482A82B76B42F00D70284 /* LoginViewController.swift */; };
 		0EF482AB2B76C2A900D70284 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EF482AA2B76C2A900D70284 /* Colors.xcassets */; };
 		0EF482AF2B7942FC00D70284 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF482AE2B7942FC00D70284 /* User.swift */; };
+		0EF482B12B794E5A00D70284 /* BirthdayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF482B02B794E5A00D70284 /* BirthdayViewController.swift */; };
+		0EF482B32B79556E00D70284 /* HumanBirthday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF482B22B79556E00D70284 /* HumanBirthday.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		0EF482A82B76B42F00D70284 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0EF482AA2B76C2A900D70284 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		0EF482AE2B7942FC00D70284 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		0EF482B02B794E5A00D70284 /* BirthdayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayViewController.swift; sourceTree = "<group>"; };
+		0EF482B22B79556E00D70284 /* HumanBirthday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumanBirthday.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,8 @@
 				0EB28A1F2B7250A300C28C48 /* SceneDelegate.swift */,
 				0EF482A82B76B42F00D70284 /* LoginViewController.swift */,
 				0EF482AE2B7942FC00D70284 /* User.swift */,
+				0EF482B02B794E5A00D70284 /* BirthdayViewController.swift */,
+				0EF482B22B79556E00D70284 /* HumanBirthday.swift */,
 				0EB28A262B7250A600C28C48 /* Assets.xcassets */,
 				0EF482AA2B76C2A900D70284 /* Colors.xcassets */,
 				0EB28A282B7250A600C28C48 /* LaunchScreen.storyboard */,
@@ -186,7 +192,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EF482B12B794E5A00D70284 /* BirthdayViewController.swift in Sources */,
 				0EF482AF2B7942FC00D70284 /* User.swift in Sources */,
+				0EF482B32B79556E00D70284 /* HumanBirthday.swift in Sources */,
 				0EF482A92B76B42F00D70284 /* LoginViewController.swift in Sources */,
 				0EB28A1E2B7250A300C28C48 /* AppDelegate.swift in Sources */,
 				0EB28A202B7250A300C28C48 /* SceneDelegate.swift in Sources */,

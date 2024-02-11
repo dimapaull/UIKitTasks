@@ -149,6 +149,8 @@ final class LoginViewController: UIViewController {
         emailTextField.addTarget(self, action: #selector(textDidChangeIn), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(textDidChangeIn), for: .editingChanged)
 
+        loginButton.addTarget(nil, action: #selector(goToBirthdayViewController), for: .touchUpInside)
+
         view.addSubview(logoImageView)
         view.addSubview(logoHeaderLabel)
         view.addSubview(signInLabel)
@@ -158,17 +160,6 @@ final class LoginViewController: UIViewController {
         view.addSubview(passwordTextField)
         view.addSubview(showPasswordButton)
         view.addSubview(loginButton)
-    }
-
-    @objc private func textDidChangeIn(_ sender: UITextField) {
-        switch sender {
-        case emailTextField:
-            user.mail = sender.text
-        case passwordTextField:
-            user.password = sender.text
-        default:
-            break
-        }
     }
 
     private func addLineFor(_ textFiled: UITextField) {
@@ -192,6 +183,22 @@ final class LoginViewController: UIViewController {
         view.addSubview(faceIdSwitch)
         view.addSubview(faceIdLabel)
         loginButton.alpha = loginButton.isEnabled ? 1 : 0.5
+    }
+
+    @objc private func goToBirthdayViewController() {
+        let birthdayViewController = BirthdayViewController()
+        navigationController?.pushViewController(birthdayViewController, animated: true)
+    }
+
+    @objc private func textDidChangeIn(_ sender: UITextField) {
+        switch sender {
+        case emailTextField:
+            user.mail = sender.text
+        case passwordTextField:
+            user.password = sender.text
+        default:
+            break
+        }
     }
 }
 
