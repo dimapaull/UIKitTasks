@@ -3,7 +3,7 @@
 
 import UIKit
 
-/// Class Check View Controller
+/// Контроллер для разваоривания слова
 class CheckViewController: UIViewController {
     public var checkWord: String = ""
 
