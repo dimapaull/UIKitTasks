@@ -63,27 +63,6 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		0E2AFA662B7A47CC00E111F8 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		0E2AFA672B7A47D300E111F8 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		0E2AFA682B7A483800E111F8 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		0EB28A112B7250A300C28C48 = {
 			isa = PBXGroup;
 			children = (
@@ -103,9 +82,6 @@
 		0EB28A1C2B7250A300C28C48 /* UIKitTasks */ = {
 			isa = PBXGroup;
 			children = (
-				0E2AFA682B7A483800E111F8 /* Extensions */,
-				0E2AFA672B7A47D300E111F8 /* Model */,
-				0E2AFA662B7A47CC00E111F8 /* View */,
 				0EB28A1D2B7250A300C28C48 /* AppDelegate.swift */,
 				0EB28A1F2B7250A300C28C48 /* SceneDelegate.swift */,
 				0E2AFA652B7A43E100E111F8 /* Controllers */,
