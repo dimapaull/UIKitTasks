@@ -54,8 +54,8 @@
 			children = (
 				0E2AFA572B7A404B00E111F8 /* LoginViewController.swift */,
 				0E2AFA592B7A41D400E111F8 /* MenuViewController.swift */,
-				0E2AFA5B2B7A425500E111F8 /* ProductConfigurateViewController.swift */,
 				0E2AFA5D2B7A42A700E111F8 /* ChooseRoastViewController.swift */,
+				0E2AFA5B2B7A425500E111F8 /* ProductConfigurateViewController.swift */,
 				0E2AFA5F2B7A430200E111F8 /* IngredientViewController.swift */,
 				0E2AFA612B7A435200E111F8 /* OrderViewController.swift */,
 				0E2AFA632B7A43A700E111F8 /* ThankYouViewController.swift */,
@@ -361,7 +361,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = N9RAM2SA6H;
+				DEVELOPMENT_TEAM = YZT8MU55TB;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UIKitTasks/Info.plist;
@@ -374,7 +374,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dimapaull.UIKitTasks;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.vifinance.UIKitTasks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -389,7 +389,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = N9RAM2SA6H;
+				DEVELOPMENT_TEAM = YZT8MU55TB;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UIKitTasks/Info.plist;
@@ -402,7 +402,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dimapaull.UIKitTasks;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.vifinance.UIKitTasks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
