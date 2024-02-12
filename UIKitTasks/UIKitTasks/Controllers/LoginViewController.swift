@@ -1,10 +1,10 @@
-// ViewController.swift
+// LoginViewController.swift
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
 
-/// Class View Controller
-class ViewController: UIViewController {
+/// Контроллер для входа в аккаунт пользователя
+final class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
