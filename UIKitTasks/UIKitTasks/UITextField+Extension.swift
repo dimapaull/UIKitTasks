@@ -2,7 +2,7 @@
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
-
+/// Расширение, добавляющее горизонтальную линию под поле ввода
 extension UITextField {
     func addLine() {
         let border = CALayer()

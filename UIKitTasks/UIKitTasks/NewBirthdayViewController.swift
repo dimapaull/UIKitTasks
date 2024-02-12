@@ -5,9 +5,8 @@ import UIKit
 
 /// Контроллер для добавления нового дня рождения
 class NewBirthdayViewController: UIViewController {
-    
     // MARK: - Private Properties
-    
+
     private let personalData = PersonData()
 
     private let cancelButton = {
@@ -202,7 +201,7 @@ class NewBirthdayViewController: UIViewController {
         view.endEditing(true)
     }
 
-    @objc func closeScreen() {
+    @objc private func closeScreen() {
         dismiss(animated: true)
     }
 

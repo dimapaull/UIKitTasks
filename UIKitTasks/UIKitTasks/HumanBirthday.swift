@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// ererefd
+/// Структура дня рождения пользотвателя
 struct HumanBirthday {
     let name: String
     let date: String
