@@ -193,6 +193,6 @@ final class MenuViewController: UIViewController {
     /// Метод срабатывающий при выборе элемента из меню
     @objc private func selectItem() {
         let productViewConreoller = ProductConfigurateViewController()
-        self.navigationController?.pushViewController(productViewConreoller, animated: true)
+        navigationController?.pushViewController(productViewConreoller, animated: true)
     }
 }

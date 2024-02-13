@@ -101,9 +101,18 @@ final class VerificationViewController: UIViewController {
         codeFromSMSTextField.inputAccessoryView = bar
     }
 
-    /// Изменение названия контроллера
+    /// Изменение названия контроллера и кнопки назад
     private func configurateNavigationBar() {
         navigationItem.title = Constants.controllerTitle
+        UINavigationBar.appearance().backIndicatorImage = UIImage.leftArrow
+
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            image: UIImage.leftArrow,
+            style: .plain,
+            target: nil,
+            action: nil
+        )
+        navigationItem.leftBarButtonItem?.tintColor = .black
     }
 
     /// Вызывается при каждом изменении текста в поле ввода кода

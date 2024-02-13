@@ -100,7 +100,8 @@ final class ThankYouViewController: UIViewController {
         view.addSubview(okButton)
     }
 
-    /// Вызывается при нажатии на кнопку хорошо. Этот сначала говорит контроллеру, который его представлял, и потом скрывается сам
+    /// Вызывается при нажатии на кнопку хорошо. Этот сначала говорит контроллеру, который его представлял, и потом
+    /// скрывается сам
     @objc private func okButtonPressed() {
         delegate?.didDismissModal()
         dismiss(animated: false)
