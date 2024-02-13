@@ -11,9 +11,7 @@ final class ProductConfigurateViewController: UIViewController {
     var additionalPrice = 0
     var totalPrice = 0
 
-    // MARK: - Private Properties
-
-    private enum Roast {
+    enum Roast {
         case dark
         case light
     }
@@ -22,6 +20,8 @@ final class ProductConfigurateViewController: UIViewController {
         case add
         case added
     }
+
+    // MARK: - Private Properties
 
     private let currentCoffeeImageView = UIImageView()
     private let coffeeImageBackgroundView = UIView()
@@ -119,7 +119,7 @@ final class ProductConfigurateViewController: UIViewController {
     }
 
     /// Настройка кнопки выбора обжарки
-    private func setupRoastButton(roast: Roast) {
+    func setupRoastButton(roast: Roast) {
         roastButton.frame = CGRect(x: 15, y: 482, width: 165, height: 165)
         roastButton.layer.cornerRadius = 12
         roastButton.backgroundColor = #colorLiteral(red: 0.9694761634, green: 0.9694761634, blue: 0.9694761634, alpha: 1)
@@ -153,7 +153,7 @@ final class ProductConfigurateViewController: UIViewController {
     }
 
     /// Настройка кнопки выбора дополнительных ингредиентов
-    private func setupAdditionalIngredientsButton(status: AdditionalIngredientsStatus) {
+    func setupAdditionalIngredientsButton(status: AdditionalIngredientsStatus) {
         additionalIngredientsButton.frame = CGRect(x: 195, y: 482, width: 165, height: 165)
         additionalIngredientsButton.layer.cornerRadius = 12
         additionalIngredientsButton.backgroundColor = #colorLiteral(red: 0.9694761634, green: 0.9694761634, blue: 0.9694761634, alpha: 1)
@@ -244,6 +244,13 @@ final class ProductConfigurateViewController: UIViewController {
     @objc private func roastButtonTapped() {
         // Обработка нажатия на кнопку
         print("Roast Button tapped!")
+
+        let secondVC = ChooseRoastViewController()
+        secondVC.firstViewController = self // передаем ссылку на первый экран
+        let navigtionController = UINavigationController(rootViewController: secondVC)
+
+        navigtionController.modalPresentationStyle = .formSheet
+        present(navigtionController, animated: true, completion: nil)
     }
 
     @objc func additionalIngredientsButtonTapped() {
