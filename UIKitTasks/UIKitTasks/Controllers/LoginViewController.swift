@@ -100,6 +100,7 @@ final class LoginViewController: UIViewController {
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.backgroundColor = UIColor.appAquaBlue
         button.layer.cornerRadius = 12
+        button.addTarget(nil, action: #selector(loginPressed), for: .touchUpInside)
         return button
     }()
 
@@ -149,7 +150,6 @@ final class LoginViewController: UIViewController {
 
     /// Переключает доступность нажатия кнопки входа
     private func switchLogInButtonStateTo(_ isEnabled: Bool) {
-        print(isEnabled)
         loginButton.isEnabled = isEnabled
         loginButton.alpha = loginButton.isEnabled ? 1 : 0.5
     }
@@ -173,6 +173,13 @@ final class LoginViewController: UIViewController {
         default:
             break
         }
+    }
+
+    @objc private func loginPressed() {
+        let menuViewController = MenuViewController()
+        let navigationController = UINavigationController(rootViewController: menuViewController)
+        navigationController.modalPresentationStyle = .fullScreen
+        present(navigationController, animated: true)
     }
 }
 
