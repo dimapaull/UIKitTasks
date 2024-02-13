@@ -3,6 +3,10 @@
 
 import UIKit
 
+protocol Rootable {
+    func didDismissModal()
+}
+
 /// Контроллер благодрности
 final class ThankYouViewController: UIViewController {
     // MARK: - Constants
@@ -16,11 +20,16 @@ final class ThankYouViewController: UIViewController {
         """
     }
 
+    // MARK: - Public Properties
+
+    /// Делегирование перехода на корневой контроллер при исчезновении модального
+    var delegate: Rootable?
+
     // MARK: - Private Properties
 
     /// Кнопка крестика закрытия контроллера
     private let closeButton = {
-        let button = UIButton(frame: CGRect(x: 15, y: 21, width: 24, height: 24))
+        let button = UIButton(frame: CGRect(x: 15, y: 40, width: 24, height: 24))
         button.setImage(UIImage.cross, for: .normal)
         button.addTarget(nil, action: #selector(closeViewController), for: .touchUpInside)
         return button
@@ -91,10 +100,13 @@ final class ThankYouViewController: UIViewController {
         view.addSubview(okButton)
     }
 
+    /// Вызывается при нажатии на кнопку хорошо. Этот сначала говорит контроллеру, который его представлял, и потом скрывается сам
     @objc private func okButtonPressed() {
-        dismiss(animated: true)
+        delegate?.didDismissModal()
+        dismiss(animated: false)
     }
 
+    /// Вызывает при нажатии на крестик и просто скрывает модальный контроллер
     @objc private func closeViewController() {
         dismiss(animated: true)
     }

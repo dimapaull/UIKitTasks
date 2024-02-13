@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E29729D2B7BC19500356D18 /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E29729C2B7BC19500356D18 /* VerificationViewController.swift */; };
 		0E2AFA562B7A396800E111F8 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E2AFA552B7A396800E111F8 /* Colors.xcassets */; };
 		0E2AFA582B7A404B00E111F8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2AFA572B7A404B00E111F8 /* LoginViewController.swift */; };
 		0E2AFA5A2B7A41D400E111F8 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2AFA592B7A41D400E111F8 /* MenuViewController.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E29729C2B7BC19500356D18 /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
 		0E2AFA552B7A396800E111F8 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		0E2AFA572B7A404B00E111F8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0E2AFA592B7A41D400E111F8 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				0E2AFA5D2B7A42A700E111F8 /* ChooseRoastViewController.swift */,
 				0E2AFA5F2B7A430200E111F8 /* IngredientViewController.swift */,
 				0E2AFA612B7A435200E111F8 /* OrderViewController.swift */,
+				0E29729C2B7BC19500356D18 /* VerificationViewController.swift */,
 				0E2AFA632B7A43A700E111F8 /* ThankYouViewController.swift */,
 			);
 			path = Controllers;
@@ -221,6 +224,7 @@
 				0E2AFA5E2B7A42A700E111F8 /* ChooseRoastViewController.swift in Sources */,
 				0EB28A1E2B7250A300C28C48 /* AppDelegate.swift in Sources */,
 				0E2AFA6A2B7AACBB00E111F8 /* UITextField+Extension.swift in Sources */,
+				0E29729D2B7BC19500356D18 /* VerificationViewController.swift in Sources */,
 				0EB28A202B7250A300C28C48 /* SceneDelegate.swift in Sources */,
 				0E2AFA5C2B7A425500E111F8 /* ProductConfigurateViewController.swift in Sources */,
 				0E2AFA5A2B7A41D400E111F8 /* MenuViewController.swift in Sources */,

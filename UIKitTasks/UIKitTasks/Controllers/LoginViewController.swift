@@ -22,8 +22,10 @@ final class LoginViewController: UIViewController {
 
     // MARK: - Private Properties
 
+    /// Свойство для валидации емэйла и пароля пользователя
     private var validateModel = ValidateUserData()
 
+    /// Картинка логотипа
     private let logoImageView = {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 103, width: 175, height: 76))
         imageView.image = UIImage.logo
@@ -31,6 +33,7 @@ final class LoginViewController: UIViewController {
         return imageView
     }()
 
+    /// Пустое белое вью
     private let whiteBackgrourdView = {
         let view = UIView(frame: CGRect(x: 0, y: 248, width: 0, height: 564))
         view.backgroundColor = .white
@@ -38,6 +41,7 @@ final class LoginViewController: UIViewController {
         return view
     }()
 
+    /// Надпись авторизация
     private let authorizationLabel = {
         let label = UILabel(frame: CGRect(x: 20, y: 280, width: 195, height: 31))
         label.text = Constants.LabelText.authorization
@@ -47,6 +51,7 @@ final class LoginViewController: UIViewController {
         return label
     }()
 
+    /// Надпись логин
     private let loginLabel = {
         let label = UILabel(frame: CGRect(x: 20, y: 332, width: 175, height: 19))
         label.text = Constants.LabelText.login
@@ -56,6 +61,7 @@ final class LoginViewController: UIViewController {
         return label
     }()
 
+    /// Надпись пароль
     private let passwordLabel = {
         let label = UILabel(frame: CGRect(x: 20, y: 407, width: 175, height: 19))
         label.text = Constants.LabelText.password
@@ -65,6 +71,7 @@ final class LoginViewController: UIViewController {
         return label
     }()
 
+    /// Поле ввода логина пользователя
     private lazy var loginTextField = {
         let textFiled = UITextField(frame: CGRect(x: 0, y: 361, width: 335, height: 25))
         textFiled.placeholder = Constants.TextFieldsPlaceholder.mail
@@ -74,6 +81,7 @@ final class LoginViewController: UIViewController {
         return textFiled
     }()
 
+    /// Поле ввода пароля пользователя
     private lazy var passwordTextField = {
         let textFiled = UITextField(frame: CGRect(x: 0, y: 436, width: 335, height: 25))
         textFiled.placeholder = Constants.TextFieldsPlaceholder.password
@@ -84,6 +92,7 @@ final class LoginViewController: UIViewController {
         return textFiled
     }()
 
+    /// Кнопка скрытия пароля и его открытия
     private let securePasswordButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 436, width: 22, height: 19))
         button.setImage(UIImage.passwordHide, for: .normal)
@@ -91,6 +100,7 @@ final class LoginViewController: UIViewController {
         return button
     }()
 
+    /// Кнопка войти, которая ведет на экран меню
     private let loginButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 664, width: 335, height: 44))
         button.setTitle("Войти", for: .normal)
@@ -110,6 +120,7 @@ final class LoginViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
 
+        /// Назвачение делегата для валидации почты и пароля
         validateModel.delegate = self
     }
 
@@ -154,6 +165,7 @@ final class LoginViewController: UIViewController {
         loginButton.alpha = loginButton.isEnabled ? 1 : 0.5
     }
 
+    /// Вызывается при нажатии на кнопку глаза с скрытием пароля
     @objc private func changeSecureTextField(_ button: UIButton) {
         if passwordTextField.isSecureTextEntry {
             passwordTextField.isSecureTextEntry.toggle()
@@ -164,6 +176,7 @@ final class LoginViewController: UIViewController {
         }
     }
 
+    /// Вызывается при каждом изменении текста внутри поля ввода в почте или пароле
     @objc private func textDidChangeIn(_ sender: UITextField) {
         switch sender {
         case loginTextField:
@@ -175,6 +188,7 @@ final class LoginViewController: UIViewController {
         }
     }
 
+    /// Вызывается при нажатии на кнопку входа, создает навигейшн контроллер и представляет его модально
     @objc private func loginPressed() {
         let menuViewController = MenuViewController()
         let navigationController = UINavigationController(rootViewController: menuViewController)
@@ -191,6 +205,7 @@ extension LoginViewController: UITextFieldDelegate {
     }
 }
 
+/// Расширение, реализующее протокол, который нужен для валидации почты и пароля
 extension LoginViewController: DataValidable {
     func dataValidChangeTo(_ isConform: Bool) {
         switchLogInButtonStateTo(isConform)
