@@ -25,16 +25,29 @@ final class ProductConfigurateViewController: UIViewController {
     private let orderButton = UIButton()
 
     let coffeeTypes = ["Американо", "Капучино", "Латте"]
+    let coffeeImages = [
+        UIImage(named: "coffeeAmericano"),
+        UIImage(named: "coffeeCapuchino"),
+        UIImage(named: "coffeeLatte")
+    ]
 
     // MARK: - Overrides Methods (View Life Cycles)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        setupCoffeeImageBackground()
         setupNavigationBar()
 
+        setupCoffeeImageBackground()
+        setupCurrentCoffeeImageView()
+        setupRoastButton(roast: .light)
+
         addViews()
+    }
+
+    private func setupCurrentCoffeeImageView() {
+        currentCoffeeImageView.frame = CGRect(x: 112, y: 128, width: 150, height: 150)
+        currentCoffeeImageView.image = coffeeImages[0]
     }
 
     private func setupNavigationBar() {
@@ -61,6 +74,39 @@ final class ProductConfigurateViewController: UIViewController {
         navigationItem.rightBarButtonItem = shareButtonItem
     }
 
+    private func setupRoastButton(roast: Roast) {
+        roastButton.frame = CGRect(x: 15, y: 482, width: 165, height: 165)
+        roastButton.layer.cornerRadius = 12
+        roastButton.backgroundColor = #colorLiteral(red: 0.9694761634, green: 0.9694761634, blue: 0.9694761634, alpha: 1)
+
+        var image: UIImage?
+
+        switch roast {
+        case .dark:
+            roastButton.setTitle("Темная обжарка", for: .normal)
+            image = UIImage(named: "darkRoast")
+        case .light:
+            roastButton.setTitle("Светлая обжарка", for: .normal)
+            image = UIImage(named: "lightRoast")
+        }
+
+        let imageView = UIImageView(frame: CGRect(x: 31, y: 17, width: 100, height: 100))
+        imageView.image = image
+        imageView.contentMode = .scaleAspectFit
+
+        roastButton.setTitleColor(.black, for: .normal)
+        roastButton.titleLabel?.font = UIFont(name: "Verdana", size: 14)
+        roastButton.titleLabel?.numberOfLines = 2
+        roastButton.titleLabel?.textAlignment = .center
+
+        // Размещение надписи под кнопкой
+        roastButton.titleEdgeInsets = UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)
+
+        roastButton.addTarget(self, action: #selector(roastButtonTapped), for: .touchUpInside)
+
+        roastButton.addSubview(imageView)
+    }
+
     private func setupCoffeeImageBackground() {
         coffeeImageBackgroundView.backgroundColor = #colorLiteral(red: 0.9407027364, green: 0.8816927075, blue: 0.8163741231, alpha: 1)
         coffeeImageBackgroundView.frame = CGRect(x: 0, y: 0, width: 375, height: 346)
@@ -70,6 +116,14 @@ final class ProductConfigurateViewController: UIViewController {
 
     private func addViews() {
         view.addSubview(coffeeImageBackgroundView)
+        coffeeImageBackgroundView.addSubview(currentCoffeeImageView)
+        view.addSubview(roastButton)
+        view.addSubview(currentCoffeeImageView)
+    }
+
+    @objc private func roastButtonTapped() {
+        // Обработка нажатия на кнопку
+        print("Button tapped!")
     }
 
     @objc private func backButtonTapped() {
