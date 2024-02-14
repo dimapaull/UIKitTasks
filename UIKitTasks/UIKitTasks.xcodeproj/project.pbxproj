@@ -19,6 +19,10 @@
 		0EB28A202B7250A300C28C48 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB28A1F2B7250A300C28C48 /* SceneDelegate.swift */; };
 		0EB28A272B7250A600C28C48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EB28A262B7250A600C28C48 /* Assets.xcassets */; };
 		0EB28A2A2B7250A600C28C48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EB28A282B7250A600C28C48 /* LaunchScreen.storyboard */; };
+		57C170242B7C261300495720 /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C170232B7C261300495720 /* OrderItem.swift */; };
+		57C1702D2B7C557000495720 /* AdditionalIngredientsStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1702C2B7C557000495720 /* AdditionalIngredientsStatus.swift */; };
+		57C1702F2B7C558200495720 /* Roast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1702E2B7C558200495720 /* Roast.swift */; };
+		57C170322B7C595600495720 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C170312B7C595600495720 /* UIButton+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +40,10 @@
 		0EB28A262B7250A600C28C48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0EB28A292B7250A600C28C48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0EB28A2B2B7250A600C28C48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		57C170232B7C261300495720 /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
+		57C1702C2B7C557000495720 /* AdditionalIngredientsStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalIngredientsStatus.swift; sourceTree = "<group>"; };
+		57C1702E2B7C558200495720 /* Roast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Roast.swift; sourceTree = "<group>"; };
+		57C170312B7C595600495720 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +92,9 @@
 			children = (
 				0EB28A1D2B7250A300C28C48 /* AppDelegate.swift */,
 				0EB28A1F2B7250A300C28C48 /* SceneDelegate.swift */,
+				57C170302B7C592F00495720 /* Extensions */,
+				57C170292B7C54EF00495720 /* Enum */,
+				57C170222B7C260100495720 /* Model */,
 				0E2AFA652B7A43E100E111F8 /* Controllers */,
 				0EB28A262B7250A600C28C48 /* Assets.xcassets */,
 				0E2AFA552B7A396800E111F8 /* Colors.xcassets */,
@@ -91,6 +102,31 @@
 				0EB28A2B2B7250A600C28C48 /* Info.plist */,
 			);
 			path = UIKitTasks;
+			sourceTree = "<group>";
+		};
+		57C170222B7C260100495720 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				57C170232B7C261300495720 /* OrderItem.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		57C170292B7C54EF00495720 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				57C1702E2B7C558200495720 /* Roast.swift */,
+				57C1702C2B7C557000495720 /* AdditionalIngredientsStatus.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
+		57C170302B7C592F00495720 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				57C170312B7C595600495720 /* UIButton+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,11 +247,15 @@
 			files = (
 				0E2AFA642B7A43A700E111F8 /* ThankYouViewController.swift in Sources */,
 				0E2AFA602B7A430200E111F8 /* IngredientViewController.swift in Sources */,
+				57C170322B7C595600495720 /* UIButton+Extension.swift in Sources */,
 				0E2AFA582B7A404B00E111F8 /* LoginViewController.swift in Sources */,
 				0E2AFA5E2B7A42A700E111F8 /* ChooseRoastViewController.swift in Sources */,
+				57C1702F2B7C558200495720 /* Roast.swift in Sources */,
 				0EB28A1E2B7250A300C28C48 /* AppDelegate.swift in Sources */,
 				0EB28A202B7250A300C28C48 /* SceneDelegate.swift in Sources */,
+				57C1702D2B7C557000495720 /* AdditionalIngredientsStatus.swift in Sources */,
 				0E2AFA5C2B7A425500E111F8 /* ProductConfigurateViewController.swift in Sources */,
+				57C170242B7C261300495720 /* OrderItem.swift in Sources */,
 				0E2AFA5A2B7A41D400E111F8 /* MenuViewController.swift in Sources */,
 				0E2AFA622B7A435200E111F8 /* OrderViewController.swift in Sources */,
 			);

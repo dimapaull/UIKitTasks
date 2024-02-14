@@ -1,8 +1,10 @@
-//
-//  AdditionalIngredientsStatus.swift
-//  UIKitTasks
-//
-//  Created by Vitaliy Iakushev on 13.02.2024.
-//
+// AdditionalIngredientsStatus.swift
+// Copyright © RoadMap. All rights reserved.
 
 import Foundation
+
+/// Энум выбора состояния кнопки добавления дополнительных ингредиентов (Добавить/Уже добавлены)
+enum AdditionalIngredientsStatus {
+    case add
+    case added
+}

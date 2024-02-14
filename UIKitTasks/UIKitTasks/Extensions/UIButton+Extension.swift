@@ -1,8 +1,13 @@
-//
-//  UIButton+Extension.swift
-//  UIKitTasks
-//
-//  Created by Vitaliy Iakushev on 13.02.2024.
-//
+// UIButton+Extension.swift
+// Copyright © RoadMap. All rights reserved.
 
 import Foundation
+import UIKit
+
+extension UIButton {
+    func removeAllSubviews() {
+        for subview in subviews {
+            subview.removeFromSuperview()
+        }
+    }
+}

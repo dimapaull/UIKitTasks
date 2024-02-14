@@ -4,42 +4,36 @@
 import UIKit
 
 /// Контроллер для модификации выбранного продукта
-final class ProductConfigurateViewController: UIViewController {
+final class ProductConfigurateViewController: UIViewController, IngredientSelectionDelegate {
     // MARK: - Public Properties
 
-    var basePrice = 0
+    var basePrice = 100
     var additionalPrice = 0
     var totalPrice = 0
-
-    enum Roast {
-        case dark
-        case light
-    }
-
-    enum AdditionalIngredientsStatus {
-        case add
-        case added
-    }
+    
+    /// Массив для OrderItem, которые посупят с экрана выбора дополнительных ингредиентов
+    var additionalIngredients: [OrderItem] = []
 
     // MARK: - Private Properties
 
     private let currentCoffeeImageView = UIImageView()
     private let coffeeImageBackgroundView = UIView()
-
-    var selectedCoffeeName = ""
     private var chooseCoffeeSegmentedControl = UISegmentedControl()
     private let modificationLabel = UILabel()
-
     private let roastButton = UIButton()
     private let additionalIngredientsButton = UIButton()
-
     private let totalPriceLabel = UILabel()
-
     private let orderButton = UIButton()
 
-    let coffeeTypes = ["Американо", "Капучино", "Латте"]
-    let coffeePrices = [100, 120, 150]
-    let coffeeImages = [
+    private let coffeeItemTypes = [
+        OrderItem(name: "Американо", price: 100),
+        OrderItem(name: "Капучино", price: 120),
+        OrderItem(name: "Латте", price: 150)
+    ]
+
+    private var selectedCoffeeItem = OrderItem(name: "Американо", price: 100)
+
+    private let coffeeImages = [
         UIImage(named: "coffeeAmericano"),
         UIImage(named: "coffeeCapuchino"),
         UIImage(named: "coffeeLatte")
@@ -56,14 +50,44 @@ final class ProductConfigurateViewController: UIViewController {
         setupCurrentCoffeeImageView()
         setupSegmentedControl()
         setupModificationLabel()
-        setupRoastButton(roast: .light)
-        setupAdditionalIngredientsButton(status: .added)
+        setupRoastButton(roast: .dark)
+        setupAdditionalIngredientsButton(status: .add)
         setupTotalPriceLabel()
         setupOrderButton()
 
         addViews()
     }
 
+    // MARK: - Public Methods
+    
+    /// метод делегата, для получения списка дополнительных ингредиентов
+    func didSelectIngredients(_ ingredients: [OrderItem]) {
+        additionalIngredients = ingredients
+    }
+    
+    func updateAdditionalPrice() {
+        var price = 0
+        for item in additionalIngredients {
+            price += item.price
+        }
+        additionalPrice = price
+    }
+
+    func updateTotalPrice() {
+        totalPrice = basePrice + additionalPrice
+        totalPriceLabel.text = "Цѣна \(totalPrice)"
+    }
+
+    func totalOrder() -> [OrderItem] {
+        var allItems: [OrderItem] = []
+        allItems.append(selectedCoffeeItem)
+        allItems += additionalIngredients
+        print(allItems)
+        return allItems
+    }
+    
+    // MARK: - Private Methods
+    
     /// Настройка панели навигации
     private func setupNavigationBar() {
         navigationController?.navigationBar.isHidden = false
@@ -105,7 +129,9 @@ final class ProductConfigurateViewController: UIViewController {
 
     /// Настройка Segmented Control
     private func setupSegmentedControl() {
-        chooseCoffeeSegmentedControl = UISegmentedControl(items: coffeeTypes)
+        let coffeeNames = coffeeItemTypes.map(\.name)
+
+        chooseCoffeeSegmentedControl = UISegmentedControl(items: coffeeNames)
         chooseCoffeeSegmentedControl.frame = CGRect(x: 15, y: 368, width: 345, height: 44)
         chooseCoffeeSegmentedControl.addTarget(self, action: #selector(selectedCoffee), for: .valueChanged)
         chooseCoffeeSegmentedControl.selectedSegmentIndex = 0
@@ -123,6 +149,7 @@ final class ProductConfigurateViewController: UIViewController {
         roastButton.frame = CGRect(x: 15, y: 482, width: 165, height: 165)
         roastButton.layer.cornerRadius = 12
         roastButton.backgroundColor = #colorLiteral(red: 0.9694761634, green: 0.9694761634, blue: 0.9694761634, alpha: 1)
+        roastButton.removeAllSubviews()
 
         var image: UIImage?
 
@@ -157,6 +184,7 @@ final class ProductConfigurateViewController: UIViewController {
         additionalIngredientsButton.frame = CGRect(x: 195, y: 482, width: 165, height: 165)
         additionalIngredientsButton.layer.cornerRadius = 12
         additionalIngredientsButton.backgroundColor = #colorLiteral(red: 0.9694761634, green: 0.9694761634, blue: 0.9694761634, alpha: 1)
+        additionalIngredientsButton.removeAllSubviews()
 
         var image: UIImage?
         var imageView = UIImageView()
@@ -188,13 +216,13 @@ final class ProductConfigurateViewController: UIViewController {
             action: #selector(additionalIngredientsButtonTapped),
             for: .touchUpInside
         )
-
         additionalIngredientsButton.addSubview(imageView)
     }
 
     /// Настройка лейбла цены
     private func setupTotalPriceLabel() {
-        totalPriceLabel.text = "Цѣна \(coffeePrices[0])"
+//        totalPriceLabel.text = "Цѣна \(coffeePrices[0])"
+        totalPriceLabel.text = "Цѣна \(coffeeItemTypes[0].price)"
         totalPriceLabel.frame = CGRect(x: 15, y: 669, width: 345, height: 30)
         totalPriceLabel.font = UIFont(name: "Verdana-Bold", size: 18)
         totalPriceLabel.textAlignment = .right
@@ -223,20 +251,17 @@ final class ProductConfigurateViewController: UIViewController {
         view.addSubview(orderButton)
     }
 
-    private func updateTotalPrice() {
-        totalPrice = basePrice + additionalPrice
-        totalPriceLabel.text = "Цѣна \(totalPrice)"
-    }
+  
 
     // обработка изменений выбора кофе
     @objc func selectedCoffee(target: UISegmentedControl) {
         if target.isEqual(chooseCoffeeSegmentedControl) {
             let segmentIndex = target.selectedSegmentIndex
             currentCoffeeImageView.image = coffeeImages[segmentIndex]
-            basePrice = coffeePrices[segmentIndex]
-            selectedCoffeeName = target.titleForSegment(at: segmentIndex) ?? ""
+            basePrice = coffeeItemTypes[segmentIndex].price
+            selectedCoffeeItem = coffeeItemTypes[segmentIndex]
             updateTotalPrice()
-            print(selectedCoffeeName)
+            print(selectedCoffeeItem)
             print(basePrice)
         }
     }
@@ -247,15 +272,22 @@ final class ProductConfigurateViewController: UIViewController {
 
         let secondVC = ChooseRoastViewController()
         secondVC.firstViewController = self // передаем ссылку на первый экран
-        let navigtionController = UINavigationController(rootViewController: secondVC)
+        let navigationController = UINavigationController(rootViewController: secondVC)
 
-        navigtionController.modalPresentationStyle = .formSheet
-        present(navigtionController, animated: true, completion: nil)
+        navigationController.modalPresentationStyle = .formSheet
+        present(navigationController, animated: true, completion: nil)
     }
 
     @objc func additionalIngredientsButtonTapped() {
         // Обработка нажатия на кнопку
         print("Ingredients Button tapped!")
+
+        let ingredientVC = IngredientViewController()
+        let navigationController = UINavigationController(rootViewController: ingredientVC)
+        ingredientVC.delegate = self // Установка делегата
+        ingredientVC.selectedIngredients = additionalIngredients // Передача ранее выбранных ингредиентов
+        navigationController.modalPresentationStyle = .formSheet
+        present(navigationController, animated: true, completion: nil)
     }
 
     @objc private func backButtonTapped() {
@@ -264,7 +296,11 @@ final class ProductConfigurateViewController: UIViewController {
     }
 
     @objc private func orderButtonTapped() {
-        print("Order Button tapped!")
+        let orderVC = OrderViewController()
+        orderVC.finishPrice = totalPrice // передаем итоговую цену
+        orderVC.orderItems = totalOrder() // передаем выбранные элементы заказа
+        orderVC.modalPresentationStyle = .formSheet
+        present(orderVC, animated: true, completion: nil)
     }
 
     @objc private func shareButtonTapped() {
