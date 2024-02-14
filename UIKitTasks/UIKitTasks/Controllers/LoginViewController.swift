@@ -7,33 +7,25 @@ import UIKit
 final class LoginViewController: UIViewController {
     // MARK: - Constants
 
-    enum Constants {
-        enum LabelText {
-            static let authorization = "Авторизация"
-            static let login = "Логин"
-            static let password = "Пароль"
-        }
-
-        enum TextFieldsPlaceholder {
-            static let mail = "Введите почту"
-            static let password = "Ввердите пароль"
-        }
+    private enum Constants {
+        static let authorizationText = "Авторизация"
+        static let loginText = "Логин"
+        static let passwordText = "Пароль"
+        static let comeInText = "Войти"
+        static let mailTextFieldPlaceholder = "Введите почту"
+        static let passwordTextFieldPlaceholder = "Ввердите пароль"
+        static let passwordLeftMargin = 10
     }
 
-    // MARK: - Private Properties
+    // MARK: - Visual Components
 
-    /// Свойство для валидации емэйла и пароля пользователя
-    private var validateModel = ValidateUserData()
-
-    /// Картинка логотипа
     private let logoImageView = {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 103, width: 175, height: 76))
-        imageView.image = UIImage.logo
+        imageView.image = .logo
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
 
-    /// Пустое белое вью
     private let whiteBackgrourdView = {
         let view = UIView(frame: CGRect(x: 0, y: 248, width: 0, height: 564))
         view.backgroundColor = .white
@@ -41,50 +33,65 @@ final class LoginViewController: UIViewController {
         return view
     }()
 
-    /// Надпись авторизация
     private let authorizationLabel = {
         let label = UILabel(frame: CGRect(x: 20, y: 280, width: 195, height: 31))
-        label.text = Constants.LabelText.authorization
+        label.text = Constants.authorizationText
         label.textColor = .black
         label.textAlignment = .left
-        label.font = UIFont.boldSystemFont(ofSize: 26)
+        label.font = .boldSystemFont(ofSize: 26)
         return label
     }()
 
-    /// Надпись логин
     private let loginLabel = {
         let label = UILabel(frame: CGRect(x: 20, y: 332, width: 175, height: 19))
-        label.text = Constants.LabelText.login
+        label.text = Constants.loginText
         label.textColor = .black
         label.textAlignment = .left
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = .boldSystemFont(ofSize: 16)
         return label
     }()
 
-    /// Надпись пароль
     private let passwordLabel = {
         let label = UILabel(frame: CGRect(x: 20, y: 407, width: 175, height: 19))
-        label.text = Constants.LabelText.password
+        label.text = Constants.passwordText
         label.textColor = .black
         label.textAlignment = .left
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = .boldSystemFont(ofSize: 16)
         return label
     }()
 
-    /// Поле ввода логина пользователя
     private lazy var loginTextField = {
         let textFiled = UITextField(frame: CGRect(x: 0, y: 361, width: 335, height: 25))
-        textFiled.placeholder = Constants.TextFieldsPlaceholder.mail
+        textFiled.placeholder = Constants.mailTextFieldPlaceholder
         textFiled.delegate = self
         textFiled.addTarget(self, action: #selector(textDidChangeIn), for: .editingChanged)
         textFiled.addLine()
         return textFiled
     }()
 
-    /// Поле ввода пароля пользователя
+    private let securePasswordButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 436, width: 22, height: 19))
+        button.setImage(.passwordHide, for: .normal)
+        button.addTarget(nil, action: #selector(changeSecureTextField(_:)), for: .touchUpInside)
+        return button
+    }()
+
+    private let loginButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 664, width: 335, height: 44))
+        button.setTitle(Constants.comeInText, for: .normal)
+        button.alpha = 0.5
+        button.isEnabled = false
+        button.titleLabel?.textColor = .white
+        button.titleLabel?.font = .boldSystemFont(ofSize: 16)
+        button.backgroundColor = .appAquaBlue
+        button.layer.cornerRadius = 12
+        button.addTarget(nil, action: #selector(menuTransitionPressed), for: .touchUpInside)
+        return button
+    }()
+
     private lazy var passwordTextField = {
         let textFiled = UITextField(frame: CGRect(x: 0, y: 436, width: 335, height: 25))
-        textFiled.placeholder = Constants.TextFieldsPlaceholder.password
+        textFiled.placeholder = Constants.passwordTextFieldPlaceholder
         textFiled.addTarget(self, action: #selector(textDidChangeIn), for: .editingChanged)
         textFiled.isSecureTextEntry = true
         textFiled.delegate = self
@@ -92,27 +99,9 @@ final class LoginViewController: UIViewController {
         return textFiled
     }()
 
-    /// Кнопка скрытия пароля и его открытия
-    private let securePasswordButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 436, width: 22, height: 19))
-        button.setImage(UIImage.passwordHide, for: .normal)
-        button.addTarget(nil, action: #selector(changeSecureTextField(_:)), for: .touchUpInside)
-        return button
-    }()
+    // MARK: - Private Properties
 
-    /// Кнопка войти, которая ведет на экран меню
-    private let loginButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 664, width: 335, height: 44))
-        button.setTitle("Войти", for: .normal)
-        button.alpha = 0.5
-        button.isEnabled = false
-        button.titleLabel?.textColor = .white
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        button.backgroundColor = UIColor.appAquaBlue
-        button.layer.cornerRadius = 12
-        button.addTarget(nil, action: #selector(loginPressed), for: .touchUpInside)
-        return button
-    }()
+    private var validateUserData = ValidateUserData()
 
     // MARK: - Life Cycle
 
@@ -121,75 +110,64 @@ final class LoginViewController: UIViewController {
         setupUI()
 
         /// Назвачение делегата для валидации почты и пароля
-        validateModel.delegate = self
+        validateUserData.delegate = self
     }
 
+    // MARK: - Private Methods
+
     private func setupUI() {
-        view.backgroundColor = UIColor.appDarkBrown
-
+        addSubviewsInMainView()
+        view.backgroundColor = .appDarkBrown
         logoImageView.center.x = view.center.x
-        view.addSubview(logoImageView)
-
         whiteBackgrourdView.frame.size = CGSize(width: view.frame.width, height: 700)
         whiteBackgrourdView.center.x = view.center.x
-        view.addSubview(whiteBackgrourdView)
-
-        view.addSubview(authorizationLabel)
-        view.addSubview(loginLabel)
-        view.addSubview(passwordLabel)
-
         loginTextField.center.x = view.center.x
-        view.addSubview(loginTextField)
-
         passwordTextField.center.x = view.center.x
-        view.addSubview(passwordTextField)
-
         securePasswordButton.frame = CGRect(
-            x: Int(passwordTextField.frame.width) - 10,
+            x: Int(passwordTextField.frame.width) - Constants.passwordLeftMargin,
             y: 0,
             width: 22,
             height: 19
         )
         securePasswordButton.center.y = passwordTextField.center.y
-        view.addSubview(securePasswordButton)
-
         loginButton.center.x = view.center.x
+    }
+
+    private func addSubviewsInMainView() {
+        view.addSubview(logoImageView)
+        view.addSubview(whiteBackgrourdView)
+        view.addSubview(authorizationLabel)
+        view.addSubview(loginLabel)
+        view.addSubview(passwordLabel)
+        view.addSubview(loginTextField)
+        view.addSubview(passwordTextField)
+        view.addSubview(securePasswordButton)
         view.addSubview(loginButton)
     }
 
-    // MARK: - Private Methods
-
-    /// Переключает доступность нажатия кнопки входа
     private func switchLogInButtonStateTo(_ isEnabled: Bool) {
         loginButton.isEnabled = isEnabled
         loginButton.alpha = loginButton.isEnabled ? 1 : 0.5
     }
 
-    /// Вызывается при нажатии на кнопку глаза с скрытием пароля
     @objc private func changeSecureTextField(_ button: UIButton) {
-        if passwordTextField.isSecureTextEntry {
-            passwordTextField.isSecureTextEntry.toggle()
-            button.setImage(UIImage.passwordShow, for: .normal)
-        } else {
-            passwordTextField.isSecureTextEntry.toggle()
-            button.setImage(UIImage.passwordHide, for: .normal)
-        }
+        passwordTextField.isSecureTextEntry.toggle()
+        let image = passwordTextField.isSecureTextEntry ? UIImage.passwordShow : .passwordHide
+        button.setImage(image, for: .normal)
     }
 
-    /// Вызывается при каждом изменении текста внутри поля ввода в почте или пароле
     @objc private func textDidChangeIn(_ sender: UITextField) {
         switch sender {
         case loginTextField:
-            validateModel.mail = sender.text
+            validateUserData.mail = sender.text
         case passwordTextField:
-            validateModel.password = sender.text
+            validateUserData.password = sender.text
         default:
             break
         }
     }
 
-    /// Вызывается при нажатии на кнопку входа, создает навигейшн контроллер и представляет его модально
-    @objc private func loginPressed() {
+    @objc private func menuTransitionPressed() {
         let menuViewController = MenuViewController()
         let navigationController = UINavigationController(rootViewController: menuViewController)
         navigationController.modalPresentationStyle = .fullScreen

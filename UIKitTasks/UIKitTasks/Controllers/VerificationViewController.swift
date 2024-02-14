@@ -7,26 +7,49 @@ import UIKit
 final class VerificationViewController: UIViewController {
     // MARK: - Constants
 
-    enum Constants {
+    private enum Constants {
         static let controllerTitle = "Кодъ из СМС"
         static let controllerDescription = "Введите кодъ изъ смс, чтобы\n подтвердить оплату"
         static let sendAgain = "Отправить снова"
+        static let acceptText = "Подтвердить"
+        static let okText = "Подтвердить"
+        static let minimumSimbols = 4
     }
 
-    // MARK: - Private Properties
+    // MARK: - Visual Components
 
-    /// Комментарий контроллера
     private let descriptionLabel = {
         let label = UILabel(frame: CGRect(x: 0, y: 146, width: 315, height: 44))
         label.text = Constants.controllerDescription
         label.numberOfLines = 2
         label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = .systemFont(ofSize: 16)
         label.textAlignment = .center
         return label
     }()
 
-    /// Поле ввода полученного смс
+    private let sendAgainButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 296, width: 141, height: 20))
+        button.setTitle(Constants.sendAgain, for: .normal)
+        button.setTitleColor(.appAquaBlue, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 16)
+        button.titleLabel?.textAlignment = .center
+        return button
+    }()
+
+    private let acceptButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 637, width: 345, height: 53))
+        button.setTitle(Constants.acceptText, for: .normal)
+        button.titleLabel?.textColor = .white
+        button.titleLabel?.font = .boldSystemFont(ofSize: 18)
+        button.backgroundColor = .appAquaBlue
+        button.layer.cornerRadius = 12
+        button.addTarget(nil, action: #selector(acceptButtonPressed), for: .touchUpInside)
+        button.alpha = 0.5
+        button.isEnabled = false
+        return button
+    }()
+
     private lazy var codeFromSMSTextField = {
         let textField = UITextField(frame: CGRect(x: 0, y: 217, width: 262, height: 44))
         textField.textAlignment = .center
@@ -35,31 +58,6 @@ final class VerificationViewController: UIViewController {
         textField.keyboardType = .numberPad
         textField.addTarget(self, action: #selector(textDidChangeIn), for: .editingChanged)
         return textField
-    }()
-
-    /// Кнопка запроса нового кода
-    private let sendAgainButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 296, width: 141, height: 20))
-        button.setTitle(Constants.sendAgain, for: .normal)
-        button.setTitleColor(UIColor.appAquaBlue, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        button.titleLabel?.textAlignment = .center
-        button.addTarget(nil, action: #selector(getNewCode), for: .touchUpInside)
-        return button
-    }()
-
-    /// Кнопка подтвердить введенный код
-    private let acceptButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 637, width: 345, height: 53))
-        button.setTitle("Подтвердить", for: .normal)
-        button.titleLabel?.textColor = .white
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        button.backgroundColor = UIColor.appAquaBlue
-        button.layer.cornerRadius = 12
-        button.addTarget(nil, action: #selector(acceptButtonPressed), for: .touchUpInside)
-        button.alpha = 0.5
-        button.isEnabled = false
-        return button
     }()
 
     // MARK: - Life Cycle
@@ -75,24 +73,28 @@ final class VerificationViewController: UIViewController {
 
     private func setupUI() {
         view.backgroundColor = .white
-
+        addSubviewsInMainView()
         descriptionLabel.center.x = view.center.x
-        view.addSubview(descriptionLabel)
-
         codeFromSMSTextField.center.x = view.center.x
-        view.addSubview(codeFromSMSTextField)
-
         sendAgainButton.center.x = view.center.x
-        view.addSubview(sendAgainButton)
-
         acceptButton.center.x = view.center.x
+    }
+
+    private func addSubviewsInMainView() {
+        view.addSubview(descriptionLabel)
+        view.addSubview(codeFromSMSTextField)
+        view.addSubview(sendAgainButton)
         view.addSubview(acceptButton)
     }
 
-    /// Тул бар, в котором есть кнопка ОК, для того, чтобы скрыть клавиатуру с цифрами
     private func setupToolbar() {
         let bar = UIToolbar()
-        let okButton = UIBarButtonItem(title: "OK", style: .done, target: self, action: #selector(dismissMyKeyboard))
+        let okButton = UIBarButtonItem(
+            title: Constants.okText,
+            style: .done,
+            target: self,
+            action: #selector(dismissMyKeyboard)
+        )
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
 
         bar.items = [flexSpace, okButton]
@@ -101,10 +103,9 @@ final class VerificationViewController: UIViewController {
         codeFromSMSTextField.inputAccessoryView = bar
     }
 
-    /// Изменение названия контроллера и кнопки назад
     private func configurateNavigationBar() {
         navigationItem.title = Constants.controllerTitle
-        UINavigationBar.appearance().backIndicatorImage = UIImage.leftArrow
+        UINavigationBar.appearance().backIndicatorImage = .leftArrow
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             image: UIImage.leftArrow,
@@ -115,9 +116,8 @@ final class VerificationViewController: UIViewController {
         navigationItem.leftBarButtonItem?.tintColor = .black
     }
 
-    /// Вызывается при каждом изменении текста в поле ввода кода
     @objc private func textDidChangeIn(_ sender: UITextField) {
-        if sender.text?.count ?? 0 >= 4 {
+        if sender.text?.count ?? 0 >= Constants.minimumSimbols {
             view.endEditing(true)
             acceptButton.isEnabled = true
             acceptButton.alpha = 1
@@ -127,27 +127,21 @@ final class VerificationViewController: UIViewController {
         }
     }
 
-    /// Вызывается, чтобы скрыть клаиатуру
     @objc private func dismissMyKeyboard() {
         view.endEditing(true)
     }
 
-    /// Вызывается при нажатии на кнопку подтвердить, после чего делается модальный переход на экран спасибо
     @objc private func acceptButtonPressed() {
         let thankYouController = ThankYouViewController()
         thankYouController.delegate = self
         thankYouController.modalPresentationStyle = .fullScreen
         present(thankYouController, animated: true)
     }
-
-    /// Вызывается для получаения нового кода
-    @objc private func getNewCode() {
-        // TODO: Выполнить запрос нового кода
-    }
 }
 
 /// Расширение, реализующее возврат в корневой контроллер
 extension VerificationViewController: Rootable {
+    /// Длеает возврат в корневой контроллер свой при вызове из делегата
     func didDismissModal() {
         navigationController?.popToRootViewController(animated: true)
     }
