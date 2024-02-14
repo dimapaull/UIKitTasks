@@ -150,7 +150,6 @@ final class ProductConfigurateViewController: UIViewController, IngredientSelect
         roastButton.frame = CGRect(x: 15, y: 482, width: 165, height: 165)
         roastButton.layer.cornerRadius = 12
         roastButton.backgroundColor = #colorLiteral(red: 0.9694761634, green: 0.9694761634, blue: 0.9694761634, alpha: 1)
-        roastButton.removeAllSubviews()
 
         var image: UIImage?
 
