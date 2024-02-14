@@ -13,16 +13,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         willConnectTo session: UISceneSession,
         options connectionOptions: UIScene.ConnectionOptions
     ) {
-        // guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        window = UIWindow(windowScene: windowScene)
+        window?.windowScene = windowScene
+        window?.makeKeyAndVisible()
+
+        let tabBarController = UITabBarController()
+        tabBarController.tabBar.layer.borderWidth = 0.5
+        tabBarController.tabBar.layer.borderColor = UIColor.gray.cgColor
+        tabBarController.viewControllers = [CatalogViewController(), BasketViewController(), ProfileViewController()]
+
+        window?.rootViewController = tabBarController
     }
-
-    func sceneDidDisconnect(_ scene: UIScene) {}
-
-    func sceneDidBecomeActive(_ scene: UIScene) {}
-
-    func sceneWillResignActive(_ scene: UIScene) {}
-
-    func sceneWillEnterForeground(_ scene: UIScene) {}
-
-    func sceneDidEnterBackground(_ scene: UIScene) {}
 }
