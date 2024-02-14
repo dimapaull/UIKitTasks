@@ -60,11 +60,12 @@ final class ProductConfigurateViewController: UIViewController, IngredientSelect
 
     // MARK: - Public Methods
 
-    /// метод делегата, для получения списка дополнительных ингредиентов
+    /// Метод  для получения списка дополнительных ингредиентов
     func didSelectIngredients(_ ingredients: [OrderItem]) {
         additionalIngredients = ingredients
     }
 
+    /// Обновление цены дополнительных ингредиентов
     func updateAdditionalPrice() {
         var price = 0
         for item in additionalIngredients {
@@ -73,11 +74,13 @@ final class ProductConfigurateViewController: UIViewController, IngredientSelect
         additionalPrice = price
     }
 
+    /// Обновление итоговой цены заказа
     func updateTotalPrice() {
         totalPrice = basePrice + additionalPrice
         totalPriceLabel.text = "Цѣна \(totalPrice)"
     }
 
+    /// Создание итогового списка заказа для передачи в счет
     func totalOrder() -> [OrderItem] {
         var allItems: [OrderItem] = []
         allItems.append(selectedCoffeeItem)
@@ -216,7 +219,6 @@ final class ProductConfigurateViewController: UIViewController, IngredientSelect
 
     /// Настройка лейбла цены
     private func setupTotalPriceLabel() {
-//        totalPriceLabel.text = "Цѣна \(coffeePrices[0])"
         totalPriceLabel.text = "Цѣна \(coffeeItemTypes[0].price)"
         totalPriceLabel.frame = CGRect(x: 15, y: 669, width: 345, height: 30)
         totalPriceLabel.font = UIFont(name: "Verdana-Bold", size: 18)

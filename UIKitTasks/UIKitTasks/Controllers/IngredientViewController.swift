@@ -59,6 +59,7 @@ final class IngredientViewController: UIViewController {
         navigationItem.leftBarButtonItem = backButton
     }
 
+    /// функция изменяющая цвет последним нескольким символам в конце строки
     private func setColorForPriceInText(for text: String, length: Int) -> NSMutableAttributedString {
         guard length <= text.count else { return NSMutableAttributedString(string: text) }
         let range = NSRange(location: text.count - length, length: length)

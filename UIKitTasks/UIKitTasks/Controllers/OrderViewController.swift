@@ -148,7 +148,6 @@ final class OrderViewController: UIViewController {
 
     /// Обрабатывает нажатие на кнопку закрытия контроллера
     @objc private func closeViewController() {
-        // TODO: Отсюда надо забрать выбранный тип обжарки зерен
         dismiss(animated: true)
     }
 
