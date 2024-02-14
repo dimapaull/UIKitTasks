@@ -150,15 +150,20 @@ final class ProductConfigurateViewController: UIViewController, IngredientSelect
         roastButton.frame = CGRect(x: 15, y: 482, width: 165, height: 165)
         roastButton.layer.cornerRadius = 12
         roastButton.backgroundColor = #colorLiteral(red: 0.9694761634, green: 0.9694761634, blue: 0.9694761634, alpha: 1)
+        roastButton.removeAllSubviews()
 
         var image: UIImage?
+        let buttonTitle = UILabel(frame: CGRect(x: 0, y: 110, width: 165, height: 36))
+        buttonTitle.font = UIFont(name: "Verdana", size: 14)
+        buttonTitle.numberOfLines = 2
+        buttonTitle.textAlignment = .center
 
         switch roast {
         case .dark:
-            roastButton.setTitle("Темная обжарка", for: .normal)
+            buttonTitle.text = "Темная \nобжарка"
             image = UIImage(named: "darkRoast")
         case .light:
-            roastButton.setTitle("Светлая обжарка", for: .normal)
+            buttonTitle.text = "Светлая \nобжарка"
             image = UIImage(named: "lightRoast")
         }
 
@@ -166,17 +171,10 @@ final class ProductConfigurateViewController: UIViewController, IngredientSelect
         imageView.image = image
         imageView.contentMode = .scaleAspectFit
 
-        roastButton.setTitleColor(.black, for: .normal)
-        roastButton.titleLabel?.font = UIFont(name: "Verdana", size: 14)
-        roastButton.titleLabel?.numberOfLines = 2
-        roastButton.titleLabel?.textAlignment = .center
-
-        // Размещение надписи под кнопкой
-        roastButton.titleEdgeInsets = UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)
-
         roastButton.addTarget(self, action: #selector(roastButtonTapped), for: .touchUpInside)
 
         roastButton.addSubview(imageView)
+        roastButton.addSubview(buttonTitle)
     }
 
     /// Настройка кнопки выбора дополнительных ингредиентов
@@ -198,18 +196,14 @@ final class ProductConfigurateViewController: UIViewController, IngredientSelect
             imageView = UIImageView(frame: CGRect(x: 57, y: 46, width: 50, height: 50))
         }
 
-        additionalIngredientsButton.setTitle("Дополнительные ингредiенты", for: .normal)
+        let buttonTitle = UILabel(frame: CGRect(x: 0, y: 110, width: 165, height: 36))
+        buttonTitle.text = "Дополнительные ингредiенты"
+        buttonTitle.font = UIFont(name: "Verdana", size: 14)
+        buttonTitle.numberOfLines = 2
+        buttonTitle.textAlignment = .center
 
         imageView.image = image
         imageView.contentMode = .scaleAspectFit
-
-        additionalIngredientsButton.setTitleColor(.black, for: .normal)
-        additionalIngredientsButton.titleLabel?.font = UIFont(name: "Verdana", size: 14)
-        additionalIngredientsButton.titleLabel?.numberOfLines = 2
-        additionalIngredientsButton.titleLabel?.textAlignment = .center
-
-        // Размещение надписи под кнопкой
-        additionalIngredientsButton.titleEdgeInsets = UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)
 
         additionalIngredientsButton.addTarget(
             self,
@@ -217,6 +211,7 @@ final class ProductConfigurateViewController: UIViewController, IngredientSelect
             for: .touchUpInside
         )
         additionalIngredientsButton.addSubview(imageView)
+        additionalIngredientsButton.addSubview(buttonTitle)
     }
 
     /// Настройка лейбла цены

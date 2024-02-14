@@ -57,18 +57,16 @@ final class ChooseRoastViewController: UIViewController {
         imageDarkView.image = imageDark
         imageDarkView.contentMode = .scaleAspectFit
 
-        darkButton.setTitle("Темная обжарка", for: .normal)
-        darkButton.setTitleColor(.black, for: .normal)
-        darkButton.titleLabel?.font = UIFont(name: "Verdana", size: 14)
-        darkButton.titleLabel?.numberOfLines = 2
-        darkButton.titleLabel?.textAlignment = .center
-
-        // Размещение надписи под кнопкой
-        darkButton.titleEdgeInsets = UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)
+        let darkButtonTitle = UILabel(frame: CGRect(x: 0, y: 110, width: 165, height: 36))
+        darkButtonTitle.font = UIFont(name: "Verdana", size: 14)
+        darkButtonTitle.text = "Темная \nобжарка"
+        darkButtonTitle.numberOfLines = 2
+        darkButtonTitle.textAlignment = .center
 
         darkButton.addTarget(self, action: #selector(darkButtonTapped), for: .touchUpInside)
 
         darkButton.addSubview(imageDarkView)
+        darkButton.addSubview(darkButtonTitle)
 
         /// Настраиваем кнопку выбора Светлой обжарки
         lightButton.frame = CGRect(x: 195, y: 102, width: 165, height: 165)
@@ -80,18 +78,16 @@ final class ChooseRoastViewController: UIViewController {
         imageLightView.image = imageLight
         imageLightView.contentMode = .scaleAspectFit
 
-        lightButton.setTitle("Светлая обжарка", for: .normal)
-        lightButton.setTitleColor(.black, for: .normal)
-        lightButton.titleLabel?.font = UIFont(name: "Verdana", size: 14)
-        lightButton.titleLabel?.numberOfLines = 2
-        lightButton.titleLabel?.textAlignment = .center
-
-        // Размещение надписи под кнопкой
-        lightButton.titleEdgeInsets = UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)
+        let lightButtonTitle = UILabel(frame: CGRect(x: 0, y: 110, width: 165, height: 36))
+        lightButtonTitle.font = UIFont(name: "Verdana", size: 14)
+        lightButtonTitle.text = "Светлая \nобжарка"
+        lightButtonTitle.numberOfLines = 2
+        lightButtonTitle.textAlignment = .center
 
         lightButton.addTarget(self, action: #selector(lightButtonTapped), for: .touchUpInside)
 
         lightButton.addSubview(imageLightView)
+        lightButton.addSubview(lightButtonTitle)
     }
 
     private func addViews() {
