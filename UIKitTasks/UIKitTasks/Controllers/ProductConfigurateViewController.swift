@@ -10,7 +10,7 @@ final class ProductConfigurateViewController: UIViewController, IngredientSelect
     var basePrice = 100
     var additionalPrice = 0
     var totalPrice = 0
-    
+
     /// Массив для OrderItem, которые посупят с экрана выбора дополнительных ингредиентов
     var additionalIngredients: [OrderItem] = []
 
@@ -59,12 +59,12 @@ final class ProductConfigurateViewController: UIViewController, IngredientSelect
     }
 
     // MARK: - Public Methods
-    
+
     /// метод делегата, для получения списка дополнительных ингредиентов
     func didSelectIngredients(_ ingredients: [OrderItem]) {
         additionalIngredients = ingredients
     }
-    
+
     func updateAdditionalPrice() {
         var price = 0
         for item in additionalIngredients {
@@ -85,9 +85,9 @@ final class ProductConfigurateViewController: UIViewController, IngredientSelect
         print(allItems)
         return allItems
     }
-    
+
     // MARK: - Private Methods
-    
+
     /// Настройка панели навигации
     private func setupNavigationBar() {
         navigationController?.navigationBar.isHidden = false
@@ -115,7 +115,8 @@ final class ProductConfigurateViewController: UIViewController, IngredientSelect
 
     /// Настройка фона изображения кофе
     private func setupCoffeeImageBackground() {
-        coffeeImageBackgroundView.backgroundColor = #colorLiteral(red: 0.9407027364, green: 0.8816927075, blue: 0.8163741231, alpha: 1)
+        coffeeImageBackgroundView.backgroundColor = #colorLiteral(red: 0.9407027364, green: 0.8816927075, blue:
+            0.8163741231, alpha: 1)
         coffeeImageBackgroundView.frame = CGRect(x: 0, y: 0, width: 375, height: 346)
         coffeeImageBackgroundView.layer.cornerRadius = 12
         coffeeImageBackgroundView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
@@ -251,8 +252,6 @@ final class ProductConfigurateViewController: UIViewController, IngredientSelect
         view.addSubview(orderButton)
     }
 
-  
-
     // обработка изменений выбора кофе
     @objc func selectedCoffee(target: UISegmentedControl) {
         if target.isEqual(chooseCoffeeSegmentedControl) {
@@ -305,5 +304,11 @@ final class ProductConfigurateViewController: UIViewController, IngredientSelect
 
     @objc private func shareButtonTapped() {
         print("Share with friend")
+        let promoMessage = "Промокод на 30% скидку на первый заказ в Кофеинофъ: IDDQD"
+        let actitvityViewController = UIActivityViewController(
+            activityItems: [promoMessage],
+            applicationActivities: nil
+        )
+        present(actitvityViewController, animated: true)
     }
 }
