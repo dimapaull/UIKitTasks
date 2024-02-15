@@ -18,10 +18,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
 
+        let navigationController = UINavigationController(rootViewController: CatalogViewController())
+
         let tabBarController = UITabBarController()
         tabBarController.tabBar.layer.borderWidth = 0.5
         tabBarController.tabBar.layer.borderColor = UIColor.gray.cgColor
-        tabBarController.viewControllers = [CatalogViewController(), BasketViewController(), ProfileViewController()]
+        tabBarController.tabBar.tintColor = .appPink
+        tabBarController.tabBar.unselectedItemTintColor = .black
+        tabBarController.viewControllers = [
+            navigationController,
+            BasketViewController(),
+            ProfileViewController()
+        ]
 
         window?.rootViewController = tabBarController
     }
