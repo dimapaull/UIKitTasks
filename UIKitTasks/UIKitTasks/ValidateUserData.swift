@@ -2,6 +2,7 @@
 // Copyright © RoadMap. All rights reserved.
 
 import Foundation
+
 /// Валидация введенных данных пользователя
 protocol DataValidable: AnyObject {
     /// Метод, возвращающий булевое значение, указывающее на валидность логина и пароля
@@ -10,14 +11,13 @@ protocol DataValidable: AnyObject {
 
 /// Проверяет данны пользователя на корректность
 final class ValidateUserData {
-    
     // MARK: - Constants
-    
+
     private enum Constants {
         static let minimumSymbols = 8
         static let needSymbol = "@"
     }
-    
+
     // MARK: - Public Properties
 
     /// Логин пользователя. Проверка на корректность при изменении

@@ -294,6 +294,7 @@ final class ProductConfigurateViewController: UIViewController, IngredientSelect
         let orderVC = OrderViewController()
         orderVC.finishPrice = totalPrice // передаем итоговую цену
         orderVC.orderItems = totalOrder() // передаем выбранные элементы заказа
+        orderVC.delegate = self
         orderVC.modalPresentationStyle = .formSheet
         present(orderVC, animated: true, completion: nil)
     }
@@ -306,5 +307,12 @@ final class ProductConfigurateViewController: UIViewController, IngredientSelect
             applicationActivities: nil
         )
         present(actitvityViewController, animated: true)
+    }
+}
+
+extension ProductConfigurateViewController: Dismissable {
+    func didDismissModal() {
+        let verificationVC = VerificationViewController()
+        navigationController?.pushViewController(verificationVC, animated: true)
     }
 }

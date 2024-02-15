@@ -4,7 +4,7 @@
 import UIKit
 
 /// Переход на корневой контроллер
-protocol Rootable: AnyObject {
+protocol Dismissable: AnyObject {
     /// Уведомление для принимающего, что контроллер только что был закртыт
     func didDismissModal()
 }
@@ -70,7 +70,7 @@ final class ThankYouViewController: UIViewController {
     // MARK: - Public Properties
 
     /// Делегирование перехода на корневой контроллер при исчезновении модального
-    weak var delegate: Rootable?
+    weak var delegate: Dismissable?
 
     // MARK: - Life Cycle
 

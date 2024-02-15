@@ -60,6 +60,8 @@ final class VerificationViewController: UIViewController {
         return textField
     }()
 
+    weak var delegate: Dismissable?
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
@@ -140,7 +142,7 @@ final class VerificationViewController: UIViewController {
 }
 
 /// Расширение, реализующее возврат в корневой контроллер
-extension VerificationViewController: Rootable {
+extension VerificationViewController: Dismissable {
     /// Длеает возврат в корневой контроллер свой при вызове из делегата
     func didDismissModal() {
         navigationController?.popToRootViewController(animated: true)

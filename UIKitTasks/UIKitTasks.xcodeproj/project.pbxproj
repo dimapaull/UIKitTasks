@@ -97,10 +97,10 @@
 		0EB28A1C2B7250A300C28C48 /* UIKitTasks */ = {
 			isa = PBXGroup;
 			children = (
-				0E2AFA692B7AACBA00E111F8 /* UITextField+Extension.swift */,
-				0E2AFA6B2B7AB65300E111F8 /* ValidateUserData.swift */,
 				0EB28A1D2B7250A300C28C48 /* AppDelegate.swift */,
 				0EB28A1F2B7250A300C28C48 /* SceneDelegate.swift */,
+				0E2AFA692B7AACBA00E111F8 /* UITextField+Extension.swift */,
+				0E2AFA6B2B7AB65300E111F8 /* ValidateUserData.swift */,
 				57C170302B7C592F00495720 /* Extensions */,
 				57C170292B7C54EF00495720 /* Enum */,
 				57C170222B7C260100495720 /* Model */,

@@ -26,6 +26,8 @@ final class OrderViewController: UIViewController {
 
     // MARK: - Private Properties
 
+    weak var delegate: Dismissable?
+
     /// Кнопка крестика закрытия контроллера
     private let closeButton = {
         let button = UIButton(frame: CGRect(x: 20, y: 26, width: 14, height: 14))
@@ -154,6 +156,7 @@ final class OrderViewController: UIViewController {
     /// Вызывается при нажатии на кнопку хорошо. Этот сначала говорит контроллеру, который его представлял, и потом
     /// скрывается сам
     @objc private func okButtonPressed() {
-        // TODO: Сделать push контроллера с смс
+        delegate?.didDismissModal()
+        dismiss(animated: true)
     }
 }
