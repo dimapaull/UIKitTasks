@@ -3,8 +3,7 @@
 
 import UIKit
 
-/// Class Scene Delegate
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(
@@ -19,17 +18,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
 
         let navigationController = UINavigationController(rootViewController: CatalogViewController())
+        let profileNavigationController = UINavigationController(rootViewController: ProfileViewController())
 
         let tabBarController = UITabBarController()
         tabBarController.tabBar.layer.borderWidth = 0.5
         tabBarController.tabBar.layer.borderColor = UIColor.gray.cgColor
         tabBarController.tabBar.tintColor = .appPink
         tabBarController.tabBar.unselectedItemTintColor = .black
-        tabBarController.viewControllers = [
-            navigationController,
-            BasketViewController(),
-            ProfileViewController()
-        ]
+        tabBarController.viewControllers = [navigationController, BasketViewController(), profileNavigationController]
 
         window?.rootViewController = tabBarController
     }

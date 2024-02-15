@@ -34,7 +34,6 @@ final class ProfileViewController: UIViewController {
 
     // MARK: - Visual Components
 
-    private let viewTitleLabel = UILabel()
     private let discountCardView = UIView()
     private let discountCardLogoImageView = UIImageView()
     private let discountLabel = UILabel()
@@ -75,8 +74,6 @@ final class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-
         addViews()
         setupUI()
     }
@@ -84,7 +81,6 @@ final class ProfileViewController: UIViewController {
     // MARK: - Private Methods
 
     private func addViews() {
-        view.addSubview(viewTitleLabel)
         view.addSubview(discountCardView)
         discountCardView.addSubview(discountCardLogoImageView)
         discountCardView.addSubview(discountLabel)
@@ -98,7 +94,9 @@ final class ProfileViewController: UIViewController {
     }
 
     private func setupUI() {
-        setupViewTitleLabel()
+        view.backgroundColor = .white
+        navigationController?.navigationBar.isHidden = false
+        title = Constants.title
         setupDiscountCardView()
         setupDiscountCardLogoImageView()
         setupDiscountLabel()
@@ -111,18 +109,6 @@ final class ProfileViewController: UIViewController {
         setupfeedBackButton()
     }
 
-    private func setupViewTitleLabel() {
-        viewTitleLabel.text = Constants.title
-        viewTitleLabel.font = UIFont(name: Constants.titleFont, size: Constants.regularFontSize)
-        viewTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        viewTitleLabel.textAlignment = .center
-
-        viewTitleLabel.widthAnchor.constraint(equalToConstant: 155).isActive = true
-        viewTitleLabel.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        viewTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        viewTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 9).isActive = true
-    }
-
     private func setupDiscountCardView() {
         discountCardView.translatesAutoresizingMaskIntoConstraints = false
         discountCardView.backgroundColor = .black
@@ -130,7 +116,7 @@ final class ProfileViewController: UIViewController {
         discountCardView.widthAnchor.constraint(equalToConstant: 335).isActive = true
         discountCardView.heightAnchor.constraint(equalToConstant: 180).isActive = true
         discountCardView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        discountCardView.topAnchor.constraint(equalTo: viewTitleLabel.bottomAnchor, constant: 23).isActive = true
+        discountCardView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 23).isActive = true
     }
 
     private func setupDiscountCardLogoImageView() {
@@ -330,6 +316,10 @@ final class ProfileViewController: UIViewController {
 
     @objc private func userInfoButtonPressed() {
         print("User Info Pressed")
+        let userDataVC = UserDataViewController()
+        let navigationController = UINavigationController(rootViewController: userDataVC)
+        navigationController.modalPresentationStyle = .fullScreen
+        present(navigationController, animated: true)
     }
 
     @objc private func inviteButtonPressed() {
