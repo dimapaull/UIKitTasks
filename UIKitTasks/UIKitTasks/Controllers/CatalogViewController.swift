@@ -27,6 +27,7 @@ final class CatalogViewController: UIViewController {
         let imageView = UIImageView(image: .manNews)
         imageView.layer.cornerRadius = 12
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.addShadow()
         return imageView
     }()
 
@@ -43,6 +44,7 @@ final class CatalogViewController: UIViewController {
     private let saleImageView = {
         let imageView = UIImageView(image: .manSales)
         imageView.layer.cornerRadius = 12
+        imageView.addShadow()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
