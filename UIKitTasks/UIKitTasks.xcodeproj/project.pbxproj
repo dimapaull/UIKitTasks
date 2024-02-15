@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E29729D2B7BC19500356D18 /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E29729C2B7BC19500356D18 /* VerificationViewController.swift */; };
 		0E2AFA562B7A396800E111F8 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E2AFA552B7A396800E111F8 /* Colors.xcassets */; };
 		0E2AFA582B7A404B00E111F8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2AFA572B7A404B00E111F8 /* LoginViewController.swift */; };
 		0E2AFA5A2B7A41D400E111F8 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2AFA592B7A41D400E111F8 /* MenuViewController.swift */; };
@@ -15,6 +16,8 @@
 		0E2AFA602B7A430200E111F8 /* IngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2AFA5F2B7A430200E111F8 /* IngredientViewController.swift */; };
 		0E2AFA622B7A435200E111F8 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2AFA612B7A435200E111F8 /* OrderViewController.swift */; };
 		0E2AFA642B7A43A700E111F8 /* ThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2AFA632B7A43A700E111F8 /* ThankYouViewController.swift */; };
+		0E2AFA6A2B7AACBB00E111F8 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2AFA692B7AACBA00E111F8 /* UITextField+Extension.swift */; };
+		0E2AFA6C2B7AB65300E111F8 /* ValidateUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2AFA6B2B7AB65300E111F8 /* ValidateUserData.swift */; };
 		0EB28A1E2B7250A300C28C48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB28A1D2B7250A300C28C48 /* AppDelegate.swift */; };
 		0EB28A202B7250A300C28C48 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB28A1F2B7250A300C28C48 /* SceneDelegate.swift */; };
 		0EB28A272B7250A600C28C48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EB28A262B7250A600C28C48 /* Assets.xcassets */; };
@@ -26,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E29729C2B7BC19500356D18 /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
 		0E2AFA552B7A396800E111F8 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		0E2AFA572B7A404B00E111F8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0E2AFA592B7A41D400E111F8 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -34,6 +38,8 @@
 		0E2AFA5F2B7A430200E111F8 /* IngredientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientViewController.swift; sourceTree = "<group>"; };
 		0E2AFA612B7A435200E111F8 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		0E2AFA632B7A43A700E111F8 /* ThankYouViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouViewController.swift; sourceTree = "<group>"; };
+		0E2AFA692B7AACBA00E111F8 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		0E2AFA6B2B7AB65300E111F8 /* ValidateUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateUserData.swift; sourceTree = "<group>"; };
 		0EB28A1A2B7250A300C28C48 /* UIKitTasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitTasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EB28A1D2B7250A300C28C48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EB28A1F2B7250A300C28C48 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +72,7 @@
 				0E2AFA5B2B7A425500E111F8 /* ProductConfigurateViewController.swift */,
 				0E2AFA5F2B7A430200E111F8 /* IngredientViewController.swift */,
 				0E2AFA612B7A435200E111F8 /* OrderViewController.swift */,
+				0E29729C2B7BC19500356D18 /* VerificationViewController.swift */,
 				0E2AFA632B7A43A700E111F8 /* ThankYouViewController.swift */,
 			);
 			path = Controllers;
@@ -90,6 +97,8 @@
 		0EB28A1C2B7250A300C28C48 /* UIKitTasks */ = {
 			isa = PBXGroup;
 			children = (
+				0E2AFA692B7AACBA00E111F8 /* UITextField+Extension.swift */,
+				0E2AFA6B2B7AB65300E111F8 /* ValidateUserData.swift */,
 				0EB28A1D2B7250A300C28C48 /* AppDelegate.swift */,
 				0EB28A1F2B7250A300C28C48 /* SceneDelegate.swift */,
 				57C170302B7C592F00495720 /* Extensions */,
@@ -252,11 +261,14 @@
 				0E2AFA5E2B7A42A700E111F8 /* ChooseRoastViewController.swift in Sources */,
 				57C1702F2B7C558200495720 /* Roast.swift in Sources */,
 				0EB28A1E2B7250A300C28C48 /* AppDelegate.swift in Sources */,
+				0E2AFA6A2B7AACBB00E111F8 /* UITextField+Extension.swift in Sources */,
+				0E29729D2B7BC19500356D18 /* VerificationViewController.swift in Sources */,
 				0EB28A202B7250A300C28C48 /* SceneDelegate.swift in Sources */,
 				57C1702D2B7C557000495720 /* AdditionalIngredientsStatus.swift in Sources */,
 				0E2AFA5C2B7A425500E111F8 /* ProductConfigurateViewController.swift in Sources */,
 				57C170242B7C261300495720 /* OrderItem.swift in Sources */,
 				0E2AFA5A2B7A41D400E111F8 /* MenuViewController.swift in Sources */,
+				0E2AFA6C2B7AB65300E111F8 /* ValidateUserData.swift in Sources */,
 				0E2AFA622B7A435200E111F8 /* OrderViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
