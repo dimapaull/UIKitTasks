@@ -16,6 +16,7 @@ final class UserDataViewController: UIViewController {
         static let email = "Почта"
         static let textFieldBackgrundColor = #colorLiteral(red: 0.9728776813, green: 0.9728776813, blue: 0.9728776813, alpha: 1)
         static let textFieldCornerRadius = CGFloat(12)
+        static let maxNumberCount = 11
 
         static let titleFont = "Verdana-Bold"
         static let regularFont = "Verdana"
@@ -26,7 +27,7 @@ final class UserDataViewController: UIViewController {
 
     private let nameTextField = UITextField()
     private let lastNameTextField = UITextField()
-    private let telephoneTextField = UITextField()
+    private let phoneTextField = UITextField()
     private let shoeSizeTextField = UITextField()
     private let dateOfBirthTextField = UITextField()
     private let emailTextField = UITextField()
@@ -36,6 +37,13 @@ final class UserDataViewController: UIViewController {
     private let sizes = Array(35 ... 39)
     private let sizePicker = UIPickerView()
     private let birthdayDatePicker = UIDatePicker()
+    private let regex: NSRegularExpression = {
+        do {
+            return try NSRegularExpression(pattern: "[\\+\\s-\\(\\)]", options: .caseInsensitive)
+        } catch {
+            fatalError("Failed to create regular expression: \(error)")
+        }
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,18 +123,19 @@ final class UserDataViewController: UIViewController {
         let paddingView = UILabel()
         paddingView.text = "  "
 
-        telephoneTextField.placeholder = Constants.telephone
-        telephoneTextField.layer.cornerRadius = Constants.textFieldCornerRadius
-        telephoneTextField.backgroundColor = Constants.textFieldBackgrundColor
-        telephoneTextField.leftView = paddingView
-        telephoneTextField.leftViewMode = .always
-        telephoneTextField.keyboardType = .numberPad
+        phoneTextField.placeholder = Constants.telephone
+        phoneTextField.layer.cornerRadius = Constants.textFieldCornerRadius
+        phoneTextField.backgroundColor = Constants.textFieldBackgrundColor
+        phoneTextField.leftView = paddingView
+        phoneTextField.leftViewMode = .always
+        phoneTextField.keyboardType = .numberPad
+        phoneTextField.delegate = self
 
-        telephoneTextField.translatesAutoresizingMaskIntoConstraints = false
-        telephoneTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        telephoneTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
-        telephoneTextField.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        telephoneTextField.topAnchor.constraint(equalTo: lastNameTextField.bottomAnchor, constant: 10).isActive = true
+        phoneTextField.translatesAutoresizingMaskIntoConstraints = false
+        phoneTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+        phoneTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
+        phoneTextField.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        phoneTextField.topAnchor.constraint(equalTo: lastNameTextField.bottomAnchor, constant: 10).isActive = true
     }
 
     private func setupShoeSizeTextField() {
@@ -145,7 +154,7 @@ final class UserDataViewController: UIViewController {
         shoeSizeTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
         shoeSizeTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
         shoeSizeTextField.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        shoeSizeTextField.topAnchor.constraint(equalTo: telephoneTextField.bottomAnchor, constant: 10).isActive = true
+        shoeSizeTextField.topAnchor.constraint(equalTo: phoneTextField.bottomAnchor, constant: 10).isActive = true
     }
 
     private func setupDateOfBirthTextField() {
@@ -202,10 +211,51 @@ final class UserDataViewController: UIViewController {
     private func addViews() {
         view.addSubview(nameTextField)
         view.addSubview(lastNameTextField)
-        view.addSubview(telephoneTextField)
+        view.addSubview(phoneTextField)
         view.addSubview(shoeSizeTextField)
         view.addSubview(dateOfBirthTextField)
         view.addSubview(emailTextField)
+    }
+
+    private func format(phoneNumber: String, shouldRemoveLastDigit: Bool) -> String {
+        guard !(shouldRemoveLastDigit && phoneNumber.count <= 2) else { return "+" }
+
+        let range = NSString(string: phoneNumber).range(of: phoneNumber)
+        var number = regex.stringByReplacingMatches(in: phoneNumber, options: [], range: range, withTemplate: "")
+
+        if number.count > Constants.maxNumberCount {
+            let maxIndex = number.index(number.startIndex, offsetBy: Constants.maxNumberCount)
+            number = String(number[number.startIndex ..< maxIndex])
+        }
+
+        if shouldRemoveLastDigit {
+            let maxIndex = number.index(number.startIndex, offsetBy: number.count - 1)
+            number = String(number[number.startIndex ..< maxIndex])
+        }
+
+        let maxIndex = number.index(number.startIndex, offsetBy: number.count)
+        let regRange = number.startIndex ..< maxIndex
+
+        if number.count < 7 {
+            let pattern = "(\\d)(\\d{3})(\\d+)"
+            number = number.replacingOccurrences(
+                of: pattern,
+                with: "$1 ($2) $3",
+                options: .regularExpression,
+                range: regRange
+            )
+            print("pattern 1")
+        } else {
+            let pattern = "(\\d)(\\d{3})(\\d{3})(\\d{2})(\\d+)"
+            number = number.replacingOccurrences(
+                of: pattern,
+                with: "$1 ($2) $3-$4-$5",
+                options: .regularExpression,
+                range: regRange
+            )
+            print("pattern 2")
+        }
+        return "+" + number
     }
 
     @objc private func datePickerValueChanged() {
@@ -253,6 +303,20 @@ extension UserDataViewController: UIPickerViewDelegate {
 extension UserDataViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        return true
+    }
+
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String
+    ) -> Bool {
+        if textField.isEqual(phoneTextField) {
+            let fullString = (textField.text ?? "") + string
+
+            textField.text = format(phoneNumber: fullString, shouldRemoveLastDigit: range.length == 1)
+            return false
+        }
         return true
     }
 
