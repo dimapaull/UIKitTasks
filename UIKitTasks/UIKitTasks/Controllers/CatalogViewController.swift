@@ -77,23 +77,21 @@ final class CatalogViewController: UIViewController {
         CatalogItem(frame: .zero, name: Constants.menuBagsText, image: .bagMan)
     ]
 
-    // MARK: - Public Properties
-
-    // MARK: - Private Properties
-
-    // MARK: - Initializers
-
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigionBar()
-        setupTabBarItem()
         addSubviewsInMainView()
         configureUI()
     }
 
     // MARK: - Public Methods
+
+    func setupTabBarItem() {
+        let catalogTabBarItem = UITabBarItem(title: Constants.controllerTitle, image: .toolBarCatalog, tag: 0)
+        tabBarItem = catalogTabBarItem
+    }
 
     // MARK: - Private Methods
 
@@ -104,7 +102,6 @@ final class CatalogViewController: UIViewController {
         addAnchorsSaleImage()
         addAnchorsSaleLabel()
         addAnchorsNewsLabel()
-
         setupCatalogItemView()
     }
 
@@ -182,12 +179,6 @@ final class CatalogViewController: UIViewController {
 
         let tapRecorder = UITapGestureRecognizer(target: self, action: #selector(showDetailSectionViewController))
         menuItems[1].addGestureRecognizer(tapRecorder)
-    }
-
-    private func setupTabBarItem() {
-        let catalogTabBarItem = UITabBarItem(title: Constants.controllerTitle, image: .toolBarCatalog, tag: 0)
-
-        tabBarItem = catalogTabBarItem
     }
 
     @objc private func switchCapterList(_ segment: UISegmentedControl) {

@@ -6,11 +6,17 @@ import UIKit
 /// Отвечает за действия, которые совершает пользователь во вью
 protocol ProductViewDelegate: AnyObject {
     /// Метод, вызывающийся при нажатии на корзину
-    func didPressedBag()
+    func didPressedBag(tag: Int)
 }
 
 /// Стандартная вью продукта
 final class ProductView: UIView {
+    // MARK: - Constants
+
+    private enum Constants {
+        static let currencySimbol = "₽"
+    }
+
     // MARK: - Visual Components
 
     private let mainImageView: UIImageView = {
@@ -44,10 +50,11 @@ final class ProductView: UIView {
 
     // MARK: - Life Cycle
 
-    init(frame: CGRect, price: String, image: UIImage) {
+    init(frame: CGRect, order: OrderItem, image: UIImage, tag: Int) {
         super.init(frame: .zero)
+        addCartButton.tag = tag
         mainImageView.image = image
-        priceLabel.text = price
+        priceLabel.text = "\(order.price) \(Constants.currencySimbol)"
         configureUI()
     }
 
@@ -95,7 +102,8 @@ final class ProductView: UIView {
         ])
     }
 
-    @objc private func didAddCartPressed() {
-        delegate?.didPressedBag()
+    @objc private func didAddCartPressed(_ button: UIButton) {
+        button.setImage(.removeCart, for: .normal)
+        delegate?.didPressedBag(tag: button.tag)
     }
 }

@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E36C99E2B7EC725003C7FBA /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E36C99D2B7EC725003C7FBA /* OrderItem.swift */; };
 		0E3D4ACE2B7D7FF2007818EF /* CatalogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3D4ACD2B7D7FF2007818EF /* CatalogItem.swift */; };
 		0E3D4AD02B7E4577007818EF /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3D4ACF2B7E4577007818EF /* ProductView.swift */; };
+		0E5D25E02B7E999100A90DA7 /* BusketItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5D25DF2B7E999100A90DA7 /* BusketItemView.swift */; };
 		0EADB1FB2B7D5168004CD911 /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EADB1FA2B7D5167004CD911 /* CatalogViewController.swift */; };
 		0EADB1FD2B7D5170004CD911 /* DetailSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EADB1FC2B7D5170004CD911 /* DetailSectionViewController.swift */; };
 		0EADB1FF2B7D5174004CD911 /* ChooseSizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EADB1FE2B7D5174004CD911 /* ChooseSizeViewController.swift */; };
@@ -25,8 +27,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E36C99D2B7EC725003C7FBA /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
 		0E3D4ACD2B7D7FF2007818EF /* CatalogItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogItem.swift; sourceTree = "<group>"; };
 		0E3D4ACF2B7E4577007818EF /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
+		0E5D25DF2B7E999100A90DA7 /* BusketItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusketItemView.swift; sourceTree = "<group>"; };
 		0EADB1FA2B7D5167004CD911 /* CatalogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogViewController.swift; sourceTree = "<group>"; };
 		0EADB1FC2B7D5170004CD911 /* DetailSectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailSectionViewController.swift; sourceTree = "<group>"; };
 		0EADB1FE2B7D5174004CD911 /* ChooseSizeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseSizeViewController.swift; sourceTree = "<group>"; };
@@ -64,7 +68,9 @@
 				0E3D4ACF2B7E4577007818EF /* ProductView.swift */,
 				0EADB1FE2B7D5174004CD911 /* ChooseSizeViewController.swift */,
 				0EE959E92B7E6F1C00206280 /* UIView+Extension.swift */,
+				0E36C99D2B7EC725003C7FBA /* OrderItem.swift */,
 				0EADB2002B7D5178004CD911 /* BasketViewController.swift */,
+				0E5D25DF2B7E999100A90DA7 /* BusketItemView.swift */,
 				0EADB2022B7D517E004CD911 /* ProfileViewController.swift */,
 				0EADB2042B7D5182004CD911 /* UserDataViewController.swift */,
 				0EADB2062B7D5186004CD911 /* FootSizeViewController.swift */,
@@ -225,7 +231,9 @@
 				0EB28A1E2B7250A300C28C48 /* AppDelegate.swift in Sources */,
 				0EADB2032B7D517E004CD911 /* ProfileViewController.swift in Sources */,
 				0EE959EA2B7E6F1C00206280 /* UIView+Extension.swift in Sources */,
+				0E36C99E2B7EC725003C7FBA /* OrderItem.swift in Sources */,
 				0E3D4ACE2B7D7FF2007818EF /* CatalogItem.swift in Sources */,
+				0E5D25E02B7E999100A90DA7 /* BusketItemView.swift in Sources */,
 				0E3D4AD02B7E4577007818EF /* ProductView.swift in Sources */,
 				0EADB1FF2B7D5174004CD911 /* ChooseSizeViewController.swift in Sources */,
 				0EB28A202B7250A300C28C48 /* SceneDelegate.swift in Sources */,

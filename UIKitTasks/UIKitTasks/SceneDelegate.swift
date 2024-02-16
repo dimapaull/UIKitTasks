@@ -17,14 +17,26 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
 
-        let navigationController = UINavigationController(rootViewController: CatalogViewController())
+        let basketViewController = BasketViewController()
+        basketViewController.setupTabBarItem()
+
+        let catalogViewController = CatalogViewController()
+        catalogViewController.setupTabBarItem()
+
+        let catalogNavigationController = UINavigationController(rootViewController: catalogViewController)
+        let profileNavigationController = UINavigationController(rootViewController: ProfileViewController())
 
         let tabBarController = UITabBarController()
         tabBarController.tabBar.layer.borderWidth = 0.5
         tabBarController.tabBar.layer.borderColor = UIColor.gray.cgColor
         tabBarController.tabBar.tintColor = .appPink
         tabBarController.tabBar.unselectedItemTintColor = .black
-        tabBarController.viewControllers = [navigationController, BasketViewController(), ProfileViewController()]
+
+        tabBarController.viewControllers = [
+            catalogNavigationController,
+            basketViewController,
+            profileNavigationController
+        ]
 
         window?.rootViewController = tabBarController
     }

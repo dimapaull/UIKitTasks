@@ -3,9 +3,12 @@
 
 import UIKit
 
+protocol Dissmisable: AnyObject {
+    func didCloseController(size: Int, tag: Int)
+}
+
 /// Контроллер предоставляющий выбор размера для пользователя
 final class ChooseSizeViewController: UIViewController {
-    // MARK: - Types
 
     // MARK: - Constants
 
@@ -13,17 +16,17 @@ final class ChooseSizeViewController: UIViewController {
         static let controllerTitle = "Выберите размер"
         static let sizeRegion = "EU"
         static let startY: CGFloat = 77
+        static let marginView: CGFloat = 37
     }
 
-    // MARK: - Visual Components
-
     // MARK: - Public Properties
+
+    var tag: Int?
 
     // MARK: - Private Properties
 
     private let sizes = Array(35 ... 39)
-
-    // MARK: - Initializers
+    weak var delegate: Dissmisable?
 
     // MARK: - Life Cycle
 
@@ -33,7 +36,6 @@ final class ChooseSizeViewController: UIViewController {
         configureNavigationBar()
     }
 
-    // MARK: - Public Methods
 
     // MARK: - Private Methods
 
@@ -58,13 +60,15 @@ final class ChooseSizeViewController: UIViewController {
 
     private func createSizeButtons() {
         var startY = Constants.startY
-        for size in sizes {
+        for (index, size) in sizes.enumerated() {
             let sizeButton = UIButton()
             sizeButton.setTitle("\(size) \(Constants.sizeRegion)", for: .normal)
             sizeButton.titleLabel?.font = .systemFont(ofSize: 16)
             sizeButton.setTitleColor(.black, for: .normal)
             sizeButton.titleLabel?.textAlignment = .left
+            sizeButton.tag = index
             sizeButton.translatesAutoresizingMaskIntoConstraints = false
+            sizeButton.addTarget(self, action: #selector(didChoosedSize), for: .touchUpInside)
 
             let lineView = UIView()
             lineView.layer.borderColor = UIColor.lightGray.cgColor
@@ -86,8 +90,13 @@ final class ChooseSizeViewController: UIViewController {
                 lineView.topAnchor.constraint(equalTo: sizeButton.bottomAnchor, constant: 7),
             ])
 
-            startY += 37
+            startY += Constants.marginView
         }
+    }
+
+    @objc private func didChoosedSize(_ button: UIButton) {
+        delegate?.didCloseController(size: sizes[button.tag], tag: tag ?? 0)
+        dismiss(animated: true)
     }
 
     @objc private func didClosePressed() {

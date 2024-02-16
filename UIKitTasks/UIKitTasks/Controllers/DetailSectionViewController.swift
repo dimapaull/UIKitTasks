@@ -13,11 +13,6 @@ final class DetailSectionViewController: UIViewController {
         static let controllerTitle = "Обувь"
         static let startYPoint: CGFloat = 130
         static let marginProductItems: CGFloat = 173
-        static let blackShoesPrice = 2250
-        static let blackBotsPrice = 4250
-        static let pinkSneakersPrice = 5750
-        static let yellowShoesPrice = 3500
-        static let whiteSneakersPrice = 5750
         static let currencySimbol = "₽"
         static let widthViewAndOffset: CGFloat = 193
     }
@@ -27,36 +22,53 @@ final class DetailSectionViewController: UIViewController {
     private var productViewItems = [
         ProductView(
             frame: .zero,
-            price: "\(Constants.blackShoesPrice) \(Constants.currencySimbol)",
-            image: .womanDetailBlackShoes
+            order: OrderItem(price: 2250),
+            image: .womanDetailBlackShoes,
+            tag: 0
         ),
         ProductView(
             frame: .zero,
-            price: "\(Constants.blackBotsPrice) \(Constants.currencySimbol)",
-            image: .womanDetailBlackBoots
+            order: OrderItem(price: 4250),
+            image: .womanDetailBlackBoots,
+            tag: 1
         ),
         ProductView(
             frame: .zero,
-            price: "\(Constants.pinkSneakersPrice) \(Constants.currencySimbol)",
-            image: .womanDetailPinkShoes
+            order: OrderItem(price: 5750),
+            image: .womanDetailPinkShoes,
+            tag: 2
         ),
         ProductView(
             frame: .zero,
-            price: "\(Constants.yellowShoesPrice) \(Constants.currencySimbol)",
-            image: .womanDetailYellowShoes
+            order: OrderItem(price: 3500),
+            image: .womanDetailYellowShoes,
+            tag: 3
         ),
         ProductView(
             frame: .zero,
-            price: "\(Constants.whiteSneakersPrice) \(Constants.currencySimbol)",
-            image: .womanDetailWhiteSneakers
+            order: OrderItem(price: 5750),
+            image: .womanDetailWhiteSneakers,
+            tag: 4
         )
     ]
 
-    // MARK: - Public Properties
-
     // MARK: - Private Properties
 
-    // MARK: - Initializers
+    private var products = [
+        OrderItem(price: 2250),
+        OrderItem(price: 4250),
+        OrderItem(price: 5750),
+        OrderItem(price: 3500),
+        OrderItem(price: 5750)
+    ]
+
+    private let produtsImages: [UIImage] = [
+        .womanDetailBlackShoes,
+        .womanDetailBlackBoots,
+        .womanDetailPinkShoes,
+        .womanDetailYellowShoes,
+        .womanDetailWhiteSneakers,
+    ]
 
     // MARK: - Life Cycle
 
@@ -66,8 +78,6 @@ final class DetailSectionViewController: UIViewController {
         setupNavigionBar()
         setupProductItemViews()
     }
-
-    // MARK: - Public Methods
 
     // MARK: - Private Methods
 
@@ -82,8 +92,8 @@ final class DetailSectionViewController: UIViewController {
         for (index, item) in productViewItems.enumerated() {
             item.delegate = self
             item.translatesAutoresizingMaskIntoConstraints = false
-
             view.addSubview(item)
+
             NSLayoutConstraint.activate([
                 item.widthAnchor.constraint(equalToConstant: 157),
                 item.heightAnchor.constraint(equalToConstant: 157),
@@ -113,9 +123,20 @@ final class DetailSectionViewController: UIViewController {
 }
 
 extension DetailSectionViewController: ProductViewDelegate {
-    func didPressedBag() {
-        let chooseSizeViewConreoller = ChooseSizeViewController()
-        let navigationController = UINavigationController(rootViewController: chooseSizeViewConreoller)
+    func didPressedBag(tag: Int) {
+        let chooseSizeViewController = ChooseSizeViewController()
+        chooseSizeViewController.delegate = self
+        chooseSizeViewController.tag = tag
+        let navigationController = UINavigationController(rootViewController: chooseSizeViewController)
         present(navigationController, animated: true)
+    }
+}
+
+extension DetailSectionViewController: Dissmisable {
+    func didCloseController(size: Int, tag: Int) {
+        guard let cartViewController = tabBarController?.viewControllers?[1] as? BasketViewController else { return }
+        products[tag].size = size
+        cartViewController.basketItems.append(products[tag])
+        cartViewController.basketItemImages.append(produtsImages[tag])
     }
 }
