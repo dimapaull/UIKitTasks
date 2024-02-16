@@ -36,6 +36,9 @@ final class UserDataViewController: UIViewController {
         static let titleFont = "Verdana-Bold"
         static let regularFont = "Verdana"
         static let regularFontSize = CGFloat(16)
+        static let saveButtonTitle = "Сохранить"
+        static let buttonBackgroundColor = #colorLiteral(red: 0.8828063011, green: 0.09558037668, blue: 0.511828959, alpha: 1)
+        static let viewCornerRadius = CGFloat(20)
     }
 
     // MARK: - Visual Components
@@ -46,6 +49,7 @@ final class UserDataViewController: UIViewController {
     private let shoeSizeTextField = UITextField()
     private let dateOfBirthTextField = UITextField()
     private let emailTextField = UITextField()
+    private let saveButton = UIButton()
 
     // MARK: - Private Properties
 
@@ -77,6 +81,8 @@ final class UserDataViewController: UIViewController {
 
     @UserDefault(key: "email", defaultValue: "")
     private var email: String
+
+    private var isDataChanged = false
 
     // MARK: - Life Cycle
 
@@ -122,6 +128,7 @@ final class UserDataViewController: UIViewController {
         setupShoeSizeTextField()
         setupDateOfBirthTextField()
         setupEmailTextField()
+        setupSaveButton()
     }
 
     private func setupNameTextField() {
@@ -249,6 +256,26 @@ final class UserDataViewController: UIViewController {
         birthdayDatePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
     }
 
+    private func setupSaveButton() {
+        saveButton.setTitle(Constants.saveButtonTitle, for: .normal)
+        saveButton.titleLabel?.font = UIFont(name: Constants.titleFont, size: Constants.regularFontSize)
+        saveButton.backgroundColor = Constants.buttonBackgroundColor
+        saveButton.layer.cornerRadius = Constants.viewCornerRadius
+        saveButton.layer.shadowColor = UIColor.black.cgColor
+        saveButton.layer.shadowOpacity = 0.5
+        saveButton.layer.shadowOffset = CGSize(width: 0, height: 2)
+        saveButton.layer.shadowRadius = 4
+        saveButton.isHidden = true
+        saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
+
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
+        saveButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        saveButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+        saveButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
+        saveButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        saveButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -114).isActive = true
+    }
+
     private func addViews() {
         view.addSubview(nameTextField)
         view.addSubview(lastNameTextField)
@@ -256,6 +283,7 @@ final class UserDataViewController: UIViewController {
         view.addSubview(shoeSizeTextField)
         view.addSubview(dateOfBirthTextField)
         view.addSubview(emailTextField)
+        view.addSubview(saveButton)
     }
 
     private func format(phoneNumber: String, shouldRemoveLastDigit: Bool) -> String {
@@ -367,6 +395,11 @@ final class UserDataViewController: UIViewController {
         emailTextField.text = email
     }
 
+    @objc private func saveButtonPressed() {
+        saveButton.isHidden = true
+        saveUserData()
+    }
+
     @objc private func datePickerValueChanged() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
@@ -377,7 +410,6 @@ final class UserDataViewController: UIViewController {
     }
 
     @objc private func backButtonPressed() {
-        saveUserData()
         dismiss(animated: true)
     }
 
@@ -453,6 +485,8 @@ extension UserDataViewController: UITextFieldDelegate {
         } else if textField == emailTextField {
             email = textField.text ?? ""
         }
+        isDataChanged = true
+        saveButton.isHidden = !isDataChanged
     }
 
     @objc private func dismissKeyboard() {
