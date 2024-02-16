@@ -3,7 +3,6 @@
 
 import UIKit
 
-/// Контроллер предоставляющий пользовательские данные
 final class UserDataViewController: UIViewController {
     // MARK: - Constants
 
@@ -32,12 +31,24 @@ final class UserDataViewController: UIViewController {
     private let dateOfBirthTextField = UITextField()
     private let emailTextField = UITextField()
 
+    // MARK: - Private Properties
+
+    private let sizes = Array(35 ... 39)
+    private let sizePicker = UIPickerView()
+    private let birthdayDatePicker = UIDatePicker()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationController()
         addViews()
 
         setupUI()
+        setupBirthdayDatePicker()
+        setupSizePicker()
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
     }
 
     private func setupNavigationController() {
@@ -73,6 +84,7 @@ final class UserDataViewController: UIViewController {
         nameTextField.backgroundColor = Constants.textFieldBackgrundColor
         nameTextField.leftView = paddingView
         nameTextField.leftViewMode = .always
+        nameTextField.delegate = self
 
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
         nameTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
@@ -90,6 +102,7 @@ final class UserDataViewController: UIViewController {
         lastNameTextField.backgroundColor = Constants.textFieldBackgrundColor
         lastNameTextField.leftView = paddingView
         lastNameTextField.leftViewMode = .always
+        lastNameTextField.delegate = self
 
         lastNameTextField.translatesAutoresizingMaskIntoConstraints = false
         lastNameTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
@@ -107,6 +120,7 @@ final class UserDataViewController: UIViewController {
         telephoneTextField.backgroundColor = Constants.textFieldBackgrundColor
         telephoneTextField.leftView = paddingView
         telephoneTextField.leftViewMode = .always
+        telephoneTextField.keyboardType = .numberPad
 
         telephoneTextField.translatesAutoresizingMaskIntoConstraints = false
         telephoneTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
@@ -124,6 +138,8 @@ final class UserDataViewController: UIViewController {
         shoeSizeTextField.backgroundColor = Constants.textFieldBackgrundColor
         shoeSizeTextField.leftView = paddingView
         shoeSizeTextField.leftViewMode = .always
+        shoeSizeTextField.addTarget(self, action: #selector(shoeSizeTextFieldTapped), for: .editingDidBegin)
+        shoeSizeTextField.inputView = UIView(frame: CGRect.zero)
 
         shoeSizeTextField.translatesAutoresizingMaskIntoConstraints = false
         shoeSizeTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
@@ -141,6 +157,8 @@ final class UserDataViewController: UIViewController {
         dateOfBirthTextField.backgroundColor = Constants.textFieldBackgrundColor
         dateOfBirthTextField.leftView = paddingView
         dateOfBirthTextField.leftViewMode = .always
+        dateOfBirthTextField.inputView = birthdayDatePicker
+        dateOfBirthTextField.delegate = self
 
         dateOfBirthTextField.translatesAutoresizingMaskIntoConstraints = false
         dateOfBirthTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
@@ -158,12 +176,27 @@ final class UserDataViewController: UIViewController {
         emailTextField.backgroundColor = Constants.textFieldBackgrundColor
         emailTextField.leftView = paddingView
         emailTextField.leftViewMode = .always
+        emailTextField.keyboardType = .emailAddress
+        emailTextField.delegate = self
 
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
         emailTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
         emailTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
         emailTextField.heightAnchor.constraint(equalToConstant: 44).isActive = true
         emailTextField.topAnchor.constraint(equalTo: dateOfBirthTextField.bottomAnchor, constant: 10).isActive = true
+    }
+
+    private func setupSizePicker() {
+        sizePicker.delegate = self
+        sizePicker.dataSource = self
+        sizePicker.backgroundColor = .white
+    }
+
+    private func setupBirthdayDatePicker() {
+        birthdayDatePicker.datePickerMode = .date
+        birthdayDatePicker.preferredDatePickerStyle = .inline
+        birthdayDatePicker.backgroundColor = .white
+        birthdayDatePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
     }
 
     private func addViews() {
@@ -175,7 +208,55 @@ final class UserDataViewController: UIViewController {
         view.addSubview(emailTextField)
     }
 
+    @objc private func datePickerValueChanged() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        dateOfBirthTextField.text = dateFormatter.string(from: birthdayDatePicker.date)
+        dateOfBirthTextField.resignFirstResponder()
+    }
+
     @objc private func backButtonPressed() {
         dismiss(animated: true)
+    }
+
+    @objc private func shoeSizeTextFieldTapped() {
+        let sizePickerVC = SizePickerViewController()
+        sizePickerVC.shoeSizeTextField = shoeSizeTextField
+        sizePickerVC.modalPresentationStyle = .overFullScreen
+        sizePickerVC.modalTransitionStyle = .crossDissolve
+        present(sizePickerVC, animated: true)
+    }
+}
+
+extension UserDataViewController: UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        sizes.count
+    }
+}
+
+extension UserDataViewController: UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        "\(sizes[row])"
+    }
+
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        shoeSizeTextField.text = "\(sizes[row])"
+    }
+}
+
+extension UserDataViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
     }
 }

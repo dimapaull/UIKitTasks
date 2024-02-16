@@ -19,6 +19,7 @@
 		0EB28A202B7250A300C28C48 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB28A1F2B7250A300C28C48 /* SceneDelegate.swift */; };
 		0EB28A272B7250A600C28C48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EB28A262B7250A600C28C48 /* Assets.xcassets */; };
 		0EB28A2A2B7250A600C28C48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EB28A282B7250A600C28C48 /* LaunchScreen.storyboard */; };
+		57C170C02B7EFE2800495720 /* SizePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C170BF2B7EFE2800495720 /* SizePickerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		0EB28A262B7250A600C28C48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0EB28A292B7250A600C28C48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0EB28A2B2B7250A600C28C48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		57C170BF2B7EFE2800495720 /* SizePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizePickerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 				0EADB2002B7D5178004CD911 /* BasketViewController.swift */,
 				0EADB2022B7D517E004CD911 /* ProfileViewController.swift */,
 				0EADB2042B7D5182004CD911 /* UserDataViewController.swift */,
+				57C170BF2B7EFE2800495720 /* SizePickerViewController.swift */,
 				0EADB2062B7D5186004CD911 /* FootSizeViewController.swift */,
 			);
 			path = Controllers;
@@ -212,6 +215,7 @@
 				0EADB2012B7D5178004CD911 /* BasketViewController.swift in Sources */,
 				0EADB1FB2B7D5168004CD911 /* CatalogViewController.swift in Sources */,
 				0EADB2072B7D5186004CD911 /* FootSizeViewController.swift in Sources */,
+				57C170C02B7EFE2800495720 /* SizePickerViewController.swift in Sources */,
 				0EADB1FD2B7D5170004CD911 /* DetailSectionViewController.swift in Sources */,
 				0EB28A1E2B7250A300C28C48 /* AppDelegate.swift in Sources */,
 				0EADB2032B7D517E004CD911 /* ProfileViewController.swift in Sources */,
