@@ -3,6 +3,7 @@
 
 import UIKit
 
+/// Экран ввода данных пользователя
 final class UserDataViewController: UIViewController {
     // MARK: - Constants
 
@@ -17,7 +18,6 @@ final class UserDataViewController: UIViewController {
         static let textFieldBackgrundColor = #colorLiteral(red: 0.9728776813, green: 0.9728776813, blue: 0.9728776813, alpha: 1)
         static let textFieldCornerRadius = CGFloat(12)
         static let maxNumberCount = 11
-
         static let titleFont = "Verdana-Bold"
         static let regularFont = "Verdana"
         static let regularFontSize = CGFloat(16)
@@ -45,6 +45,8 @@ final class UserDataViewController: UIViewController {
         }
     }()
 
+    // MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationController()
@@ -53,7 +55,12 @@ final class UserDataViewController: UIViewController {
         setupUI()
         setupBirthdayDatePicker()
         setupSizePicker()
+        keyboardSetup()
+    }
 
+    // MARK: - Private Methods
+
+    private func keyboardSetup() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
@@ -258,6 +265,45 @@ final class UserDataViewController: UIViewController {
         return "+" + number
     }
 
+    private func isValidEmailAddress(emailAddressString: String) -> Bool {
+        var returnValue = true
+        let emailRegEx = "[A-Z0-9a-z.-_]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,3}"
+
+        do {
+            let regex = try NSRegularExpression(pattern: emailRegEx)
+            let nsString = emailAddressString as NSString
+            let results = regex.matches(in: emailAddressString, range: NSRange(location: 0, length: nsString.length))
+
+            if results.count == 0 {
+                returnValue = false
+            }
+
+        } catch let error as NSError {
+            print("invalid regex: \(error.localizedDescription)")
+            returnValue = false
+        }
+
+        return returnValue
+    }
+
+    private func warnInvalidEmail() {
+        let alertController = UIAlertController(
+            title: "Почта указана неверно!",
+            message: "Укажите корректный адрес электронной почты",
+            preferredStyle: .alert
+        )
+        let okAction = UIAlertAction(title: "Ok", style: .cancel)
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
+    }
+
+    private func confirmValidEmail() {
+        let alertController = UIAlertController(title: nil, message: "Адрес почты сохранен", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .cancel)
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
+    }
+
     @objc private func datePickerValueChanged() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
@@ -303,6 +349,15 @@ extension UserDataViewController: UIPickerViewDelegate {
 extension UserDataViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+
+        if textField.isEqual(emailTextField) {
+            if isValidEmailAddress(emailAddressString: textField.text ?? "") {
+                confirmValidEmail()
+            } else {
+                warnInvalidEmail()
+                emailTextField.text = ""
+            }
+        }
         return true
     }
 
