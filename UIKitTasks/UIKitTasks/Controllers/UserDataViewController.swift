@@ -3,6 +3,21 @@
 
 import UIKit
 
+@propertyWrapper
+struct UserDefault<T> {
+    let key: String
+    let defaultValue: T
+
+    var wrappedValue: T {
+        get {
+            UserDefaults.standard.object(forKey: key) as? T ?? defaultValue
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: key)
+        }
+    }
+}
+
 /// Экран ввода данных пользователя
 final class UserDataViewController: UIViewController {
     // MARK: - Constants
@@ -45,6 +60,24 @@ final class UserDataViewController: UIViewController {
         }
     }()
 
+    @UserDefault(key: "firstName", defaultValue: "")
+    private var firstName: String
+
+    @UserDefault(key: "lastName", defaultValue: "")
+    private var lastName: String
+
+    @UserDefault(key: "phoneNumber", defaultValue: "")
+    private var phoneNumber: String
+
+    @UserDefault(key: "shoeSize", defaultValue: "")
+    private var shoeSize: String
+
+    @UserDefault(key: "dateOfBirth", defaultValue: "")
+    private var dateOfBirth: String
+
+    @UserDefault(key: "email", defaultValue: "")
+    private var email: String
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
@@ -56,6 +89,7 @@ final class UserDataViewController: UIViewController {
         setupBirthdayDatePicker()
         setupSizePicker()
         keyboardSetup()
+        loadUserData()
     }
 
     // MARK: - Private Methods
@@ -251,7 +285,6 @@ final class UserDataViewController: UIViewController {
                 options: .regularExpression,
                 range: regRange
             )
-            print("pattern 1")
         } else {
             let pattern = "(\\d)(\\d{3})(\\d{3})(\\d{2})(\\d+)"
             number = number.replacingOccurrences(
@@ -260,7 +293,6 @@ final class UserDataViewController: UIViewController {
                 options: .regularExpression,
                 range: regRange
             )
-            print("pattern 2")
         }
         return "+" + number
     }
@@ -304,6 +336,37 @@ final class UserDataViewController: UIViewController {
         present(alertController, animated: true)
     }
 
+    private func saveUserData() {
+        UserDefaults.standard.set(firstName, forKey: "firstName")
+        UserDefaults.standard.set(lastName, forKey: "lastName")
+        UserDefaults.standard.set(phoneNumber, forKey: "phoneNumber")
+        UserDefaults.standard.set(shoeSize, forKey: "shoeSize")
+        UserDefaults.standard.set(dateOfBirth, forKey: "dateOfBirth")
+        UserDefaults.standard.set(email, forKey: "email")
+
+        UserDefaults.standard.synchronize()
+    }
+
+    private func loadUserData() {
+        firstName = UserDefaults.standard.string(forKey: "firstName") ?? ""
+        nameTextField.text = firstName
+
+        lastName = UserDefaults.standard.string(forKey: "lastName") ?? ""
+        lastNameTextField.text = lastName
+
+        phoneNumber = UserDefaults.standard.string(forKey: "phoneNumber") ?? ""
+        phoneTextField.text = phoneNumber
+
+        shoeSize = UserDefaults.standard.string(forKey: "shoeSize") ?? ""
+        shoeSizeTextField.text = shoeSize
+
+        dateOfBirth = UserDefaults.standard.string(forKey: "dateOfBirth") ?? ""
+        dateOfBirthTextField.text = dateOfBirth
+
+        email = UserDefaults.standard.string(forKey: "email") ?? ""
+        emailTextField.text = email
+    }
+
     @objc private func datePickerValueChanged() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
@@ -314,6 +377,7 @@ final class UserDataViewController: UIViewController {
     }
 
     @objc private func backButtonPressed() {
+        saveUserData()
         dismiss(animated: true)
     }
 
@@ -373,6 +437,22 @@ extension UserDataViewController: UITextFieldDelegate {
             return false
         }
         return true
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == nameTextField {
+            firstName = textField.text ?? ""
+        } else if textField == lastNameTextField {
+            lastName = textField.text ?? ""
+        } else if textField == phoneTextField {
+            phoneNumber = textField.text ?? ""
+        } else if textField == shoeSizeTextField {
+            shoeSize = textField.text ?? ""
+        } else if textField == dateOfBirthTextField {
+            dateOfBirth = textField.text ?? ""
+        } else if textField == emailTextField {
+            email = textField.text ?? ""
+        }
     }
 
     @objc private func dismissKeyboard() {
