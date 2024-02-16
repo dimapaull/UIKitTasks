@@ -9,7 +9,6 @@ protocol Dissmisable: AnyObject {
 
 /// Контроллер предоставляющий выбор размера для пользователя
 final class ChooseSizeViewController: UIViewController {
-
     // MARK: - Constants
 
     enum Constants {
@@ -35,7 +34,6 @@ final class ChooseSizeViewController: UIViewController {
         configureUI()
         configureNavigationBar()
     }
-
 
     // MARK: - Private Methods
 

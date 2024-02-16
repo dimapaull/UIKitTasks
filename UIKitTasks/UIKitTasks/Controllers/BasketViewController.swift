@@ -5,7 +5,6 @@ import UIKit
 
 /// Контроллер предоставляющий информацию о товарах, находящихся в корзине
 final class BasketViewController: UIViewController {
-
     // MARK: - Constants
 
     private enum Constants {
@@ -68,6 +67,7 @@ final class BasketViewController: UIViewController {
     // MARK: - Private Methods
 
     private func configurateUI() {
+        loadView()
         view.backgroundColor = .white
         checkoutButton.setTitle(
             "\(Constants.checkoutButtonText) \(mathCount()) \(Constants.currencySymbol)",
