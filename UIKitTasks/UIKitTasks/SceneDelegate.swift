@@ -17,6 +17,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
 
+
         let basketViewController = BasketViewController()
         basketViewController.setupTabBarItem()
 
@@ -24,6 +25,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         catalogViewController.setupTabBarItem()
 
         let catalogNavigationController = UINavigationController(rootViewController: catalogViewController)
+
         let profileNavigationController = UINavigationController(rootViewController: ProfileViewController())
 
         let tabBarController = UITabBarController()
@@ -31,6 +33,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         tabBarController.tabBar.layer.borderColor = UIColor.gray.cgColor
         tabBarController.tabBar.tintColor = .appPink
         tabBarController.tabBar.unselectedItemTintColor = .black
+
 
         tabBarController.viewControllers = [
             catalogNavigationController,
