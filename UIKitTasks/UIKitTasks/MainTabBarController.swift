@@ -25,6 +25,9 @@ final class MainTabBarController: UITabBarController {
     private func configure() {
         tabBar.tintColor = .appBlue
         tabBar.unselectedItemTintColor = .black
+        tabBar.backgroundColor = .white
+        tabBar.layer.borderWidth = 0.3
+        tabBar.layer.borderColor = UIColor.lightGray.cgColor
 
         let feedViewController = FeedViewController()
         let notificationViewController = NotificationViewController()
@@ -33,10 +36,6 @@ final class MainTabBarController: UITabBarController {
         let controllers = [feedViewController, notificationViewController, profileViewController]
 
         setViewControllers(controllers, animated: true)
-
-        tabBar.backgroundColor = .white
-        tabBar.layer.borderWidth = 0.3
-        tabBar.layer.borderColor = UIColor.lightGray.cgColor
     }
 
     private func setupTabBarItems() {
