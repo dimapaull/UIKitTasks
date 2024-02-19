@@ -18,6 +18,7 @@ final class ProfileViewController: UIViewController {
         static let cardLabelColor = UIColor.white
         static let cardButtonBackgroundColor = UIColor(white: 1, alpha: 0.1)
         static let separatorColor = #colorLiteral(red: 0.9248393178, green: 0.9216213822, blue: 0.9215624928, alpha: 1)
+        static let controllerTitle = "Профиль"
 
         static let logoImageName = "logoCard"
         static let qrCodeImageName = "qrCodeCard"
@@ -76,6 +77,14 @@ final class ProfileViewController: UIViewController {
         super.viewDidLoad()
         addViews()
         setupUI()
+    }
+
+    // MARK: - Public Method
+
+    func setupTabBarItem() {
+        tabBarItem.title = Constants.controllerTitle
+        let profileTabBarItem = UITabBarItem(title: Constants.controllerTitle, image: .toolBarProfile, tag: 0)
+        tabBarItem = profileTabBarItem
     }
 
     // MARK: - Private Methods
@@ -306,27 +315,18 @@ final class ProfileViewController: UIViewController {
         separator.bottomAnchor.constraint(equalTo: feedbackButton.bottomAnchor, constant: -1).isActive = true
     }
 
-    @objc private func qrCodeButtonPressed() {
-        print("QR Pressed")
-    }
+    @objc private func qrCodeButtonPressed() {}
 
-    @objc private func cardInfoButtonPressed() {
-        print("Card Info Pressed")
-    }
+    @objc private func cardInfoButtonPressed() {}
 
     @objc private func userInfoButtonPressed() {
-        print("User Info Pressed")
         let userDataVC = UserDataViewController()
         let navigationController = UINavigationController(rootViewController: userDataVC)
         navigationController.modalPresentationStyle = .fullScreen
         present(navigationController, animated: true)
     }
 
-    @objc private func inviteButtonPressed() {
-        print("Invite Pressed")
-    }
+    @objc private func inviteButtonPressed() {}
 
-    @objc private func feedbackButtonPressed() {
-        print("Feedback Pressed")
-    }
+    @objc private func feedbackButtonPressed() {}
 }
