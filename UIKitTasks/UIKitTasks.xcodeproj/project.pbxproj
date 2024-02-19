@@ -7,20 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E0040102B83761100C5121A /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E00400F2B83761100C5121A /* Colors.xcassets */; };
+		0E0040162B837A3900C5121A /* Verdana-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E0040122B837A3800C5121A /* Verdana-Bold.ttf */; };
+		0E0040172B837A3900C5121A /* Verdana-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E0040132B837A3800C5121A /* Verdana-BoldItalic.ttf */; };
+		0E0040182B837A3900C5121A /* Verdana.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E0040142B837A3800C5121A /* Verdana.ttf */; };
+		0E0040192B837A3900C5121A /* Verdana-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E0040152B837A3800C5121A /* Verdana-Italic.ttf */; };
 		0EB28A1E2B7250A300C28C48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB28A1D2B7250A300C28C48 /* AppDelegate.swift */; };
 		0EB28A202B7250A300C28C48 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB28A1F2B7250A300C28C48 /* SceneDelegate.swift */; };
-		0EB28A222B7250A300C28C48 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB28A212B7250A300C28C48 /* ViewController.swift */; };
-		0EB28A252B7250A300C28C48 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EB28A232B7250A300C28C48 /* Main.storyboard */; };
 		0EB28A272B7250A600C28C48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EB28A262B7250A600C28C48 /* Assets.xcassets */; };
 		0EB28A2A2B7250A600C28C48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EB28A282B7250A600C28C48 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E00400F2B83761100C5121A /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		0E0040122B837A3800C5121A /* Verdana-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Verdana-Bold.ttf"; sourceTree = "<group>"; };
+		0E0040132B837A3800C5121A /* Verdana-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Verdana-BoldItalic.ttf"; sourceTree = "<group>"; };
+		0E0040142B837A3800C5121A /* Verdana.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Verdana.ttf; sourceTree = "<group>"; };
+		0E0040152B837A3800C5121A /* Verdana-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Verdana-Italic.ttf"; sourceTree = "<group>"; };
 		0EB28A1A2B7250A300C28C48 /* UIKitTasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitTasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EB28A1D2B7250A300C28C48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EB28A1F2B7250A300C28C48 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0EB28A212B7250A300C28C48 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		0EB28A242B7250A300C28C48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0EB28A262B7250A600C28C48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0EB28A292B7250A600C28C48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0EB28A2B2B7250A600C28C48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -37,6 +43,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E0040112B83798F00C5121A /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				0E0040122B837A3800C5121A /* Verdana-Bold.ttf */,
+				0E0040132B837A3800C5121A /* Verdana-BoldItalic.ttf */,
+				0E0040152B837A3800C5121A /* Verdana-Italic.ttf */,
+				0E0040142B837A3800C5121A /* Verdana.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		0EB28A112B7250A300C28C48 = {
 			isa = PBXGroup;
 			children = (
@@ -58,9 +75,9 @@
 			children = (
 				0EB28A1D2B7250A300C28C48 /* AppDelegate.swift */,
 				0EB28A1F2B7250A300C28C48 /* SceneDelegate.swift */,
-				0EB28A212B7250A300C28C48 /* ViewController.swift */,
-				0EB28A232B7250A300C28C48 /* Main.storyboard */,
+				0E0040112B83798F00C5121A /* Fonts */,
 				0EB28A262B7250A600C28C48 /* Assets.xcassets */,
+				0E00400F2B83761100C5121A /* Colors.xcassets */,
 				0EB28A282B7250A600C28C48 /* LaunchScreen.storyboard */,
 				0EB28A2B2B7250A600C28C48 /* Info.plist */,
 			);
@@ -127,9 +144,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E0040192B837A3900C5121A /* Verdana-Italic.ttf in Resources */,
+				0E0040102B83761100C5121A /* Colors.xcassets in Resources */,
 				0EB28A2A2B7250A600C28C48 /* LaunchScreen.storyboard in Resources */,
+				0E0040182B837A3900C5121A /* Verdana.ttf in Resources */,
+				0E0040172B837A3900C5121A /* Verdana-BoldItalic.ttf in Resources */,
 				0EB28A272B7250A600C28C48 /* Assets.xcassets in Resources */,
-				0EB28A252B7250A300C28C48 /* Main.storyboard in Resources */,
+				0E0040162B837A3900C5121A /* Verdana-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,7 +204,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0EB28A222B7250A300C28C48 /* ViewController.swift in Sources */,
 				0EB28A1E2B7250A300C28C48 /* AppDelegate.swift in Sources */,
 				0EB28A202B7250A300C28C48 /* SceneDelegate.swift in Sources */,
 			);
@@ -192,14 +212,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		0EB28A232B7250A300C28C48 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0EB28A242B7250A300C28C48 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		0EB28A282B7250A600C28C48 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -343,7 +355,6 @@
 				INFOPLIST_FILE = UIKitTasks/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -372,7 +383,6 @@
 				INFOPLIST_FILE = UIKitTasks/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
