@@ -29,11 +29,11 @@ final class MainTabBarController: UITabBarController {
         tabBar.layer.borderWidth = 0.3
         tabBar.layer.borderColor = UIColor.lightGray.cgColor
 
-        let feedViewController = FeedViewController()
+        let navigationFeedViewController = UINavigationController(rootViewController: FeedViewController())
         let notificationViewController = NotificationViewController()
         let profileViewController = UIViewController()
 
-        let controllers = [feedViewController, notificationViewController, profileViewController]
+        let controllers = [navigationFeedViewController, notificationViewController, profileViewController]
 
         setViewControllers(controllers, animated: true)
     }
