@@ -9,6 +9,7 @@ final class FeedViewController: UIViewController {
 
     private enum TableCellTypes {
         case stories
+        case firstPost
         case post
         case recommend
     }
@@ -18,6 +19,19 @@ final class FeedViewController: UIViewController {
         static let humanHistoryText = "lavanda123"
         static let myProfileImageName = "myProfile"
         static let storiesImageName = "historyWoman"
+
+        static let postUserName = "tur_v_dagestan"
+        static let postUserImageName = "dagestanHuman"
+        static let postFirstImageName = "dagestan"
+        static let postSecondImageName = "postMountians"
+        static let postLikeCount = 201
+        static let postTitle = "Насладитесь красотой природы. Забронировать тур в Дагестан можно уже сейчас!"
+
+        static let recommendFirstUserName = "сrimea_082"
+        static let recommendSecondUserName = "mary_pol"
+
+        static let recommendFirstImageName = "recommendCastle"
+        static let recommendSecondImageName = "recommendWoman"
     }
 
     // MARK: - Visual Components
@@ -28,7 +42,7 @@ final class FeedViewController: UIViewController {
 
     // MARK: - Private Properties
 
-    private let cellTypes: [TableCellTypes] = [.stories, .post, .recommend]
+    private let cellTypes: [TableCellTypes] = [.stories, .firstPost, .recommend, .post]
 
     private let stories: [Stories] = [
         Stories(userName: Constants.myHistoryText, image: Constants.myProfileImageName, isSelfStory: true),
@@ -40,15 +54,48 @@ final class FeedViewController: UIViewController {
         Stories(userName: Constants.humanHistoryText, image: Constants.storiesImageName, isSelfStory: false)
     ]
 
-    private let posts: [Post] = [
+    private let posts = [
         Post(
-            userName: "tur_v_dagestan",
-            userAvatarImageName: "dagestanHuman",
-            postImageNames: ["dagestan", "postMountians"],
-            likes: 201,
-            postTitle: "Насладитесь красотой природы. Забронировать тур в Дагестан можно уже сейчас!",
-            loginUserAvatarImageName: "myProfile"
+            userName: Constants.postUserName,
+            userAvatarImageName: Constants.postUserImageName,
+            postImageNames: [Constants.postFirstImageName],
+            likes: Constants.postLikeCount,
+            postTitle: Constants.postTitle,
+            loginUserAvatarImageName: Constants.myProfileImageName
+        ),
+        Post(
+            userName: Constants.postUserName,
+            userAvatarImageName: Constants.postUserImageName,
+            postImageNames: [Constants.postFirstImageName],
+            likes: Constants.postLikeCount,
+            postTitle: Constants.postTitle,
+            loginUserAvatarImageName: Constants.myProfileImageName
+        ),
+        Post(
+            userName: Constants.postUserName,
+            userAvatarImageName: Constants.postUserImageName,
+            postImageNames: [Constants.postFirstImageName],
+            likes: Constants.postLikeCount,
+            postTitle: Constants.postTitle,
+            loginUserAvatarImageName: Constants.myProfileImageName
         )
+    ]
+
+    private let firstPost =
+        Post(
+            userName: Constants.postUserName,
+            userAvatarImageName: Constants.postUserImageName,
+            postImageNames: [Constants.postFirstImageName, Constants.postSecondImageName],
+            likes: Constants.postLikeCount,
+            postTitle: Constants.postTitle,
+            loginUserAvatarImageName: Constants.myProfileImageName
+        )
+
+    private let recommends = [
+        Recommend(userName: Constants.recommendFirstUserName, userAvatarImageName: Constants.recommendFirstImageName),
+        Recommend(userName: Constants.recommendSecondUserName, userAvatarImageName: Constants.recommendSecondImageName),
+        Recommend(userName: Constants.recommendFirstUserName, userAvatarImageName: Constants.recommendFirstImageName),
+        Recommend(userName: Constants.recommendFirstUserName, userAvatarImageName: Constants.recommendFirstImageName)
     ]
 
     // MARK: - Life Cycle
@@ -108,12 +155,22 @@ final class FeedViewController: UIViewController {
 }
 
 extension FeedViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         cellTypes.count
     }
 
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let type = cellTypes[section]
+        switch type {
+        case .stories, .recommend, .firstPost:
+            return 1
+        case .post:
+            return posts.count
+        }
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellType = cellTypes[indexPath.row]
+        let cellType = cellTypes[indexPath.section]
         switch cellType {
         case .stories:
             guard let cell = tableView
@@ -123,20 +180,18 @@ extension FeedViewController: UITableViewDataSource {
             else { return UITableViewCell() }
             cell.configure(stories: stories)
             return cell
-        case .post:
+        case .post, .firstPost:
             guard let cell = tableView
                 .dequeueReusableCell(
                     withIdentifier: String(describing: PostTableViewCell.self), for: indexPath
                 ) as? PostTableViewCell
             else { return UITableViewCell() }
-            cell.configure(post: posts.first ?? Post(
-                userName: "",
-                userAvatarImageName: "",
-                postImageNames: [""],
-                likes: 2,
-                postTitle: "",
-                loginUserAvatarImageName: ""
-            ))
+            if cellType == .firstPost {
+                cell.configure(post: firstPost)
+            } else {
+                cell.configure(post: posts[indexPath.row])
+            }
+
             return cell
         case .recommend:
             guard let cell = tableView
@@ -144,11 +199,7 @@ extension FeedViewController: UITableViewDataSource {
                     withIdentifier: String(describing: RecommendTableViewCell.self), for: indexPath
                 ) as? RecommendTableViewCell
             else { return UITableViewCell() }
-            cell.configure(recommends: [
-                Recommend(userName: "dsdsd", userAvatarImageName: "recommendCastle"),
-                Recommend(userName: "dsdsd", userAvatarImageName: "recommendCastle"),
-                Recommend(userName: "dsdsd", userAvatarImageName: "recommendCastle")
-            ])
+            cell.configure(recommends: recommends)
             return cell
         }
     }

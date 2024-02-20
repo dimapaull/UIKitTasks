@@ -45,6 +45,7 @@ final class PostTableViewCell: UITableViewCell {
         let pageControl = UIPageControl()
         pageControl.pageIndicatorTintColor = .gray
         pageControl.currentPageIndicatorTintColor = .black
+        pageControl.hidesForSinglePage = true
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         return pageControl
     }()
@@ -166,12 +167,15 @@ final class PostTableViewCell: UITableViewCell {
         userNameLabel.text = post.userName
         commentUserNameLabel.text = "\(post.userName) \(post.postTitle)"
         loginUserAvatarImageView.image = UIImage(named: post.loginUserAvatarImageName)
+        if post.postImageNames.count == 1 {
+            postScrollView.isScrollEnabled = false
+        }
     }
 
     // MARK: - Private Methods
 
     private func configureScrollView(postImagesCount: Int) {
-        postScrollView.contentSize.width = contentView.frame.width * CGFloat(postImagesCount) * 1.17
+        postScrollView.contentSize.width = contentView.frame.width * CGFloat(postImagesCount) * 1.18
 
         postScrollView.showsHorizontalScrollIndicator = false
     }
@@ -257,7 +261,7 @@ final class PostTableViewCell: UITableViewCell {
             timePostLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 13),
             timePostLabel.widthAnchor.constraint(equalToConstant: 150),
             timePostLabel.heightAnchor.constraint(equalToConstant: 15),
-            timePostLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            timePostLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
 
         ])
     }
