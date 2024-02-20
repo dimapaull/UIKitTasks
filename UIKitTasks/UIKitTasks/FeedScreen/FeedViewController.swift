@@ -40,6 +40,17 @@ final class FeedViewController: UIViewController {
         Stories(userName: Constants.humanHistoryText, image: Constants.storiesImageName, isSelfStory: false)
     ]
 
+    private let posts: [Post] = [
+        Post(
+            userName: "tur_v_dagestan",
+            userAvatarImageName: "dagestanHuman",
+            postImageNames: ["dagestan", "postMountians"],
+            likes: 201,
+            postTitle: "Насладитесь красотой природы. Забронировать тур в Дагестан можно уже сейчас!",
+            loginUserAvatarImageName: "myProfile"
+        )
+    ]
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
@@ -67,6 +78,14 @@ final class FeedViewController: UIViewController {
             StoriesTableViewCell.self,
             forCellReuseIdentifier: String(describing: StoriesTableViewCell.self)
         )
+        feedTableView.register(
+            PostTableViewCell.self,
+            forCellReuseIdentifier: String(describing: PostTableViewCell.self)
+        )
+        feedTableView.register(
+            RecommendTableViewCell.self,
+            forCellReuseIdentifier: String(describing: RecommendTableViewCell.self)
+        )
 
         NSLayoutConstraint.activate([
             feedTableView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -90,16 +109,47 @@ final class FeedViewController: UIViewController {
 
 extension FeedViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        cellTypes.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView
-            .dequeueReusableCell(
-                withIdentifier: String(describing: StoriesTableViewCell.self), for: indexPath
-            ) as? StoriesTableViewCell
-        else { return UITableViewCell() }
-        cell.configure(stories: stories)
-        return cell
+        let cellType = cellTypes[indexPath.row]
+        switch cellType {
+        case .stories:
+            guard let cell = tableView
+                .dequeueReusableCell(
+                    withIdentifier: String(describing: StoriesTableViewCell.self), for: indexPath
+                ) as? StoriesTableViewCell
+            else { return UITableViewCell() }
+            cell.configure(stories: stories)
+            return cell
+        case .post:
+            guard let cell = tableView
+                .dequeueReusableCell(
+                    withIdentifier: String(describing: PostTableViewCell.self), for: indexPath
+                ) as? PostTableViewCell
+            else { return UITableViewCell() }
+            cell.configure(post: posts.first ?? Post(
+                userName: "",
+                userAvatarImageName: "",
+                postImageNames: [""],
+                likes: 2,
+                postTitle: "",
+                loginUserAvatarImageName: ""
+            ))
+            return cell
+        case .recommend:
+            guard let cell = tableView
+                .dequeueReusableCell(
+                    withIdentifier: String(describing: RecommendTableViewCell.self), for: indexPath
+                ) as? RecommendTableViewCell
+            else { return UITableViewCell() }
+            cell.configure(recommends: [
+                Recommend(userName: "dsdsd", userAvatarImageName: "recommendCastle"),
+                Recommend(userName: "dsdsd", userAvatarImageName: "recommendCastle"),
+                Recommend(userName: "dsdsd", userAvatarImageName: "recommendCastle")
+            ])
+            return cell
+        }
     }
 }
