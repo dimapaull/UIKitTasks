@@ -6,18 +6,22 @@ import UIKit
 /// Расширение позволяющее работать с атрибутами
 extension UILabel {
     /// Метод добавляющий аттрибуты для label
-    func setupLabelAttribute(fontSize: CGFloat, name: String, title: String, time: String?) {
+    /// - Parameter fontSize: Размер необходимого атрибута
+    /// - Parameter title: Текст заголовка
+    /// - Parameter descripton: Основной текст
+    /// - Parameter additionalText: Дополнительный текст
+    func setupLabelAttribute(fontSize: CGFloat, title: String, descripton: String, additionalText: String?) {
         let attributedString = NSMutableAttributedString()
         attributedString.append(NSAttributedString(
-            string: name,
+            string: title,
             attributes: [NSAttributedString.Key.font: UIFont().verdanaBold(ofSize: fontSize)]
         ))
         attributedString.append(NSAttributedString(
-            string: title,
+            string: descripton,
             attributes: [NSAttributedString.Key.font: UIFont().verdana(ofSize: fontSize)]
         ))
         attributedString.append(NSAttributedString(
-            string: time ?? "",
+            string: additionalText ?? "",
             attributes: [
                 NSAttributedString.Key.foregroundColor: UIColor.appGray,
                 NSAttributedString.Key.font: UIFont().verdana(ofSize: fontSize)

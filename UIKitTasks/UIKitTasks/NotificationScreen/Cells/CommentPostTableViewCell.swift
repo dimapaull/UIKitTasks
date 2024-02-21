@@ -76,9 +76,9 @@ final class CommentPostTableViewCell: UITableViewCell {
     func configure(notification: Notification) {
         userImageView.image = UIImage(named: notification.avatarUserImageName)
         notificationTextLabel.setupLabelAttribute(
-            fontSize: 12, name: notification.userName,
-            title: notification.titleNotification,
-            time: notification.timeNotification
+            fontSize: 12, title: notification.userName,
+            descripton: notification.titleNotification,
+            additionalText: notification.timeNotification
         )
         postImageView.image = UIImage(named: notification.postImageName ?? "")
         if notification.isMention {

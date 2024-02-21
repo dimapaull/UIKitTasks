@@ -147,7 +147,12 @@ final class PostTableViewCell: UITableViewCell {
         postPageControl.numberOfPages = post.postImageNames.count
         avatarImageView.image = UIImage(named: post.userAvatarImageName)
         userNameLabel.text = post.userName
-        commentUserNameLabel.setupLabelAttribute(fontSize: 10, name: post.userName, title: post.postTitle, time: nil)
+        commentUserNameLabel.setupLabelAttribute(
+            fontSize: 10,
+            title: post.userName,
+            descripton: post.postTitle,
+            additionalText: nil
+        )
         loginUserAvatarImageView.image = UIImage(named: post.loginUserAvatarImageName)
         if post.postImageNames.count == 1 {
             postScrollView.isScrollEnabled = false

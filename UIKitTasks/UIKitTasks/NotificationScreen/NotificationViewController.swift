@@ -17,7 +17,7 @@ final class NotificationViewController: UIViewController {
     private enum TableCellTypes {
         /// Подписка
         case subscribe
-        /// Действиия с постом 
+        /// Действиия с постом
         case commentPost
     }
 

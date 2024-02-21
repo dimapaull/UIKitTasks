@@ -5,12 +5,16 @@ import UIKit
 
 /// Расширения для использования новых шрифтов
 extension UIFont {
-    /// Возвращает шрифт Verdana
+    /// Шрифт Verdana
+    /// - Parameter ofSize: Размер необходимого шрифта
+    /// - Returns: Шрифт Verdana
     func verdana(ofSize: CGFloat) -> UIFont {
         UIFont(name: "Verdana", size: ofSize) ?? UIFont.systemFont(ofSize: ofSize)
     }
 
-    /// Возвращает шрифт VerdanaBold
+    /// Шрифт Verdana Bold
+    /// - Parameter ofSize: Размер необходимого шрифта
+    /// - Returns: Шрифт Verdana Bold
     func verdanaBold(ofSize: CGFloat) -> UIFont {
         UIFont(name: "Verdana-Bold", size: ofSize) ?? UIFont.systemFont(ofSize: ofSize)
     }
