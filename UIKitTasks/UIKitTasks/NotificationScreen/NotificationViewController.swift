@@ -190,6 +190,8 @@ final class NotificationViewController: UIViewController {
     }
 }
 
+// MARK: - NotificationViewController + UITableViewDataSource
+
 extension NotificationViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         sectionTypes.count
@@ -228,6 +230,8 @@ extension NotificationViewController: UITableViewDataSource {
         tableView.deleteRows(at: [indexPath], with: .fade)
     }
 }
+
+// MARK: - NotificationViewController + UITableViewDelegate
 
 extension NotificationViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
