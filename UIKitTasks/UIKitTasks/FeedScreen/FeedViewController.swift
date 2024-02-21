@@ -51,13 +51,13 @@ final class FeedViewController: UIViewController {
     private let cellTypes: [TableCellTypes] = [.stories, .firstPost, .recommend, .post]
 
     private let stories: [Stories] = [
-        Stories(userName: Constants.myHistoryText, image: Constants.myProfileImageName, isSelfStory: true),
-        Stories(userName: Constants.humanHistoryText, image: Constants.storiesImageName, isSelfStory: false),
-        Stories(userName: Constants.humanHistoryText, image: Constants.storiesImageName, isSelfStory: false),
-        Stories(userName: Constants.humanHistoryText, image: Constants.storiesImageName, isSelfStory: false),
-        Stories(userName: Constants.humanHistoryText, image: Constants.storiesImageName, isSelfStory: false),
-        Stories(userName: Constants.humanHistoryText, image: Constants.storiesImageName, isSelfStory: false),
-        Stories(userName: Constants.humanHistoryText, image: Constants.storiesImageName, isSelfStory: false)
+        Stories(userName: Constants.myHistoryText, imageName: Constants.myProfileImageName, isSelfStory: true),
+        Stories(userName: Constants.humanHistoryText, imageName: Constants.storiesImageName, isSelfStory: false),
+        Stories(userName: Constants.humanHistoryText, imageName: Constants.storiesImageName, isSelfStory: false),
+        Stories(userName: Constants.humanHistoryText, imageName: Constants.storiesImageName, isSelfStory: false),
+        Stories(userName: Constants.humanHistoryText, imageName: Constants.storiesImageName, isSelfStory: false),
+        Stories(userName: Constants.humanHistoryText, imageName: Constants.storiesImageName, isSelfStory: false),
+        Stories(userName: Constants.humanHistoryText, imageName: Constants.storiesImageName, isSelfStory: false)
     ]
 
     private let posts = [

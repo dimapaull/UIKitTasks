@@ -7,8 +7,8 @@ import Foundation
 struct Stories {
     /// Имя пользователя в истории
     var userName: String
-    /// Аватар пользователя
-    var image: String
+    /// Название изображения с аватаром пользователя
+    var imageName: String
     /// Указывает принадлежит ли история пользователю, который сейчас залогинен
     let isSelfStory: Bool
 }

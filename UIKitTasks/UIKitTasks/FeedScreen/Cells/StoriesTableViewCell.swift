@@ -80,7 +80,7 @@ final class StoriesTableViewCell: UITableViewCell {
             userNamelabel.translatesAutoresizingMaskIntoConstraints = false
 
             let avatarImageView = UIImageView()
-            avatarImageView.image = UIImage(named: story.image)
+            avatarImageView.image = UIImage(named: story.imageName)
             avatarImageView.contentMode = .scaleAspectFill
             avatarImageView.layer.cornerRadius = 30
             avatarImageView.clipsToBounds = true
@@ -112,7 +112,6 @@ final class StoriesTableViewCell: UITableViewCell {
                 userNamelabel.widthAnchor.constraint(equalToConstant: 74),
                 userNamelabel.centerXAnchor.constraint(equalTo: avatarImageView.centerXAnchor),
             ])
-
             leadingAnchor = avatarImageView.trailingAnchor
         }
     }
