@@ -21,7 +21,6 @@ final class PostTableViewCell: UITableViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 15
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
 
@@ -29,7 +28,6 @@ final class PostTableViewCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .black
         label.font = UIFont().verdanaBold(ofSize: 12)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -37,7 +35,6 @@ final class PostTableViewCell: UITableViewCell {
         let button = UIButton()
         button.setImage(.dots, for: .normal)
         button.tintColor = .black
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
@@ -46,16 +43,7 @@ final class PostTableViewCell: UITableViewCell {
         pageControl.pageIndicatorTintColor = .gray
         pageControl.currentPageIndicatorTintColor = .black
         pageControl.hidesForSinglePage = true
-        pageControl.translatesAutoresizingMaskIntoConstraints = false
         return pageControl
-    }()
-
-    private let postImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
     }()
 
     private let likeButton = {
@@ -86,7 +74,6 @@ final class PostTableViewCell: UITableViewCell {
         let button = UIButton()
         button.setImage(.postActionSave, for: .normal)
         button.tintColor = .black
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
@@ -95,7 +82,6 @@ final class PostTableViewCell: UITableViewCell {
         label.text = Constants.likeText
         label.textColor = .black
         label.font = UIFont().verdanaBold(ofSize: 10)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -104,7 +90,6 @@ final class PostTableViewCell: UITableViewCell {
         label.numberOfLines = 0
         label.textColor = .black
         label.font = UIFont().verdana(ofSize: 10)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -113,7 +98,6 @@ final class PostTableViewCell: UITableViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 10
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
 
@@ -123,7 +107,6 @@ final class PostTableViewCell: UITableViewCell {
         label.text = Constants.commentText
         label.textColor = .appGray
         label.font = UIFont().verdana(ofSize: 10)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -133,7 +116,6 @@ final class PostTableViewCell: UITableViewCell {
         label.text = Constants.timeText
         label.textColor = .appGray
         label.font = UIFont().verdana(ofSize: 10)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -141,7 +123,6 @@ final class PostTableViewCell: UITableViewCell {
         let scrollView = UIScrollView()
         scrollView.delegate = self
         scrollView.isPagingEnabled = true
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
 
@@ -189,82 +170,88 @@ final class PostTableViewCell: UITableViewCell {
     }
 
     private func addSubviews() {
-        contentView.addSubview(userNameLabel)
-        contentView.addSubview(avatarImageView)
-        contentView.addSubview(dotsButton)
-        contentView.addSubview(postScrollView)
-        contentView.addSubview(postPageControl)
-        contentView.addSubview(saveButton)
-        contentView.addSubview(likeTitleLabel)
-        contentView.addSubview(commentUserNameLabel)
-        contentView.addSubview(loginUserAvatarImageView)
-        contentView.addSubview(commentLoginLabel)
-        contentView.addSubview(timePostLabel)
+        for view in [
+            userNameLabel,
+            avatarImageView,
+            dotsButton,
+            postScrollView,
+            postPageControl,
+            saveButton,
+            likeTitleLabel,
+            commentUserNameLabel,
+            loginUserAvatarImageView,
+            commentLoginLabel,
+            timePostLabel
+        ] {
+            view.translatesAutoresizingMaskIntoConstraints = false
+            contentView.addSubview(view)
+        }
     }
 
     private func setupHeaderPostAnchors() {
-        NSLayoutConstraint.activate([
-            avatarImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            avatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
-            avatarImageView.heightAnchor.constraint(equalToConstant: 30),
-            avatarImageView.widthAnchor.constraint(equalToConstant: 30),
+        avatarImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
+        avatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12).isActive = true
+        avatarImageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        avatarImageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
 
-            userNameLabel.centerYAnchor.constraint(equalTo: avatarImageView.centerYAnchor),
-            userNameLabel.heightAnchor.constraint(equalToConstant: 30),
-            userNameLabel.widthAnchor.constraint(equalToConstant: 107),
-            userNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 6),
+        userNameLabel.centerYAnchor.constraint(equalTo: avatarImageView.centerYAnchor).isActive = true
+        userNameLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        userNameLabel.widthAnchor.constraint(equalToConstant: 107).isActive = true
+        userNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 6).isActive = true
 
-            dotsButton.centerYAnchor.constraint(equalTo: avatarImageView.centerYAnchor),
-            dotsButton.heightAnchor.constraint(equalToConstant: 24),
-            dotsButton.widthAnchor.constraint(equalToConstant: 24),
-            dotsButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -9),
+        dotsButton.centerYAnchor.constraint(equalTo: avatarImageView.centerYAnchor).isActive = true
+        dotsButton.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        dotsButton.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        dotsButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -9).isActive = true
 
-            postScrollView.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 10),
-            postScrollView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            postScrollView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            postScrollView.heightAnchor.constraint(equalToConstant: 239),
-        ])
+        postScrollView.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 10).isActive = true
+        postScrollView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        postScrollView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        postScrollView.heightAnchor.constraint(equalToConstant: 239).isActive = true
     }
 
     private func setupCommentAnchors() {
-        NSLayoutConstraint.activate([
-            postPageControl.heightAnchor.constraint(equalToConstant: 20),
-            postPageControl.widthAnchor.constraint(equalToConstant: 100),
-            postPageControl.topAnchor.constraint(equalTo: postScrollView.bottomAnchor, constant: 8),
-            postPageControl.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+        postPageControl.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        postPageControl.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        postPageControl.topAnchor.constraint(equalTo: postScrollView.bottomAnchor, constant: 8).isActive = true
+        postPageControl.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
 
-            saveButton.topAnchor.constraint(equalTo: postScrollView.bottomAnchor, constant: 8),
-            saveButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -9),
-            saveButton.heightAnchor.constraint(equalToConstant: 24),
-            saveButton.widthAnchor.constraint(equalToConstant: 24),
+        saveButton.topAnchor.constraint(equalTo: postScrollView.bottomAnchor, constant: 8).isActive = true
+        saveButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -9).isActive = true
+        saveButton.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        saveButton.widthAnchor.constraint(equalToConstant: 24).isActive = true
 
-            likeTitleLabel.topAnchor.constraint(equalTo: likeButton.bottomAnchor, constant: 6),
-            likeTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 13),
-            likeTitleLabel.heightAnchor.constraint(equalToConstant: 15),
-            likeTitleLabel.widthAnchor.constraint(equalToConstant: 107),
+        likeTitleLabel.topAnchor.constraint(equalTo: likeButton.bottomAnchor, constant: 6).isActive = true
+        likeTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 13).isActive = true
+        likeTitleLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
+        likeTitleLabel.widthAnchor.constraint(equalToConstant: 107).isActive = true
 
-            commentUserNameLabel.topAnchor.constraint(equalTo: likeTitleLabel.bottomAnchor, constant: 6),
-            commentUserNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 13),
-            commentUserNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -2),
-            commentUserNameLabel.heightAnchor.constraint(equalToConstant: 30),
+        commentUserNameLabel.topAnchor.constraint(equalTo: likeTitleLabel.bottomAnchor, constant: 6).isActive = true
+        commentUserNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 13)
+            .isActive = true
+        commentUserNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -2)
+            .isActive = true
+        commentUserNameLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
 
-            loginUserAvatarImageView.topAnchor.constraint(equalTo: commentUserNameLabel.bottomAnchor, constant: 4),
-            loginUserAvatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 13),
-            loginUserAvatarImageView.widthAnchor.constraint(equalToConstant: 20),
-            loginUserAvatarImageView.heightAnchor.constraint(equalToConstant: 20),
+        loginUserAvatarImageView.topAnchor.constraint(equalTo: commentUserNameLabel.bottomAnchor, constant: 4)
+            .isActive = true
+        loginUserAvatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 13)
+            .isActive = true
+        loginUserAvatarImageView.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        loginUserAvatarImageView.heightAnchor.constraint(equalToConstant: 20).isActive = true
 
-            commentLoginLabel.centerYAnchor.constraint(equalTo: loginUserAvatarImageView.centerYAnchor),
-            commentLoginLabel.leadingAnchor.constraint(equalTo: loginUserAvatarImageView.trailingAnchor, constant: 3),
-            commentLoginLabel.widthAnchor.constraint(equalToConstant: 150),
-            commentLoginLabel.heightAnchor.constraint(equalToConstant: 15),
+        commentLoginLabel.centerYAnchor.constraint(equalTo: loginUserAvatarImageView.centerYAnchor).isActive = true
+        commentLoginLabel.leadingAnchor.constraint(equalTo: loginUserAvatarImageView.trailingAnchor, constant: 3)
+            .isActive = true
+        commentLoginLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        commentLoginLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
 
-            timePostLabel.topAnchor.constraint(equalTo: loginUserAvatarImageView.bottomAnchor, constant: 7),
-            timePostLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 13),
-            timePostLabel.widthAnchor.constraint(equalToConstant: 150),
-            timePostLabel.heightAnchor.constraint(equalToConstant: 15),
-            timePostLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
-
-        ])
+        timePostLabel.topAnchor.constraint(equalTo: loginUserAvatarImageView.bottomAnchor, constant: 7)
+            .isActive = true
+        timePostLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 13).isActive = true
+        timePostLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        timePostLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
+        timePostLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20).isActive = true
     }
 
     private func setupActionButtons() {
@@ -292,12 +279,10 @@ final class PostTableViewCell: UITableViewCell {
 
             postScrollView.addSubview(postImageView)
 
-            NSLayoutConstraint.activate([
-                postImageView.topAnchor.constraint(equalTo: postScrollView.topAnchor),
-                postImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-                postImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-                postImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-            ])
+            postImageView.topAnchor.constraint(equalTo: postScrollView.topAnchor).isActive = true
+            postImageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+            postImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
+            postImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
 
             leadingAnchor = postImageView.trailingAnchor
         }

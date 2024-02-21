@@ -3,7 +3,7 @@
 
 import UIKit
 
-/// Контроллер в котором представлена лента уведомлений
+/// Экран в котором представлена лента уведомлений
 final class NotificationViewController: UIViewController {
     // MARK: - Types
 
@@ -174,17 +174,15 @@ final class NotificationViewController: UIViewController {
     }
 
     private func setupAnchors() {
-        NSLayoutConstraint.activate([
-            requestsButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 160),
-            requestsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-            requestsButton.heightAnchor.constraint(equalToConstant: 17),
-            requestsButton.widthAnchor.constraint(equalToConstant: 251),
+        requestsButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 160).isActive = true
+        requestsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
+        requestsButton.heightAnchor.constraint(equalToConstant: 17).isActive = true
+        requestsButton.widthAnchor.constraint(equalToConstant: 251).isActive = true
 
-            notificationTableView.topAnchor.constraint(equalTo: requestsButton.bottomAnchor),
-            notificationTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            notificationTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
-            notificationTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12)
-        ])
+        notificationTableView.topAnchor.constraint(equalTo: requestsButton.bottomAnchor).isActive = true
+        notificationTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        notificationTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12).isActive = true
+        notificationTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12).isActive = true
     }
 }
 

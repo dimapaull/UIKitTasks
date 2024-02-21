@@ -3,7 +3,7 @@
 
 import UIKit
 
-/// Контроллер с основной лентой публикаций пользователей
+/// Экран с основной лентой публикаций пользователей
 final class FeedViewController: UIViewController {
     // MARK: - Types
 
@@ -139,12 +139,10 @@ final class FeedViewController: UIViewController {
             forCellReuseIdentifier: String(describing: RecommendTableViewCell.self)
         )
 
-        NSLayoutConstraint.activate([
-            feedTableView.topAnchor.constraint(equalTo: view.topAnchor),
-            feedTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            feedTableView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            feedTableView.rightAnchor.constraint(equalTo: view.rightAnchor)
-        ])
+        feedTableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        feedTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        feedTableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        feedTableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
     }
 
     private func setupNavigationBar() {

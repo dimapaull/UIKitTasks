@@ -18,12 +18,8 @@ struct Notification {
     /// Указывает на то, если уведомление было с упоминанием пользователя
     let isMention: Bool
 
-    /// Указывает на то, если уведомление было связано с публиацией
+    /// Указывает на то, если уведомление было связано с публикацией
     var isPostNotification: Bool {
-        if postImageName == nil {
-            return true
-        } else {
-            return false
-        }
+        postImageName == nil
     }
 }

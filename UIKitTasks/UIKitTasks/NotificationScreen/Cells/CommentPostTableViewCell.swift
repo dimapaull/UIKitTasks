@@ -103,33 +103,32 @@ final class CommentPostTableViewCell: UITableViewCell {
     }
 
     private func setupAnchors() {
-        NSLayoutConstraint.activate([
-            userImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            userImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
-            userImageView.heightAnchor.constraint(equalToConstant: 40),
-            userImageView.widthAnchor.constraint(equalToConstant: 40),
+        userImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
+        userImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12).isActive = true
+        userImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        userImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
 
-            notificationTextLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            notificationTextLabel.leadingAnchor.constraint(equalTo: userImageView.trailingAnchor, constant: 7),
-            notificationTextLabel.heightAnchor.constraint(equalToConstant: 40),
-            notificationTextLabel.widthAnchor.constraint(equalToConstant: 240),
+        notificationTextLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
+        notificationTextLabel.leadingAnchor.constraint(equalTo: userImageView.trailingAnchor, constant: 7)
+            .isActive = true
+        notificationTextLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        notificationTextLabel.widthAnchor.constraint(equalToConstant: 240).isActive = true
 
-            postImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            postImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
-            postImageView.heightAnchor.constraint(equalToConstant: 40),
-            postImageView.widthAnchor.constraint(equalToConstant: 40),
+        postImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
+        postImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12).isActive = true
+        postImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        postImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
 
-            likeButton.topAnchor.constraint(equalTo: userImageView.bottomAnchor),
-            likeButton.leadingAnchor.constraint(equalTo: userImageView.trailingAnchor, constant: 9),
-            likeButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            likeButton.heightAnchor.constraint(equalToConstant: 16),
-            likeButton.widthAnchor.constraint(equalToConstant: 16),
+        likeButton.topAnchor.constraint(equalTo: userImageView.bottomAnchor).isActive = true
+        likeButton.leadingAnchor.constraint(equalTo: userImageView.trailingAnchor, constant: 9).isActive = true
+        likeButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        likeButton.heightAnchor.constraint(equalToConstant: 16).isActive = true
+        likeButton.widthAnchor.constraint(equalToConstant: 16).isActive = true
 
-            replyButton.topAnchor.constraint(equalTo: userImageView.bottomAnchor),
-            replyButton.leadingAnchor.constraint(equalTo: likeButton.trailingAnchor, constant: 10),
-            replyButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            replyButton.heightAnchor.constraint(equalToConstant: 16),
-            replyButton.widthAnchor.constraint(equalToConstant: 200),
-        ])
+        replyButton.topAnchor.constraint(equalTo: userImageView.bottomAnchor).isActive = true
+        replyButton.leadingAnchor.constraint(equalTo: likeButton.trailingAnchor, constant: 10).isActive = true
+        replyButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        replyButton.heightAnchor.constraint(equalToConstant: 16).isActive = true
+        replyButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
     }
 }

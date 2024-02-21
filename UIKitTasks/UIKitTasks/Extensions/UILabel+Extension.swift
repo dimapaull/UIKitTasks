@@ -3,8 +3,9 @@
 
 import UIKit
 
-/// Расширения для добавления аттрибутов в текст
+/// Расширение позволяющее работать с атрибутами
 extension UILabel {
+    /// Метод добавляющий аттрибуты для label
     func setupLabelAttribute(fontSize: CGFloat, name: String, title: String, time: String?) {
         let attributedString = NSMutableAttributedString()
         attributedString.append(NSAttributedString(

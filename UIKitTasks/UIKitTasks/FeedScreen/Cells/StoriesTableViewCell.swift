@@ -10,6 +10,7 @@ final class StoriesTableViewCell: UITableViewCell {
     private enum Constants {
         static let plusSymbol = "+"
         static let storyWidth: CGFloat = 82
+        static let cornerRadiusAddButton: CGFloat = 10
     }
 
     // MARK: - Visual Components
@@ -19,7 +20,7 @@ final class StoriesTableViewCell: UITableViewCell {
         button.setTitle(Constants.plusSymbol, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .appPink
-        button.layer.cornerRadius = 10
+        button.layer.cornerRadius = Constants.cornerRadiusAddButton
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -59,13 +60,10 @@ final class StoriesTableViewCell: UITableViewCell {
 
     private func setupAnchors() {
         contentView.addSubview(stroriesScrollView)
-
-        NSLayoutConstraint.activate([
-            stroriesScrollView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            stroriesScrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            stroriesScrollView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            stroriesScrollView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
-        ])
+        stroriesScrollView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        stroriesScrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        stroriesScrollView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        stroriesScrollView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
     }
 
     private func createStory(_ stories: [Stories]) {
@@ -93,25 +91,23 @@ final class StoriesTableViewCell: UITableViewCell {
                 userNamelabel.textColor = .appGray
                 stroriesScrollView.addSubview(addStoryButton)
 
-                NSLayoutConstraint.activate([
-                    addStoryButton.heightAnchor.constraint(equalToConstant: 20),
-                    addStoryButton.widthAnchor.constraint(equalToConstant: 20),
-                    addStoryButton.bottomAnchor.constraint(equalTo: avatarImageView.bottomAnchor),
-                    addStoryButton.rightAnchor.constraint(equalTo: avatarImageView.rightAnchor),
-                ])
+                addStoryButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
+                addStoryButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
+                addStoryButton.bottomAnchor.constraint(equalTo: avatarImageView.bottomAnchor).isActive = true
+                addStoryButton.rightAnchor.constraint(equalTo: avatarImageView.rightAnchor).isActive = true
             }
 
-            NSLayoutConstraint.activate([
-                avatarImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-                avatarImageView.heightAnchor.constraint(equalToConstant: 60),
-                avatarImageView.widthAnchor.constraint(equalToConstant: 60),
-                avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: story.isSelfStory ? 12 : 22),
+            avatarImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+            avatarImageView.heightAnchor.constraint(equalToConstant: 60).isActive = true
+            avatarImageView.widthAnchor.constraint(equalToConstant: 60).isActive = true
+            avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: story.isSelfStory ? 12 : 22)
+                .isActive = true
 
-                userNamelabel.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 4),
-                userNamelabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
-                userNamelabel.widthAnchor.constraint(equalToConstant: 74),
-                userNamelabel.centerXAnchor.constraint(equalTo: avatarImageView.centerXAnchor),
-            ])
+            userNamelabel.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 4).isActive = true
+            userNamelabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
+            userNamelabel.widthAnchor.constraint(equalToConstant: 74).isActive = true
+            userNamelabel.centerXAnchor.constraint(equalTo: avatarImageView.centerXAnchor).isActive = true
+
             leadingAnchor = avatarImageView.trailingAnchor
         }
     }

@@ -82,22 +82,22 @@ final class RecommendTableViewCell: UITableViewCell {
     }
 
     private func setupHeaderRecommendAnchors() {
-        NSLayoutConstraint.activate([
-            recommendTitleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 9),
-            recommendTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
-            recommendTitleLabel.heightAnchor.constraint(equalToConstant: 15),
-            recommendTitleLabel.widthAnchor.constraint(equalToConstant: 107),
+        recommendTitleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 9).isActive = true
+        recommendTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12)
+            .isActive = true
+        recommendTitleLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
+        recommendTitleLabel.widthAnchor.constraint(equalToConstant: 107).isActive = true
 
-            allButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 9),
-            allButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            allButton.widthAnchor.constraint(equalToConstant: 30),
-            allButton.heightAnchor.constraint(equalToConstant: 15),
+        allButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 9).isActive = true
+        allButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10).isActive = true
+        allButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        allButton.heightAnchor.constraint(equalToConstant: 15).isActive = true
 
-            recommendScrollView.topAnchor.constraint(equalTo: recommendTitleLabel.bottomAnchor, constant: 21),
-            recommendScrollView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            recommendScrollView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            recommendScrollView.heightAnchor.constraint(equalToConstant: 200),
-        ])
+        recommendScrollView.topAnchor.constraint(equalTo: recommendTitleLabel.bottomAnchor, constant: 21)
+            .isActive = true
+        recommendScrollView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        recommendScrollView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        recommendScrollView.heightAnchor.constraint(equalToConstant: 200).isActive = true
     }
 
     private func createRecommendCard(_ recommends: [Recommend]) {
@@ -139,34 +139,36 @@ final class RecommendTableViewCell: UITableViewCell {
             recommendScrollView.addSubview(subscribeButton)
             recommendScrollView.addSubview(userNameLabel)
 
-            NSLayoutConstraint.activate([
-                backgroundCardView.heightAnchor.constraint(equalToConstant: 200),
-                backgroundCardView.widthAnchor.constraint(equalToConstant: 185),
-                backgroundCardView.topAnchor.constraint(equalTo: recommendScrollView.topAnchor),
-                backgroundCardView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-                backgroundCardView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -25),
+            backgroundCardView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+            backgroundCardView.widthAnchor.constraint(equalToConstant: 185).isActive = true
+            backgroundCardView.topAnchor.constraint(equalTo: recommendScrollView.topAnchor).isActive = true
+            backgroundCardView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
+            backgroundCardView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -25)
+                .isActive = true
 
-                recommendImageView.heightAnchor.constraint(equalToConstant: 115),
-                recommendImageView.widthAnchor.constraint(equalToConstant: 115),
-                recommendImageView.topAnchor.constraint(equalTo: backgroundCardView.topAnchor, constant: 15),
-                recommendImageView.centerXAnchor.constraint(equalTo: backgroundCardView.centerXAnchor),
+            recommendImageView.heightAnchor.constraint(equalToConstant: 115).isActive = true
+            recommendImageView.widthAnchor.constraint(equalToConstant: 115).isActive = true
+            recommendImageView.topAnchor.constraint(equalTo: backgroundCardView.topAnchor, constant: 15)
+                .isActive = true
+            recommendImageView.centerXAnchor.constraint(equalTo: backgroundCardView.centerXAnchor).isActive = true
 
-                deleteButton.heightAnchor.constraint(equalToConstant: 7),
-                deleteButton.widthAnchor.constraint(equalToConstant: 7),
-                deleteButton.topAnchor.constraint(equalTo: backgroundCardView.topAnchor, constant: 8.5),
-                deleteButton.trailingAnchor.constraint(equalTo: backgroundCardView.trailingAnchor, constant: -8.5),
+            deleteButton.heightAnchor.constraint(equalToConstant: 7).isActive = true
+            deleteButton.widthAnchor.constraint(equalToConstant: 7).isActive = true
+            deleteButton.topAnchor.constraint(equalTo: backgroundCardView.topAnchor, constant: 8.5).isActive = true
+            deleteButton.trailingAnchor.constraint(equalTo: backgroundCardView.trailingAnchor, constant: -8.5)
+                .isActive = true
 
-                userNameLabel.heightAnchor.constraint(equalToConstant: 12),
-                userNameLabel.widthAnchor.constraint(equalToConstant: 100),
-                userNameLabel.topAnchor.constraint(equalTo: recommendImageView.bottomAnchor, constant: 5),
-                userNameLabel.centerXAnchor.constraint(equalTo: backgroundCardView.centerXAnchor),
+            userNameLabel.heightAnchor.constraint(equalToConstant: 12).isActive = true
+            userNameLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
+            userNameLabel.topAnchor.constraint(equalTo: recommendImageView.bottomAnchor, constant: 5)
+                .isActive = true
+            userNameLabel.centerXAnchor.constraint(equalTo: backgroundCardView.centerXAnchor).isActive = true
 
-                subscribeButton.heightAnchor.constraint(equalToConstant: 30),
-                subscribeButton.widthAnchor.constraint(equalToConstant: 165),
-                subscribeButton.bottomAnchor.constraint(equalTo: backgroundCardView.bottomAnchor, constant: -14),
-                subscribeButton.centerXAnchor.constraint(equalTo: backgroundCardView.centerXAnchor)
-
-            ])
+            subscribeButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+            subscribeButton.widthAnchor.constraint(equalToConstant: 165).isActive = true
+            subscribeButton.bottomAnchor.constraint(equalTo: backgroundCardView.bottomAnchor, constant: -14)
+                .isActive = true
+            subscribeButton.centerXAnchor.constraint(equalTo: backgroundCardView.centerXAnchor).isActive = true
 
             leadingAnchor = backgroundCardView.trailingAnchor
         }

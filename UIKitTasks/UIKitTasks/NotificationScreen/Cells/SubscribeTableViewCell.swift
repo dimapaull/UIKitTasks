@@ -84,23 +84,23 @@ final class SubscribeTableViewCell: UITableViewCell {
     }
 
     private func setupAnchors() {
-        NSLayoutConstraint.activate([
-            userImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            userImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
-            userImageView.heightAnchor.constraint(equalToConstant: 40),
-            userImageView.widthAnchor.constraint(equalToConstant: 40),
+        userImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
+        userImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12).isActive = true
+        userImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        userImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
 
-            notificationTextLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            notificationTextLabel.leadingAnchor.constraint(equalTo: userImageView.trailingAnchor, constant: 7),
-            notificationTextLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            notificationTextLabel.heightAnchor.constraint(equalToConstant: 55),
-            notificationTextLabel.widthAnchor.constraint(equalToConstant: 154),
+        notificationTextLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
+        notificationTextLabel.leadingAnchor.constraint(equalTo: userImageView.trailingAnchor, constant: 7)
+            .isActive = true
+        notificationTextLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        notificationTextLabel.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        notificationTextLabel.widthAnchor.constraint(equalToConstant: 154).isActive = true
 
-            subscribeButton.centerYAnchor.constraint(equalTo: notificationTextLabel.centerYAnchor),
-            subscribeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
-            subscribeButton.heightAnchor.constraint(equalToConstant: 30),
-            subscribeButton.widthAnchor.constraint(equalToConstant: 115),
-        ])
+        subscribeButton.centerYAnchor.constraint(equalTo: notificationTextLabel.centerYAnchor).isActive = true
+        subscribeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12)
+            .isActive = true
+        subscribeButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        subscribeButton.widthAnchor.constraint(equalToConstant: 115).isActive = true
     }
 
     @objc private func subscridePressed(_ button: UIButton) {
