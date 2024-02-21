@@ -8,10 +8,14 @@ final class FeedViewController: UIViewController {
     // MARK: - Types
 
     private enum TableCellTypes {
+        /// Истории
         case stories
+        /// Первый пост
         case firstPost
+        /// Пост после рекоммендаций
         case post
-        case recommend
+        /// Рекоммендации
+        case recommends
     }
 
     // MARK: - Constants
@@ -48,7 +52,7 @@ final class FeedViewController: UIViewController {
 
     // MARK: - Private Properties
 
-    private let cellTypes: [TableCellTypes] = [.stories, .firstPost, .recommend, .post]
+    private let cellTypes: [TableCellTypes] = [.stories, .firstPost, .recommends, .post]
 
     private let stories: [Stories] = [
         Stories(userName: Constants.myHistoryText, imageName: Constants.myProfileImageName, isSelfStory: true),
@@ -170,7 +174,7 @@ extension FeedViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let type = cellTypes[section]
         switch type {
-        case .stories, .recommend, .firstPost:
+        case .stories, .recommends, .firstPost:
             return 1
         case .post:
             return posts.count
@@ -200,7 +204,7 @@ extension FeedViewController: UITableViewDataSource {
                 cell.configure(post: posts[indexPath.row])
             }
             return cell
-        case .recommend:
+        case .recommends:
             guard let cell = tableView
                 .dequeueReusableCell(
                     withIdentifier: String(describing: RecommendTableViewCell.self), for: indexPath

@@ -8,12 +8,16 @@ final class NotificationViewController: UIViewController {
     // MARK: - Types
 
     private enum TableSectionTypes: String {
+        /// Сегодня
         case today = "Сегодня"
+        /// На этой неделе
         case week = "На этой неделе"
     }
 
     private enum TableCellTypes {
+        /// Подписка
         case subscribe
+        /// Действиия с постом 
         case commentPost
     }
 
