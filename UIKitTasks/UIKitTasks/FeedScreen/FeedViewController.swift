@@ -56,12 +56,12 @@ final class FeedViewController: UIViewController {
 
     private let stories: [Stories] = [
         Stories(userName: Constants.myHistoryText, imageName: Constants.myProfileImageName, isSelfStory: true),
-        Stories(userName: Constants.humanHistoryText, imageName: Constants.storiesImageName, isSelfStory: false),
-        Stories(userName: Constants.humanHistoryText, imageName: Constants.storiesImageName, isSelfStory: false),
-        Stories(userName: Constants.humanHistoryText, imageName: Constants.storiesImageName, isSelfStory: false),
-        Stories(userName: Constants.humanHistoryText, imageName: Constants.storiesImageName, isSelfStory: false),
-        Stories(userName: Constants.humanHistoryText, imageName: Constants.storiesImageName, isSelfStory: false),
-        Stories(userName: Constants.humanHistoryText, imageName: Constants.storiesImageName, isSelfStory: false)
+        Stories(userName: Constants.humanHistoryText, imageName: Constants.storiesImageName),
+        Stories(userName: Constants.humanHistoryText, imageName: Constants.storiesImageName),
+        Stories(userName: Constants.humanHistoryText, imageName: Constants.storiesImageName),
+        Stories(userName: Constants.humanHistoryText, imageName: Constants.storiesImageName),
+        Stories(userName: Constants.humanHistoryText, imageName: Constants.storiesImageName),
+        Stories(userName: Constants.humanHistoryText, imageName: Constants.storiesImageName)
     ]
 
     private let posts = [

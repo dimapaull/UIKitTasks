@@ -49,6 +49,8 @@ final class NotificationViewController: UIViewController {
 
         static let hours = "ч"
         static let days = "д."
+
+        static let heightForHeader: CGFloat = 35
     }
 
     // MARK: - Visual Components
@@ -60,7 +62,7 @@ final class NotificationViewController: UIViewController {
         button.contentHorizontalAlignment = .left
         button.setTitle(Constants.requsetText, for: .normal)
         button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = UIFont().verdana(ofSize: 14)
+        button.titleLabel?.font = UIFont.verdana(ofSize: 14)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -236,12 +238,12 @@ extension NotificationViewController: UITableViewDataSource {
 extension NotificationViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
-        label.font = UIFont().verdanaBold(ofSize: 14)
+        label.font = UIFont.verdanaBold(ofSize: 14)
         label.text = sectionTypes[section].rawValue
         return label
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        35
+        Constants.heightForHeader
     }
 }

@@ -27,7 +27,7 @@ final class CommentPostTableViewCell: UITableViewCell {
         label.numberOfLines = 0
         label.textColor = .black
         label.textAlignment = .left
-        label.font = UIFont().verdana(ofSize: 12)
+        label.font = UIFont.verdana(ofSize: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -43,7 +43,7 @@ final class CommentPostTableViewCell: UITableViewCell {
     private let replyButton = {
         let button = UIButton()
         button.setTitle(Constants.replyText, for: .normal)
-        button.titleLabel?.font = UIFont().verdana(ofSize: 10)
+        button.titleLabel?.font = UIFont.verdana(ofSize: 10)
         button.contentHorizontalAlignment = .left
         button.isHidden = true
         button.setTitleColor(.appGray, for: .normal)
@@ -104,28 +104,44 @@ final class CommentPostTableViewCell: UITableViewCell {
     }
 
     private func setupAnchors() {
+        setupUserImageViewAnchors()
+        stetupNotificationTextLabelAnchors()
+        setupPostImageViewAnchors()
+        setupLikeButtonAnchors()
+        setupReplyButtonAnchors()
+    }
+
+    private func setupUserImageViewAnchors() {
         userImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
         userImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12).isActive = true
         userImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
         userImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
+    }
 
+    private func stetupNotificationTextLabelAnchors() {
         notificationTextLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
         notificationTextLabel.leadingAnchor.constraint(equalTo: userImageView.trailingAnchor, constant: 7)
             .isActive = true
         notificationTextLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
         notificationTextLabel.widthAnchor.constraint(equalToConstant: 240).isActive = true
+    }
 
+    private func setupPostImageViewAnchors() {
         postImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
         postImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12).isActive = true
         postImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
         postImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
+    }
 
+    private func setupLikeButtonAnchors() {
         likeButton.topAnchor.constraint(equalTo: userImageView.bottomAnchor).isActive = true
         likeButton.leadingAnchor.constraint(equalTo: userImageView.trailingAnchor, constant: 9).isActive = true
         likeButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         likeButton.heightAnchor.constraint(equalToConstant: 16).isActive = true
         likeButton.widthAnchor.constraint(equalToConstant: 16).isActive = true
+    }
 
+    private func setupReplyButtonAnchors() {
         replyButton.topAnchor.constraint(equalTo: userImageView.bottomAnchor).isActive = true
         replyButton.leadingAnchor.constraint(equalTo: likeButton.trailingAnchor, constant: 10).isActive = true
         replyButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true

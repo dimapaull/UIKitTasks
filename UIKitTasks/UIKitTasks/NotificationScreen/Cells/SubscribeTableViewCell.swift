@@ -28,7 +28,7 @@ final class SubscribeTableViewCell: UITableViewCell {
         label.numberOfLines = 0
         label.textColor = .black
         label.textAlignment = .left
-        label.font = UIFont().verdana(ofSize: 12)
+        label.font = UIFont.verdana(ofSize: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -41,7 +41,7 @@ final class SubscribeTableViewCell: UITableViewCell {
         button.layer.cornerRadius = 8
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.clear.cgColor
-        button.titleLabel?.font = UIFont().verdanaBold(ofSize: 10)
+        button.titleLabel?.font = UIFont.verdanaBold(ofSize: 10)
         button.addTarget(self, action: #selector(subscridePressed), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button

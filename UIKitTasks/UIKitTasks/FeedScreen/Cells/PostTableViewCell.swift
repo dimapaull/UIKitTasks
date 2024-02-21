@@ -12,6 +12,7 @@ final class PostTableViewCell: UITableViewCell {
         static let commentText = "Комментировать ..."
         static let timeText = "10 минут назад"
         static let storyWidth: CGFloat = 82
+        static let multiplyWidth: CGFloat = 1.18
     }
 
     // MARK: - Visual Components
@@ -27,7 +28,7 @@ final class PostTableViewCell: UITableViewCell {
     private let userNameLabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = UIFont().verdanaBold(ofSize: 12)
+        label.font = UIFont.verdanaBold(ofSize: 12)
         return label
     }()
 
@@ -81,7 +82,7 @@ final class PostTableViewCell: UITableViewCell {
         let label = UILabel()
         label.text = Constants.likeText
         label.textColor = .black
-        label.font = UIFont().verdanaBold(ofSize: 10)
+        label.font = UIFont.verdanaBold(ofSize: 10)
         return label
     }()
 
@@ -89,7 +90,7 @@ final class PostTableViewCell: UITableViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.textColor = .black
-        label.font = UIFont().verdana(ofSize: 10)
+        label.font = UIFont.verdana(ofSize: 10)
         return label
     }()
 
@@ -106,7 +107,7 @@ final class PostTableViewCell: UITableViewCell {
         label.textAlignment = .left
         label.text = Constants.commentText
         label.textColor = .appGray
-        label.font = UIFont().verdana(ofSize: 10)
+        label.font = UIFont.verdana(ofSize: 10)
         return label
     }()
 
@@ -115,7 +116,7 @@ final class PostTableViewCell: UITableViewCell {
         label.textAlignment = .left
         label.text = Constants.timeText
         label.textColor = .appGray
-        label.font = UIFont().verdana(ofSize: 10)
+        label.font = UIFont.verdana(ofSize: 10)
         return label
     }()
 
@@ -136,7 +137,7 @@ final class PostTableViewCell: UITableViewCell {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        print("init(coder:) has not been implemented")
+        configureUI()
     }
 
     // MARK: - Public Methods
@@ -163,7 +164,7 @@ final class PostTableViewCell: UITableViewCell {
     // MARK: - Private Methods
 
     private func configureScrollView(postImagesCount: Int) {
-        postScrollView.contentSize.width = contentView.frame.width * CGFloat(postImagesCount) * 1.18
+        postScrollView.contentSize.width = contentView.frame.width * CGFloat(postImagesCount) * Constants.multiplyWidth
 
         postScrollView.showsHorizontalScrollIndicator = false
     }
@@ -217,41 +218,63 @@ final class PostTableViewCell: UITableViewCell {
     }
 
     private func setupCommentAnchors() {
+        setupPostPageControlAnchors()
+        setupSaveButtonAnchors()
+        setupLikeTitleLabelAnchors()
+        setupCommentUserNameLabelAnchor()
+        setupUserAvatarImageViewAnchors()
+        setupCommentLoginLabelAnchors()
+        setupTimePostLabelAnchors()
+    }
+
+    private func setupPostPageControlAnchors() {
         postPageControl.heightAnchor.constraint(equalToConstant: 20).isActive = true
         postPageControl.widthAnchor.constraint(equalToConstant: 100).isActive = true
         postPageControl.topAnchor.constraint(equalTo: postScrollView.bottomAnchor, constant: 8).isActive = true
         postPageControl.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+    }
 
+    private func setupSaveButtonAnchors() {
         saveButton.topAnchor.constraint(equalTo: postScrollView.bottomAnchor, constant: 8).isActive = true
         saveButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -9).isActive = true
         saveButton.heightAnchor.constraint(equalToConstant: 24).isActive = true
         saveButton.widthAnchor.constraint(equalToConstant: 24).isActive = true
+    }
 
+    private func setupLikeTitleLabelAnchors() {
         likeTitleLabel.topAnchor.constraint(equalTo: likeButton.bottomAnchor, constant: 6).isActive = true
         likeTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 13).isActive = true
         likeTitleLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
         likeTitleLabel.widthAnchor.constraint(equalToConstant: 107).isActive = true
+    }
 
+    private func setupCommentUserNameLabelAnchor() {
         commentUserNameLabel.topAnchor.constraint(equalTo: likeTitleLabel.bottomAnchor, constant: 6).isActive = true
         commentUserNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 13)
             .isActive = true
         commentUserNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -2)
             .isActive = true
         commentUserNameLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+    }
 
+    private func setupUserAvatarImageViewAnchors() {
         loginUserAvatarImageView.topAnchor.constraint(equalTo: commentUserNameLabel.bottomAnchor, constant: 4)
             .isActive = true
         loginUserAvatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 13)
             .isActive = true
         loginUserAvatarImageView.widthAnchor.constraint(equalToConstant: 20).isActive = true
         loginUserAvatarImageView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+    }
 
+    private func setupCommentLoginLabelAnchors() {
         commentLoginLabel.centerYAnchor.constraint(equalTo: loginUserAvatarImageView.centerYAnchor).isActive = true
         commentLoginLabel.leadingAnchor.constraint(equalTo: loginUserAvatarImageView.trailingAnchor, constant: 3)
             .isActive = true
         commentLoginLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
         commentLoginLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
+    }
 
+    private func setupTimePostLabelAnchors() {
         timePostLabel.topAnchor.constraint(equalTo: loginUserAvatarImageView.bottomAnchor, constant: 7)
             .isActive = true
         timePostLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 13).isActive = true
@@ -294,6 +317,8 @@ final class PostTableViewCell: UITableViewCell {
         }
     }
 }
+
+// MARK: - PostTableViewCell + UIScrollViewDelegate
 
 extension PostTableViewCell: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

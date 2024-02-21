@@ -28,6 +28,7 @@
 		0ECFB7C72B8527E4003E258D /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECFB7C62B8527E4003E258D /* Notification.swift */; };
 		0ECFB7C92B852FC3003E258D /* SubscribeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECFB7C82B852FC3003E258D /* SubscribeTableViewCell.swift */; };
 		0ECFB7CB2B852FD0003E258D /* CommentPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECFB7CA2B852FD0003E258D /* CommentPostTableViewCell.swift */; };
+		0EE1BEEC2B868DE40059F02B /* RecommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE1BEEB2B868DE40059F02B /* RecommendView.swift */; };
 		0EEABA942B84E0C00097588D /* Recommend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEABA932B84E0C00097588D /* Recommend.swift */; };
 		0EEABA962B84E1350097588D /* RecommendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEABA952B84E1350097588D /* RecommendTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -56,6 +57,7 @@
 		0ECFB7C62B8527E4003E258D /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		0ECFB7C82B852FC3003E258D /* SubscribeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeTableViewCell.swift; sourceTree = "<group>"; };
 		0ECFB7CA2B852FD0003E258D /* CommentPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentPostTableViewCell.swift; sourceTree = "<group>"; };
+		0EE1BEEB2B868DE40059F02B /* RecommendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendView.swift; sourceTree = "<group>"; };
 		0EEABA932B84E0C00097588D /* Recommend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recommend.swift; sourceTree = "<group>"; };
 		0EEABA952B84E1350097588D /* RecommendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -122,6 +124,7 @@
 				0E00401C2B83815900C5121A /* FeedViewController.swift */,
 				0ECFB7C42B84FEA5003E258D /* Models */,
 				0ECFB7C32B84FE96003E258D /* Cells */,
+				0EE1BEEB2B868DE40059F02B /* RecommendView.swift */,
 			);
 			path = FeedScreen;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				0EEABA962B84E1350097588D /* RecommendTableViewCell.swift in Sources */,
 				0EB24D832B84150F00E7842C /* PostTableViewCell.swift in Sources */,
 				0ECFB7CB2B852FD0003E258D /* CommentPostTableViewCell.swift in Sources */,
+				0EE1BEEC2B868DE40059F02B /* RecommendView.swift in Sources */,
 				0E0040252B83F84B00C5121A /* UIFont+Extension.swift in Sources */,
 				0E0040232B83E33F00C5121A /* StoriesTableViewCell.swift in Sources */,
 			);

@@ -1,8 +1,6 @@
 // Post.swift
 // Copyright © RoadMap. All rights reserved.
 
-import Foundation
-
 /// Описывает структуру поста
 struct Post {
     /// Имя владельца поста

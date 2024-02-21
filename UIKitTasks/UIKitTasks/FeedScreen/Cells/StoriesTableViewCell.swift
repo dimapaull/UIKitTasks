@@ -41,7 +41,7 @@ final class StoriesTableViewCell: UITableViewCell {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        print("init(coder:) has not been implemented")
+        setupAnchors()
     }
 
     // MARK: - Public Methods
@@ -75,7 +75,7 @@ final class StoriesTableViewCell: UITableViewCell {
             userNamelabel.text = story.userName
             userNamelabel.textColor = .black
             userNamelabel.textAlignment = .center
-            userNamelabel.font = UIFont().verdana(ofSize: 10)
+            userNamelabel.font = UIFont.verdana(ofSize: 10)
             userNamelabel.translatesAutoresizingMaskIntoConstraints = false
 
             let avatarImageView = UIImageView()
