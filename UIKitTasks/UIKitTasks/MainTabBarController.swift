@@ -32,7 +32,7 @@ final class MainTabBarController: UITabBarController {
         let navigationFeedViewController = UINavigationController(rootViewController: FeedViewController())
         let navigationNotificationViewController =
             UINavigationController(rootViewController: NotificationViewController())
-        let profileViewController = UIViewController()
+        let profileViewController = UINavigationController(rootViewController: ProfileViewController())
 
         let controllers = [navigationFeedViewController, navigationNotificationViewController, profileViewController]
 
