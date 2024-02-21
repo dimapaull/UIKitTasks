@@ -166,6 +166,8 @@ final class FeedViewController: UIViewController {
     }
 }
 
+// MARK: - FeedViewController + UITableViewDataSource
+
 extension FeedViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         cellTypes.count
