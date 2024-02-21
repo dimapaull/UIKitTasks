@@ -5,7 +5,7 @@ import UIKit
 
 /// Контроллер с основной лентой публикаций пользователей
 final class FeedViewController: UIViewController {
-    // MARK: - Constants
+    // MARK: - Types
 
     private enum TableCellTypes {
         case stories
@@ -14,13 +14,15 @@ final class FeedViewController: UIViewController {
         case recommend
     }
 
+    // MARK: - Constants
+
     private enum Constants {
         static let myHistoryText = "Ваша история"
         static let humanHistoryText = "lavanda123"
         static let myProfileImageName = "myProfile"
         static let storiesImageName = "historyWoman"
 
-        static let postUserName = "tur_v_dagestan"
+        static let postUserName = "tur_v_dagestan "
         static let postUserImageName = "dagestanHuman"
         static let postFirstImageName = "dagestan"
         static let postSecondImageName = "postMountians"
@@ -38,7 +40,11 @@ final class FeedViewController: UIViewController {
 
     private let feedTableView = UITableView()
 
-    // MARK: - Public Properties
+    private lazy var refreshControl = {
+        let control = UIRefreshControl()
+        control.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
+        return control
+    }()
 
     // MARK: - Private Properties
 
@@ -107,8 +113,6 @@ final class FeedViewController: UIViewController {
         setupTableView()
     }
 
-    // MARK: - Public Methods
-
     // MARK: - Private Methods
 
     private func configureUI() {
@@ -118,6 +122,7 @@ final class FeedViewController: UIViewController {
 
     private func setupTableView() {
         feedTableView.translatesAutoresizingMaskIntoConstraints = false
+        feedTableView.refreshControl = refreshControl
         feedTableView.dataSource = self
         feedTableView.backgroundColor = .white
         feedTableView.separatorStyle = .none
@@ -151,6 +156,11 @@ final class FeedViewController: UIViewController {
         let logoBarItem = UIBarButtonItem(image: .logo, style: .plain, target: nil, action: nil)
         logoBarItem.tintColor = .black
         navigationItem.leftBarButtonItem = logoBarItem
+    }
+
+    @objc private func refreshTableView(_ sender: Any) {
+        feedTableView.reloadData()
+        refreshControl.endRefreshing()
     }
 }
 
@@ -191,7 +201,6 @@ extension FeedViewController: UITableViewDataSource {
             } else {
                 cell.configure(post: posts[indexPath.row])
             }
-
             return cell
         case .recommend:
             guard let cell = tableView

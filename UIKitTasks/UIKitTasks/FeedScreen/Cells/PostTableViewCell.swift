@@ -161,11 +161,12 @@ final class PostTableViewCell: UITableViewCell {
 
     func configure(post: Post) {
         addScrollViewSubviews(post.postImageNames)
+        likeTitleLabel.text?.append("\(post.likes)")
         configureScrollView(postImagesCount: post.postImageNames.count)
         postPageControl.numberOfPages = post.postImageNames.count
         avatarImageView.image = UIImage(named: post.userAvatarImageName)
         userNameLabel.text = post.userName
-        commentUserNameLabel.text = "\(post.userName) \(post.postTitle)"
+        commentUserNameLabel.setupLabelAttribute(fontSize: 10, name: post.userName, title: post.postTitle, time: nil)
         loginUserAvatarImageView.image = UIImage(named: post.loginUserAvatarImageName)
         if post.postImageNames.count == 1 {
             postScrollView.isScrollEnabled = false
