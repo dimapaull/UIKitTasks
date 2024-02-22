@@ -142,7 +142,6 @@ final class FeedViewController: UIViewController {
             RecommendTableViewCell.self,
             forCellReuseIdentifier: String(describing: RecommendTableViewCell.self)
         )
-
         feedTableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         feedTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         feedTableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
