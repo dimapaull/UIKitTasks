@@ -11,9 +11,13 @@ final class ProfileViewController: UIViewController {
 
     private enum Constants {
         static let myProfileName = "mary_rmLink"
+        static let plusSymbol = "+"
+        static let cornerRadiusAddButton = 13.0
     }
 
     // MARK: - Visual Components
+
+    private let profileTableView = UITableView()
 
     // MARK: - Public Properties
 
@@ -65,5 +69,40 @@ final class ProfileViewController: UIViewController {
 
     private func configureUI() {
         view.backgroundColor = .white
+        addSubviews()
+        setupTableView()
+    }
+
+    private func addSubviews() {
+        view.addSubview(profileTableView)
+    }
+
+    private func setupTableView() {
+        profileTableView.translatesAutoresizingMaskIntoConstraints = false
+        profileTableView.dataSource = self
+        profileTableView.separatorStyle = .none
+        profileTableView.register(
+            HeaderTableViewCell.self,
+            forCellReuseIdentifier: String(describing: HeaderTableViewCell.self)
+        )
+        profileTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        profileTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        profileTableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        profileTableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+    }
+}
+
+extension ProfileViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        1
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView
+            .dequeueReusableCell(
+                withIdentifier: String(describing: HeaderTableViewCell.self), for: indexPath
+            ) as? HeaderTableViewCell
+        else { return UITableViewCell() }
+        return cell
     }
 }
