@@ -16,13 +16,13 @@ final class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
+        configureUI()
         setupTabBarItems()
     }
 
     // MARK: - Private Methods
 
-    private func configure() {
+    private func configureUI() {
         tabBar.tintColor = .appBlue
         tabBar.unselectedItemTintColor = .black
         tabBar.backgroundColor = .white

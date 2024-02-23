@@ -168,6 +168,7 @@ extension ProfileViewController: UITableViewDataSource {
                 ) as? ProfileStoriesTableViewCell
             else { return UITableViewCell() }
             cell.configure(stories: stories)
+            cell.delegate = self
             return cell
         case .posts:
             guard let cell = tableView
@@ -186,5 +187,15 @@ extension ProfileViewController: UITableViewDataSource {
 extension ProfileViewController: Openable {
     func openBrowser() {
         present(BrowserViewController(), animated: true)
+    }
+}
+
+// MARK: - ProfileViewController + Storybale
+
+extension ProfileViewController: Storybale {
+    func openFullStory(imageName: UIImage) {
+        let storyViewController = StoriesViewController()
+        storyViewController.setupImage(mainImageName: imageName)
+        present(storyViewController, animated: true)
     }
 }

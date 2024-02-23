@@ -3,6 +3,11 @@
 
 import UIKit
 
+protocol Storybale: AnyObject {
+    /// Открытие истории во весь экран
+    func openFullStory(imageName: UIImage)
+}
+
 /// Ячейка со скролом историй
 final class ProfileStoriesTableViewCell: UITableViewCell {
     // MARK: - Constants
@@ -19,6 +24,10 @@ final class ProfileStoriesTableViewCell: UITableViewCell {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
+
+    // MARK: - Private Properties
+
+    weak var delegate: Storybale?
 
     // MARK: - Initializers
 
@@ -67,14 +76,9 @@ final class ProfileStoriesTableViewCell: UITableViewCell {
             storyNameLabel.font = UIFont().verdana(ofSize: 10)
             storyNameLabel.translatesAutoresizingMaskIntoConstraints = false
 
-            let storyImageView = UIImageView()
-            storyImageView.contentMode = .center
-            storyImageView.image = UIImage(named: story.imageName)?.withAlignmentRectInsets(UIEdgeInsets(
-                top: 3,
-                left: 3,
-                bottom: -3,
-                right: -3
-            ))
+            let storyImageView = UIButton()
+            storyImageView.addTarget(self, action: #selector(openStory), for: .touchUpInside)
+            storyImageView.setImage(UIImage(named: story.imageName), for: .normal)
 
             storyImageView.layer.cornerRadius = storyImageView.bounds.height / 2
             storyImageView.clipsToBounds = true
@@ -102,10 +106,13 @@ final class ProfileStoriesTableViewCell: UITableViewCell {
     private func addLayerFor(_ view: UIView) {
         let borderLayer = CALayer()
         borderLayer.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 60, height: 60))
-
         borderLayer.borderColor = UIColor.appGray.cgColor
         borderLayer.borderWidth = 1
         borderLayer.cornerRadius = borderLayer.frame.width / 2
         view.layer.insertSublayer(borderLayer, above: view.layer)
+    }
+
+    @objc private func openStory(_ button: UIButton) {
+        delegate?.openFullStory(imageName: button.currentImage ?? UIImage())
     }
 }

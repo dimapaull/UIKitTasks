@@ -35,7 +35,6 @@ final class FeedViewController: UIViewController {
 
         static let recommendFirstUserName = "сrimea_082"
         static let recommendSecondUserName = "mary_pol"
-
         static let recommendFirstImageName = "recommendCastle"
         static let recommendSecondImageName = "recommendWoman"
     }
