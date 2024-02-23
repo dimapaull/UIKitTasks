@@ -20,6 +20,7 @@ final class ProfileViewController: UIViewController {
 
     private enum Constants {
         static let myProfileName = "mary_rmLink"
+        static let countRowsInSection = 1
     }
 
     // MARK: - Visual Components
@@ -151,7 +152,7 @@ extension ProfileViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        Constants.countRowsInSection
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
