@@ -6,9 +6,10 @@ import UIKit
 /// Контроллер для представления одной истории во весь экран
 final class StoriesViewController: UIViewController {
     // MARK: - Constants
-    
+
     private enum Constants {
         static let nameOfStoryText = "Запуск"
+        static let progressValue: Float = 0.5
     }
 
     // MARK: - Visual Components
@@ -34,7 +35,7 @@ final class StoriesViewController: UIViewController {
 
     private let storyProgressView = {
         let progressView = UIProgressView()
-        progressView.progress = 0.5
+        progressView.progress = Constants.progressValue
         progressView.tintColor = .white
         return progressView
     }()

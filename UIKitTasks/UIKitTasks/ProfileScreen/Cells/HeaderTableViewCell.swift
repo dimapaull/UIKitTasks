@@ -21,11 +21,13 @@ final class HeaderTableViewCell: UITableViewCell {
         static let editText = "Изменить"
         static let shareText = "Поделиться профилем"
         static let cornerRadiusAddButton = 13.0
+        static let startXPoint = 46.0
+        static let viewMargin = 70.0
     }
 
     // MARK: - Visual Components
 
-    private let myProfileImageView = {
+    private let profileImageView = {
         let imageView = UIImageView(image: .myProfile)
         imageView.contentMode = .scaleAspectFill
         return imageView
@@ -103,10 +105,13 @@ final class HeaderTableViewCell: UITableViewCell {
         return button
     }()
 
+    // MARK: - Public Properties
+
+    weak var delegate: Openable?
+
     // MARK: - Private Properties
 
     private let profileInformations = [("\nпубликации", 67), ("\nподписчики", 458), ("\nподписки", 120)]
-    weak var delegate: Openable?
 
     // MARK: - Initializers
 
@@ -133,7 +138,7 @@ final class HeaderTableViewCell: UITableViewCell {
 
     private func addSubviews() {
         for item in [
-            myProfileImageView,
+            profileImageView,
             addProfileButton,
             myProfileLabel,
             profileDesctiptionLabel,
@@ -148,15 +153,15 @@ final class HeaderTableViewCell: UITableViewCell {
     }
 
     private func setupImageViewsAnchors() {
-        myProfileImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12).isActive = true
-        myProfileImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15).isActive = true
-        myProfileImageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        myProfileImageView.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        profileImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12).isActive = true
+        profileImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: 80).isActive = true
     }
 
     private func setupButtonsAnchors() {
-        addProfileButton.trailingAnchor.constraint(equalTo: myProfileImageView.trailingAnchor).isActive = true
-        addProfileButton.bottomAnchor.constraint(equalTo: myProfileImageView.bottomAnchor).isActive = true
+        addProfileButton.trailingAnchor.constraint(equalTo: profileImageView.trailingAnchor).isActive = true
+        addProfileButton.bottomAnchor.constraint(equalTo: profileImageView.bottomAnchor).isActive = true
         addProfileButton.heightAnchor.constraint(equalToConstant: 26).isActive = true
         addProfileButton.widthAnchor.constraint(equalToConstant: 26).isActive = true
 
@@ -188,7 +193,7 @@ final class HeaderTableViewCell: UITableViewCell {
     }
 
     private func setupLabelsAnchors() {
-        myProfileLabel.topAnchor.constraint(equalTo: myProfileImageView.bottomAnchor, constant: 9).isActive = true
+        myProfileLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 9).isActive = true
         myProfileLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15).isActive = true
         myProfileLabel.heightAnchor.constraint(equalToConstant: 17).isActive = true
         myProfileLabel.widthAnchor.constraint(equalToConstant: 170).isActive = true
@@ -201,7 +206,7 @@ final class HeaderTableViewCell: UITableViewCell {
     }
 
     private func createProfileInformationLabels() {
-        var startX = 46.0
+        var startX = Constants.startXPoint
         for information in profileInformations {
             let countLabel = UILabel()
             countLabel.numberOfLines = 2
@@ -211,12 +216,12 @@ final class HeaderTableViewCell: UITableViewCell {
 
             contentView.addSubview(countLabel)
 
-            countLabel.topAnchor.constraint(equalTo: myProfileImageView.topAnchor, constant: 10).isActive = true
-            countLabel.leadingAnchor.constraint(equalTo: myProfileImageView.trailingAnchor, constant: startX)
+            countLabel.topAnchor.constraint(equalTo: profileImageView.topAnchor, constant: 10).isActive = true
+            countLabel.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: startX)
                 .isActive = true
             countLabel.heightAnchor.constraint(equalToConstant: 31).isActive = true
             countLabel.widthAnchor.constraint(equalToConstant: 70).isActive = true
-            startX += 70
+            startX += Constants.viewMargin
         }
     }
 

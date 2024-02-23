@@ -127,6 +127,10 @@ final class ProfileViewController: UIViewController {
             PhotosTableViewCell.self,
             forCellReuseIdentifier: String(describing: PhotosTableViewCell.self)
         )
+        setupProfileTableViewAnchors()
+    }
+
+    private func setupProfileTableViewAnchors() {
         profileTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         profileTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         profileTableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true

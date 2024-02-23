@@ -16,7 +16,7 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
 
     // MARK: - Public Methods
 
-    func setup(postName: String) {
+    func setupImage(postName: String) {
         contentView.addSubview(photoImageView)
         photoImageView.image = UIImage(named: postName)
 

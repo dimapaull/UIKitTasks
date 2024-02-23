@@ -87,7 +87,7 @@ extension PhotosTableViewCell: UICollectionViewDataSource {
                 withReuseIdentifier: String(describing: PhotoCollectionViewCell.self), for: indexPath
             ) as? PhotoCollectionViewCell
         else { return UICollectionViewCell() }
-        cell.setup(postName: photoNames[indexPath.item])
+        cell.setupImage(postName: photoNames[indexPath.item])
         return cell
     }
 }

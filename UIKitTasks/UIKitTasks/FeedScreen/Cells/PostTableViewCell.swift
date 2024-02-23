@@ -164,7 +164,6 @@ final class PostTableViewCell: UITableViewCell {
 
     private func configureScrollView(postImagesCount: Int) {
         postScrollView.contentSize.width = contentView.frame.width * CGFloat(postImagesCount) * 1.18
-
         postScrollView.showsHorizontalScrollIndicator = false
     }
 
@@ -294,6 +293,8 @@ final class PostTableViewCell: UITableViewCell {
         }
     }
 }
+
+// MARK: - PostTableViewCell + UIScrollViewDelegate
 
 extension PostTableViewCell: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

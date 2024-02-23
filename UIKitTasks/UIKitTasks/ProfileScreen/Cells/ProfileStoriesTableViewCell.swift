@@ -3,6 +3,7 @@
 
 import UIKit
 
+/// Нужен для того, чтобы открыть польностью историю
 protocol Storybale: AnyObject {
     /// Открытие истории во весь экран
     func openFullStory(imageName: UIImage)
