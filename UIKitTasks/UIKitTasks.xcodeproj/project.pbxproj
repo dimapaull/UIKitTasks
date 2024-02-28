@@ -17,6 +17,20 @@
 		0EB28A2A2B7250A600C28C48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EB28A282B7250A600C28C48 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		0E4F2BFC2B8CA86500EDF359 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = pattern.proxy;
+			inputFiles = (
+			);
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXFileReference section */
 		0E0AEF142B8B5E2000B91D6E /* StackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewController.swift; sourceTree = "<group>"; };
 		0E0AEF162B8BDA4300B91D6E /* AnchorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchorsViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +101,7 @@
 				0EB28A312B7250FA00C28C48 /* SwiftLint */,
 			);
 			buildRules = (
+				0E4F2BFC2B8CA86500EDF359 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);

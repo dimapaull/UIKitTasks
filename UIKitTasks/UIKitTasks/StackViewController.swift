@@ -25,7 +25,7 @@ final class StackViewController: UIViewController {
         return view
     }()
 
-    private let blackView: UIView = {
+    private let blackView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .black
@@ -49,8 +49,8 @@ final class StackViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
     }
-    
-    //MARK: - Private Methods
+
+    // MARK: - Private Methods
 
     private func configureUI() {
         view.backgroundColor = .white

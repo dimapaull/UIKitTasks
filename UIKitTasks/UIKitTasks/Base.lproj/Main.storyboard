@@ -30,7 +30,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JZV-jc-qx4">
                                         <rect key="frame" x="0.0" y="76.333333333333314" width="107.33333333333333" height="34.333333333333343"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="stotyBoard"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="stackView"/>
                                         <connections>
                                             <segue destination="euP-pT-avR" kind="show" id="6oP-cl-ENV"/>
                                         </connections>

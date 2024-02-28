@@ -8,24 +8,24 @@ final class AnchorsViewController: UIViewController {
     // MARK: - Visual Components
 
     private let yellowView = {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        let view = UIView()
         view.backgroundColor = .yellow
         return view
     }()
 
     private let redView = {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        let view = UIView()
         view.backgroundColor = .red
         return view
     }()
 
     private let greenView = {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        let view = UIView()
         view.backgroundColor = .green
         return view
     }()
 
-    private let blackView: UIView = {
+    private let blackView = {
         let view = UIView()
         view.backgroundColor = .black
         return view
@@ -37,8 +37,8 @@ final class AnchorsViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
     }
-    
-    //MARK: - Private Methods
+
+    // MARK: - Private Methods
 
     private func configureUI() {
         view.backgroundColor = .white
